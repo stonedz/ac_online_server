@@ -1549,3 +1549,412 @@
 
 1166956513 /home/stonedz/progetti/lo/lo-server/branches/lo-testserver/src/pawn/getch.h
 
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Account.cpp
+	"Account.h"
+	"cppsqlite3.h"
+	"Server.h"
+	"Logger.h"
+	"Char.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Account.h
+	<iostream>
+	"SDL.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/cppsqlite3.h
+	"sqlite3.h"
+	<cstdio>
+	<cstring>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Server.h
+	<map>
+	"SDL.h"
+	"Connection.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Logger.h
+	<iostream>
+	<iosfwd>
+	<fstream>
+	<sstream>
+	<iomanip>
+	"SDL.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Char.h
+	"IMoveableObject.h"
+	"SDL.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/IMoveableObject.h
+	"IGameObject.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/IGameObject.h
+	<iostream>
+	"SDL.h"
+	"Location.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Location.h
+	<SDL/SDL.h>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Char.cpp
+	"Char.h"
+	"cppsqlite3.h"
+	"Logger.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Client.cpp
+	"Client.h"
+	"Server.h"
+	"Account.h"
+	"Clientfsm.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Client.h
+	"SDL.h"
+	"SDL_net.h"
+	"SDL_thread.h"
+	"Connection.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Clientfsm.h
+	<SDL.h>
+	<SDL_net.h>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Clientfsm.cpp
+	"Clientfsm.h"
+	"Connection.h"
+	"MessageIn.h"
+	"MessageOut.h"
+	"Logger.h"
+	"Server.h"
+	"crc32.h"
+	"sha1.h"
+	"cppsqlite3.h"
+	"Account.h"
+	"Client.h"
+	"Char.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/CommandManager.cpp
+	<string>
+	"CommandManager.h"
+	"Logger.h"
+	"cppsqlite3.h"
+	"CommandScheduler.h"
+	"commands/Cmd_test.h"
+	"commands/Cmd_exit.h"
+	"commands/Cmd_chat.h"
+	"commands/Cmd_accounts.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/CommandManager.h
+	<iostream>
+	<map>
+	"SDL.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/CommandScheduler.h
+	<iostream>
+	"SDL.h"
+	"commands/ICommand.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/ICommand.h
+	<iostream>
+	"SDL.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_test.h
+	<iostream>
+	"ICommandServer.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/ICommandServer.h
+	<iostream>
+	"ICommand.h"
+	"../Server.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_exit.h
+	"ICommandServer.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_chat.h
+	"ICommandServer.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_accounts.h
+	"ICommandServer.h"
+	"../cppsqlite3.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/CommandScheduler.cpp
+	"CommandScheduler.h"
+	"cppsqlite3.h"
+	"Logger.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Console.cpp
+	<iostream>
+	<string>
+	"Console.h"
+	"CommandManager.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Console.h
+	<iostream>
+	"SDL.h"
+	"SDL_thread.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Gamefsm.cpp
+	"Gamefsm.h"
+	"Logger.h"
+	"Server.h"
+	<iostream>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Gamefsm.h
+	"SDL/SDL.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/IGameObject.cpp
+	"IGameObject.h"
+	"Location.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/IMoveableObject.cpp
+	"IMoveableObject.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Location.cpp
+	"Location.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Logger.cpp
+	"Logger.h"
+	<time.h>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/Server.cpp
+	"Server.h"
+	"MessageOut.h"
+	"Message.h"
+	"Client.h"
+	"Gamefsm.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_accounts.cpp
+	<string>
+	"Cmd_accounts.h"
+	"sha1.h"
+	"../Logger.h"
+	"../cppsqlite3.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_chat.cpp
+	<string>
+	"Cmd_chat.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_exit.cpp
+	"Cmd_exit.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/Cmd_test.cpp
+	<string>
+	"Cmd_test.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/ICommand.cpp
+	"ICommand.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/commands/ICommandServer.cpp
+	"ICommandServer.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/cppsqlite3.cc
+	"cppsqlite3.h"
+	<cstdlib>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/main.cpp
+	<afxres.h>
+	<SDL.h>
+	<SDL_thread.h>
+	<SDL_net.h>
+	<stdio.h>
+	<stdlib.h>
+	<signal.h>
+	<string.h>
+	<osdefs.h>
+	<amx.h>
+	<time.h>
+	<binreloc.h>
+	<amxdbg.h>
+	<iostream>
+	<vector>
+	"Connection.h"
+	"Server.h"
+	"Logger.h"
+	"Console.h"
+	"Account.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Connection.cpp
+	"Connection.h"
+	"Message.h"
+	"MessageIn.h"
+	"MessageOut.h"
+	"NetPacket.h"
+	"crc32.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Connection.h
+	<iostream>
+	<SDL/SDL.h>
+	<SDL/SDL_net.h>
+	<SDL/SDL_thread.h>
+	"ConnectionData.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/ConnectionData.h
+	<SDL/SDL.h>
+	<SDL/SDL_net.h>
+	<SDL/SDL_thread.h>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Message.h
+	<cstdlib>
+	<cstring>
+	<string>
+	<SDL/SDL_net.h>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/MessageIn.h
+	"Message.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/MessageOut.h
+	"crc32.h"
+	"Message.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/crc32.h
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/NetPacket.h
+	<SDL/SDL.h>
+	"Packet.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Packet.h
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/ConnectionData.cpp
+	"ConnectionData.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Message.cpp
+	"Message.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/MessageIn.cpp
+	"MessageIn.h"
+	"NetPacket.h"
+	"crc32.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/MessageOut.cpp
+	"MessageOut.h"
+	"NetPacket.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/NetPacket.cpp
+	"NetPacket.h"
+	<cstring>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/Packet.cpp
+	"Packet.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/crc32.cc
+	"crc32.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/sha1.cc
+	"sha1.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/network/sha1.h
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amx.c
+	<assert.h>
+	<stdarg.h>
+	<stddef.h>
+	<stdlib.h>
+	<string.h>
+	"osdefs.h"
+	<sclinux.h>
+	<dlfcn.h>
+	<sys/types.h>
+	<sys/mman.h>
+	<wchar.h>
+	"amx.h"
+	<windows.h>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/osdefs.h
+	<sys/endian.h>
+	<endian.h>
+	<stdio.h>
+	<limits.h>
+	<stdlib.h>
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amx.h
+	<stdlib.h>
+	<limits.h>
+	<sclinux.h>
+	<stdint.h>
+	<inttypes.h>
+	<stdint.h>
+	<ppc/types.h>
+	<inttypes.h>
+	<alloca.h>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxServLang.cc
+	<iostream>
+	<vector>
+	"SDL.h"
+	"SDL_thread.h"
+	"SDL_net.h"
+	"Connection.h"
+	"../Server.h"
+	"../Logger.h"
+	"amx.h"
+	"../Account.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxcons.c
+	<limits.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	<conio.h>
+	<malloc.h>
+	<curses.h>
+	"amx.h"
+	<windows.h>
+	<tchar.h>
+	"amxcons.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxcons.h
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxcore.c
+	<stdlib.h>
+	<string.h>
+	<limits.h>
+	<assert.h>
+	"amx.h"
+	<windows.h>
+	<time.h>
+	<tchar.h>
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxdbg.c
+	<assert.h>
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"osdefs.h"
+	"amx.h"
+	"amxdbg.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/amxdbg.h
+	"amx.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/binreloc.c
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+	<string.h>
+	"binreloc.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/binreloc.h
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/fixed.c
+	<assert.h>
+	<stdio.h>
+	"amx.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/float.c
+	<stdlib.h>
+	<stdio.h>
+	<assert.h>
+	<math.h>
+	"amx.h"
+
+1179796617 source:/home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/getch.c
+	<stdio.h>
+	<string.h>
+	<termios.h>
+	<unistd.h>
+	<sys/socket.h>
+	<sys/types.h>
+	<sys/time.h>
+	"getch.h"
+
+1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/getch.h
+
