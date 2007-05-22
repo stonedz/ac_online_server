@@ -1,0 +1,147 @@
+#ifndef SERVER_H_
+#define SERVER_H_
+
+#include <map>
+
+#include "SDL.h"
+
+#include "Connection.h"
+
+class Message;	// Forward declarations.
+class MessageIn;
+class MessageOut;
+class Client;
+
+/**
+ * Represents a server.
+ *
+ * Waits for new connections at given port and manages the creation
+ * of new Clients.
+ */
+class Server : public Connection
+{
+public:
+
+	/**
+	 * Constructs a Server.
+	 *
+	 * Initializes a server by creating a socket, filling a ConnectionData
+	 * with server's informations and finally by creating a thread to run in.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param port Port to run the server at.
+	 * @todo Check exit codes and change them to exceptions.
+	 */
+	Server(int port);
+
+	/**
+	 * Virtual destructor
+	 */
+	virtual ~Server();
+
+	/**
+	 * Listening routine.
+	 *
+	 * A thread created previously during object's creation, will pass the control to this
+	 * method. Here we listen for incoming connections, when activity
+	 * is detected, we create a new Client, and it will automatically create
+	 * a new thread to run in.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param data Contains the server's data that was initialized in Server's constructor.
+	 */
+	void startListen(ConnectionData * data);
+
+	/**
+	 * Adds a Client to the clients' map. Thread-safe.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param newClient Client to be added.
+	 * @return True if ok, false elsewhere.
+	 */
+	bool addClient(Client* newClient);
+
+	/**
+	 * Deletes then removes a client from the clients' map. Thread-safe.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param oldClient Client to be removed.
+	 * @return True if ok, false elsewhere.
+	 */
+	bool removeClient(Client* oldClient);
+
+	/**
+	 * Gently request the server to quit.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @todo Check if a basic syncro is needed.
+	 */
+	void requestExit();
+
+	/**
+	 * Sets the server in chat mode. This means that its console will print all
+	 * MSG_CHAT messages that clients send to the server.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param value True to set the chat_mode, false to unset it.
+	 */
+	void setChatMode(bool value = true);
+
+    /**
+     * Sends a chat message to all the connected clients except the one that first
+     * sent the message. If the server's console set the chat_mode it will display the chat
+     * message to the console as well.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @param sender Pointer to the Client that sent the chat message (it used in mClients map as a key), if 0 is the Server.
+     * @param msg The chat message itself.
+     * @todo Finish the implementation.
+     */
+	void generalChatMsg(Uint32 sender, std::string msg);
+
+    /**
+     * Returns next game object serial.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @param validSerial Reference to an integer value to store the serial in. \
+     * @see IGameObject
+     */
+    void getNextGoSerial(Uint32& validSerial);
+
+    /**
+     * Sets the initialized var. It is used by Gamefsm.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @param value
+     */
+    void setInit(bool value = true);
+
+private:
+
+	/**
+	 * Map containing active connections.
+	 *
+	 * The key is an unsigned, 32 bits long, integer, obtained
+	 * by transforming an address of the Client's pointer into
+	 * an integer. This will let us retrieve Clients easily.
+	 */
+	std::map<Uint32, Client*> mClients;
+
+	SDL_mutex* mxClients;       /**< Mutex to avoid problems when dealing with the mClients map.*/
+	bool exit_request;          /**< Proper exit request has benn submitted.*/
+	bool chat_mode;             /**< This server's console will act like chat client, mainly for testing MSG_CHAT implementation. */
+	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */
+	Uint32 gameObjectSerial;    /**< The current Serial counter for game Objects (IGameObjects derived). */
+	bool initialized;           /**< If true the server has been initialized, and may accept incoming connections. */
+};
+
+#endif /*SERVER_H_*/

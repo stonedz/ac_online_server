@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lo_servertest" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug_linux">
+				<Option output="./lo_servertest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-Wfatal-errors" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-DTESTPHASE -DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX -I/usr/include/SDL -Ipawn/ -Icommands/ -Inetwork/ -I./" />
+				</Compiler>
+				<Linker>
+					<Add library="SDL" />
+					<Add library="SDL_net" />
+					<Add library="m" />
+					<Add library="pthread" />
+					<Add library="sqlite3" />
+				</Linker>
+			</Target>
+			<Target title="Release_linux">
+				<Option output="./lo_servertest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX -I/usr/include/SDL -Ipawn/ -Icommands/ -I./" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="SDL" />
+					<Add library="SDL_net" />
+					<Add library="pthread" />
+					<Add library="m" />
+					<Add library="sqlite3" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="Account.cpp" />
+		<Unit filename="Account.h" />
+		<Unit filename="Char.cpp" />
+		<Unit filename="Char.h" />
+		<Unit filename="Client.cpp" />
+		<Unit filename="Client.h" />
+		<Unit filename="Clientfsm.cpp" />
+		<Unit filename="Clientfsm.h" />
+		<Unit filename="CommandManager.cpp" />
+		<Unit filename="CommandManager.h" />
+		<Unit filename="CommandScheduler.cpp" />
+		<Unit filename="CommandScheduler.h" />
+		<Unit filename="Console.cpp" />
+		<Unit filename="Console.h" />
+		<Unit filename="Gamefsm.cpp" />
+		<Unit filename="Gamefsm.h" />
+		<Unit filename="IGameObject.cpp" />
+		<Unit filename="IGameObject.h" />
+		<Unit filename="IMoveableObject.cpp" />
+		<Unit filename="IMoveableObject.h" />
+		<Unit filename="Location.cpp" />
+		<Unit filename="Location.h" />
+		<Unit filename="Logger.cpp" />
+		<Unit filename="Logger.h" />
+		<Unit filename="Server.cpp" />
+		<Unit filename="Server.h" />
+		<Unit filename="commands/Cmd_accounts.cpp" />
+		<Unit filename="commands/Cmd_accounts.h" />
+		<Unit filename="commands/Cmd_chat.cpp" />
+		<Unit filename="commands/Cmd_chat.h" />
+		<Unit filename="commands/Cmd_exit.cpp" />
+		<Unit filename="commands/Cmd_exit.h" />
+		<Unit filename="commands/Cmd_test.cpp" />
+		<Unit filename="commands/Cmd_test.h" />
+		<Unit filename="commands/ICommand.cpp" />
+		<Unit filename="commands/ICommand.h" />
+		<Unit filename="commands/ICommandServer.cpp" />
+		<Unit filename="commands/ICommandServer.h" />
+		<Unit filename="cppsqlite3.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="cppsqlite3.h" />
+		<Unit filename="lo_servertest" />
+		<Unit filename="lo_servertest.cbp" />
+		<Unit filename="lo_servertest.depend" />
+		<Unit filename="main.cpp" />
+		<Unit filename="network/Connection.cpp" />
+		<Unit filename="network/Connection.h" />
+		<Unit filename="network/ConnectionData.cpp" />
+		<Unit filename="network/ConnectionData.h" />
+		<Unit filename="network/Message.cpp" />
+		<Unit filename="network/Message.h" />
+		<Unit filename="network/MessageIn.cpp" />
+		<Unit filename="network/MessageIn.h" />
+		<Unit filename="network/MessageOut.cpp" />
+		<Unit filename="network/MessageOut.h" />
+		<Unit filename="network/NetPacket.cpp" />
+		<Unit filename="network/NetPacket.h" />
+		<Unit filename="network/Packet.cpp" />
+		<Unit filename="network/Packet.h" />
+		<Unit filename="network/crc32.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="network/crc32.h" />
+		<Unit filename="network/sha1.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="network/sha1.h" />
+		<Unit filename="pawn/amx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/amx.h" />
+		<Unit filename="pawn/amxServLang.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/amxcons.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/amxcons.h" />
+		<Unit filename="pawn/amxcore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/amxdbg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/amxdbg.h" />
+		<Unit filename="pawn/binreloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/binreloc.h" />
+		<Unit filename="pawn/fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/float.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/getch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="pawn/getch.h" />
+		<Unit filename="pawn/osdefs.h" />
+		<Unit filename="pawn/sclinux.h" />
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
