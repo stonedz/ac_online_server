@@ -71,6 +71,8 @@
 		<Unit filename="Location.h" />
 		<Unit filename="Logger.cpp" />
 		<Unit filename="Logger.h" />
+		<Unit filename="MapManager.cpp" />
+		<Unit filename="MapManager.h" />
 		<Unit filename="Server.cpp" />
 		<Unit filename="Server.h" />
 		<Unit filename="commands/Cmd_accounts.cpp" />

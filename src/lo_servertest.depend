@@ -1994,7 +1994,7 @@
 1179796617 /home/stonedz/progetti/lo_server/src/IMoveableObject.h
 	"IGameObject.h"
 
-1180025913 /home/stonedz/progetti/lo_server/src/IGameObject.h
+1180028947 /home/stonedz/progetti/lo_server/src/IGameObject.h
 	<iostream>
 	"SDL.h"
 	"Location.h"
@@ -2019,7 +2019,7 @@
 	"SDL_thread.h"
 	"Connection.h"
 
-1180028093 /home/stonedz/progetti/lo_server/src/Clientfsm.h
+1180028947 /home/stonedz/progetti/lo_server/src/Clientfsm.h
 	<SDL.h>
 	<SDL_net.h>
 
