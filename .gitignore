@@ -1,0 +1,6 @@
+#Ignore objects directory created by compiling with codeblocks.
+*.o
+#Ignore compiled binary
+lo_servertest
+#Ignore accounts database
+accounts.db
