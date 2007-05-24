@@ -4,3 +4,5 @@
 lo_servertest
 #Ignore accounts database
 accounts.db
+#Ignore  codeblocks's backups
+*.backup
