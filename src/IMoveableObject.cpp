@@ -14,7 +14,7 @@ IMoveableObject::~IMoveableObject()
 }
 
 void IMoveableObject::move(){
-    if (mDestPos != getPosition())
+    if (mDestPos != *(getPosition()))
         setPosition(mDestPos); // Teletransport ! not for production use :D
 }
 

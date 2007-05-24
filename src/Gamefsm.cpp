@@ -69,7 +69,7 @@ bool Gamefsm::ExecTrans(game_fsm_trans t){
 }
 
 void Gamefsm::Init(){
-    // Initialize the game...
+    // Initialize the game...then when ok
     myServer->setInit(true);
     // then pass the control to the main loop.
     ExecTrans(t_main);

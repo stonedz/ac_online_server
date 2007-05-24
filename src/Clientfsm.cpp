@@ -199,7 +199,8 @@ bool ClientFSM::authenticate(MessageIn *msg){
 
 	}
 	else{
-		logger->log("Failed CRC check during authentification", LOGMODE_AUTH);
+	    string toLog = "!! Failed CRC check during authentification ";
+		logger->log(toLog, LOGMODE_AUTH);
 	}
 
 	return ret;
@@ -219,12 +220,17 @@ void ClientFSM::move(MessageIn* message){
         x = message->read2();
         y = message->read2();
         z = message->read2();
+        #ifdef TESTPHASE
         std::cout << "Received a Move message, new coord are x:" << x << " y:" << y << std::endl;
-        //myServer->getMapManager()->validateMove(ORIG,DEST); <- to be implemented!
-        myClient->getAccount()->getChar()->setDestination(Location(x,y,z));
+        #endif
+
+        const Location* actualLocation = myClient->getAccount()->getChar()->getPosition();
+        const Location* destLocation = new Location(x,y,z);
+        //myServer->getMapManager()->validateMove(ORIG,DEST); <- TODO to be implemented!
+        myClient->getAccount()->getChar()->setDestination(*destLocation);
     }
     else
-        logger->log("Bad lenght in MSG_MOVE message <additional info here>", LOGMODE_ERROR);
+        logger->log("Bad lenght in MSG_MOVE message <additional info here>", LOGMODE_ERROR); //TODO : fill additional info
 }
 
 bool ClientFSM::getStatus(){

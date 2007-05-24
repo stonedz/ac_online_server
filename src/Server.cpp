@@ -3,6 +3,7 @@
 #include "Message.h"
 #include "Client.h"
 #include "Gamefsm.h"
+#include "MapManager.h"
 
 Server::Server(int port)
 	:mxClients(SDL_CreateMutex()),
@@ -87,10 +88,14 @@ void Server::startListen(ConnectionData * data){
 		if(SDLNet_SocketReady(data->socket)){
 			newSocket=SDLNet_TCP_Accept(data->socket);
 			if (newSocket){
-				std::cerr<<"Socket id: "<< newSocket <<"\n";
+			    #ifdef TESTPHASE
+				std::cout <<"Socket id: "<< newSocket << std::endl;
+				#endif
 				newClient = new Client(newSocket, this);
 				addClient(newClient);
-				std::cout << std::endl << "<Server> Now " << this->mClients.size() << " are connected." << std::endl;
+				#ifdef TESTPHASE
+				std::cout << std::endl << "<Server> Now " << this->mClients.size() << " clients are connected." << std::endl;
+				#endif
 			}
 		}
 	}

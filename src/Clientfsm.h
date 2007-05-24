@@ -173,6 +173,7 @@ private:
      * @since pre-alpha
      * @param message Pointer to the received message. No need do delete it.
      * @todo Implements a real MSG_* handler!
+     * @todo To be tested.
      */
     void move(MessageIn* message);
 

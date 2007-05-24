@@ -90,7 +90,7 @@ public:
      * @return Object position.
      * @see Location
      */
-    const Location& getPosition() {return mPos;}
+    const Location* getPosition() {return &mPos;}
 
     /**
      * Sets the current position of the object with a Location object reference.
