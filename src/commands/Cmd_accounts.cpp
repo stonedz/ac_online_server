@@ -26,7 +26,7 @@ void Cmd_accounts::help(){
 void Cmd_accounts::execute(){
     std::string param1 = getParam(1);
 
-    if (param1 == "")
+    if (param1 == "" || param1 == "show")
         showAccounts();
     else if (param1 == "help")
         help();
@@ -40,17 +40,43 @@ void Cmd_accounts::execute(){
 }
 
 void Cmd_accounts::showAccounts(Uint32 recordsPerPage){
-    CppSQLite3Query q = myAccDb.execQuery("select * from registered_users order by id;");
-
-    while (!q.eof()){
-        std::cout << std::setw(3) << q.fieldValue(0) << " | ";
-        std::cout << std::setw(10) << q.fieldValue(1) << " | ";
-        std::cout << std::setw(10) << q.fieldValue(3) << " | ";
-        std::cout << std::setw(10) << q.fieldValue(4) << " | ";
-        std::cout << std::setw(3) << q.fieldValue(6) << " | ";
-        std::cout << std::setw(20) <<q.fieldValue(5) << " | " << std::endl;
-        q.nextRow();
+    try{
+        CppSQLite3Query q = myAccDb.execQuery("select * from registered_users order by id;");
+        if(q.eof())
+            std::cout << "Accounts database is EMPTY, use < accounts add > to add an entry." << std::endl;
+        else{
+                std::cout << std::setw(3) << "id" << " | ";
+                std::cout << std::setw(15) << "username" << " | ";
+                std::cout << std::setw(10) << "name" << " | ";
+                std::cout << std::setw(10) << "surname" << " | ";
+                std::cout << std::setw(7) << "char id" << " | ";
+                std::cout << std::setw(20) << "email" << " | " << std::endl;
+                std::cout << "----------------------------------------------------------------------------------" << std::endl;
+            while (!q.eof()){
+                std::cout << std::setw(3) << q.fieldValue(0) << " | ";
+                std::cout << std::setw(15) << q.fieldValue(1) << " | ";
+                std::cout << std::setw(10) << q.fieldValue(3) << " | ";
+                std::cout << std::setw(10) << q.fieldValue(4) << " | ";
+                std::cout << std::setw(7) << q.fieldValue(6) << " | ";
+                std::cout << std::setw(20) <<q.fieldValue(5) << " | " << std::endl;
+                q.nextRow();
+            }
+        }
     }
+    catch (CppSQLite3Exception& e){ // No database!
+        std::cout << "No accounts database found!, creating a new one...";
+        try{
+            Sint32 nRows;
+            nRows = myAccDb.execDML("CREATE TABLE IF NOT EXISTS registered_users ( id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, index_hash TEXT, surname TEXT, name TEXT, email TEXT, pc_id INTEGER DEFAULT 0);");
+            nRows = myAccDb.execDML("CREATE UNIQUE INDEX IF NOT EXISTS sha1_index ON registered_users (index_hash);");
+            std::cout << "OK" << std::endl;
+        }
+        catch (CppSQLite3Exception& e){ // Failed database creation
+            std::cout << "FAILED! Seems we've some problems creating a new database." << std::endl;
+        }
+    }
+
+
 }
 
 void Cmd_accounts::addAccount(const std::string& username,
@@ -66,7 +92,7 @@ void Cmd_accounts::addAccount(const std::string& username,
 	Logger* logger = Logger::getInstance();
 
     if (username == "" || password  == "" || name == "" || surname == "" || email == ""){
-        std::cout << "ACCOUNTS CREATOR\n";
+        std::cout << "\nACCOUNTS CREATOR\n";
         std::cout << "================\n";
         std::cout << "Use this program to create simple user data into sqlite3 db.\n";
         std::cout << "User name : ";

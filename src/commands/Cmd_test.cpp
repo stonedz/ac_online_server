@@ -23,8 +23,6 @@ void Cmd_test::execute(void){   // Actual implemetation of the command.
         help();
     else if (param1 == "validateMove")
         test_move();
-    else if (param1 == "char")
-        test_char();
     else
         std::cout << "You passed this string as parameter(s): " << getParam(1,true);
 }
@@ -54,8 +52,3 @@ void Cmd_test::test_move(){
 
 }
 
-void Cmd_test::test_char(){
-    Client * dummyClient = new Client(NULL, myServer);
-    myServer->addClient(dummyClient);
-
-}

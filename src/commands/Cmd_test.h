@@ -33,7 +33,7 @@ private:
      * @see validateMove
      */
     void test_move();
-    void test_char();
+
 };
 
 #endif /*CMD_TEST_H_*/
