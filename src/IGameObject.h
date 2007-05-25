@@ -6,12 +6,17 @@
 #include "SDL.h"
 #include "Location.h"
 
+
+
+//Objects types
 #define GO_INVALID  (0)     /**< Invalid game object. */
 #define GO_PLAYER   (1)     /**< A player. */
 
 /**
  * This abstract interface represents a generic game object. It is
  * used as a base class for all the items, obects and beings of the game.
+ *
+ * Setters are thread safe (at least they _should be_!)
  */
 class IGameObject
 {
@@ -54,7 +59,7 @@ public:
     Uint32 getOwner() {return mOwner;}
 
     /**
-     * Sets current object's owner.
+     * Sets current object's owner. Thread safe.
      *
      * @author stonedz
      * @since pre-alpha
@@ -73,7 +78,7 @@ public:
     std::string getName() {return mName;}
 
     /**
-     * Sets a new name for the object.
+     * Sets a new name for the object. Thread safe.
      *
      * @author stonedz
      * @since pre-alpha
@@ -82,33 +87,38 @@ public:
     void setName(std::string newName);
 
     /**
-     * Returns a constant reference to the current position of the object in the
+     * Returns a pointer to the current position of the object in the
      * form of a Location instance.
      *
      * @author stonedz
      * @since pre-alpha
      * @return Object position.
      * @see Location
+     * @todo See if we can make this const for safety.
      */
-    const Location* getPosition() {return &mPos;}
+    Location* getPosition() {return &mPos;}
 
     /**
-     * Sets the current position of the object with a Location object reference.
+     * Sets the current position of the object with a Location object reference. Thread safe.
      *
      * @author stonedz
      * @since pre-alpha
      * @param newPos Object's new position.
      */
-    void setPosition(const Location& newPos) {mPos = newPos;}
+    void setPosition(const Location& newPos) {  SDL_LockMutex(mxPos);   //Locks the mutex...
+                                                mPos = newPos;
+                                                SDL_UnlockMutex(mxPos);}//...unlocks it
 
     /**
-     * Sets the current position of the object with a Location object pointer.
+     * Sets the current position of the object with a Location object pointer. Thread safe.
      *
      * @author stonedz
      * @since pre-alpha
      * @param newPos Object's new position.
      */
-    void setPosition(Location * newPos) {mPos = *newPos;}
+    void setPosition(Location * newPos) {   SDL_LockMutex(mxPos);   //Locks the mutex...
+                                            mPos = *newPos;
+                                            SDL_UnlockMutex(mxPos);}//...unlocks it
 
     /**
      * Updates the object properties. Each derivate class must
@@ -123,6 +133,9 @@ private:
     Uint32 mOwner;      /**< If != 0 is the owner's serial. */
     std::string mName;  /**< Standard object's name. */
     Location mPos;      /**< Object's location (position). */
+    SDL_mutex* mxPos;   /**< Mutex for thread safetyness when setting the Position. */
+    SDL_mutex* mxOwner; /**< Mutex for thread safetynell when setting the Owner. */
+    SDL_mutex* mxName;  /**< Mutex for threas safetyness when setting the name. */
 
 };
 

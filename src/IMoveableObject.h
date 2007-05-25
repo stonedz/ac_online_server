@@ -2,6 +2,7 @@
 #define IMOVEABLEOBJECT_H
 
 #include "IGameObject.h"
+#include "SDL.h"
 
 /**
  * Abstract interface for moveable objects (items, NPC, PC).
@@ -20,7 +21,7 @@ public:
     virtual ~IMoveableObject();
 
     /**
-     * Sets the destination position with a Location object pointer.
+     * Sets the destination position with a Location object pointer. Not thread safe.
      *
      * @author stonedz
      * @since pre-alpha
@@ -29,7 +30,7 @@ public:
     void setDestination(Location * dest) {mDestPos = *dest;}
 
     /**
-     * Sets the destination position with a Location object reference.
+     * Sets the destination position with a Location object reference. Not thread safe.
      *
      * @author stonedz
      * @since pre-alpha
@@ -47,7 +48,7 @@ public:
 
 private:
 
-    Location mDestPos;  /**< Where am I going to? */
+    Location mDestPos;      /**< Where am I going to? */
 };
 
 

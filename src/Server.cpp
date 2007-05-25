@@ -7,6 +7,7 @@
 
 Server::Server(int port)
 	:mxClients(SDL_CreateMutex()),
+	mMapManager(new MapManager()),
 	exit_request(false),
 	chat_mode(false),
 	mxGoSerial(SDL_CreateMutex()),

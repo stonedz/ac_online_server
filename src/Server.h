@@ -6,6 +6,7 @@
 #include "SDL.h"
 
 #include "Connection.h"
+#include "MapManager.h"
 
 class Message;	// Forward declarations.
 class MessageIn;
@@ -125,6 +126,15 @@ public:
      */
     void setInit(bool value = true);
 
+    /**
+     * Returns a pointer to the server's map manager.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Pointer to the server's map manager.
+     */
+    MapManager* getMapManager() {return mMapManager;}
+
 private:
 
 	/**
@@ -137,6 +147,7 @@ private:
 	std::map<Uint32, Client*> mClients;
 
 	SDL_mutex* mxClients;       /**< Mutex to avoid problems when dealing with the mClients map.*/
+	MapManager* mMapManager;    /**< Pointer to a MapManager object which manages the game map (nothing to do with mClients). */
 	bool exit_request;          /**< Proper exit request has benn submitted.*/
 	bool chat_mode;             /**< This server's console will act like chat client, mainly for testing MSG_CHAT implementation. */
 	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */

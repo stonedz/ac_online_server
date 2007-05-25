@@ -1974,10 +1974,11 @@
 	<cstdio>
 	<cstring>
 
-1179796617 /home/stonedz/progetti/lo_server/src/Server.h
+1180036240 /home/stonedz/progetti/lo_server/src/Server.h
 	<map>
 	"SDL.h"
 	"Connection.h"
+	"MapManager.h"
 
 1179796617 /home/stonedz/progetti/lo_server/src/Logger.h
 	<iostream>
@@ -1991,10 +1992,11 @@
 	"IMoveableObject.h"
 	"SDL.h"
 
-1179796617 /home/stonedz/progetti/lo_server/src/IMoveableObject.h
+1180059746 /home/stonedz/progetti/lo_server/src/IMoveableObject.h
 	"IGameObject.h"
+	"SDL.h"
 
-1180028947 /home/stonedz/progetti/lo_server/src/IGameObject.h
+1180060551 /home/stonedz/progetti/lo_server/src/IGameObject.h
 	<iostream>
 	"SDL.h"
 	"Location.h"
@@ -2019,11 +2021,11 @@
 	"SDL_thread.h"
 	"Connection.h"
 
-1180028947 /home/stonedz/progetti/lo_server/src/Clientfsm.h
+1180055631 /home/stonedz/progetti/lo_server/src/Clientfsm.h
 	<SDL.h>
 	<SDL_net.h>
 
-1180028050 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
+1180058181 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
 	"Clientfsm.h"
 	"Connection.h"
 	"MessageIn.h"
@@ -2062,7 +2064,7 @@
 	<iostream>
 	"SDL.h"
 
-1179796617 /home/stonedz/progetti/lo_server/src/commands/Cmd_test.h
+1180058835 /home/stonedz/progetti/lo_server/src/commands/Cmd_test.h
 	<iostream>
 	"ICommandServer.h"
 
@@ -2097,7 +2099,7 @@
 	"SDL.h"
 	"SDL_thread.h"
 
-1180022568 source:/home/stonedz/progetti/lo_server/src/Gamefsm.cpp
+1180028947 source:/home/stonedz/progetti/lo_server/src/Gamefsm.cpp
 	"Gamefsm.h"
 	"Logger.h"
 	"Server.h"
@@ -2106,11 +2108,12 @@
 1179796617 /home/stonedz/progetti/lo_server/src/Gamefsm.h
 	"SDL/SDL.h"
 
-1179796617 source:/home/stonedz/progetti/lo_server/src/IGameObject.cpp
+1180060476 source:/home/stonedz/progetti/lo_server/src/IGameObject.cpp
 	"IGameObject.h"
 	"Location.h"
+	"SDL.h"
 
-1180025858 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
+1180060594 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
 	"IMoveableObject.h"
 
 1179796617 source:/home/stonedz/progetti/lo_server/src/Location.cpp
@@ -2120,12 +2123,13 @@
 	"Logger.h"
 	<time.h>
 
-1180022118 source:/home/stonedz/progetti/lo_server/src/Server.cpp
+1180035231 source:/home/stonedz/progetti/lo_server/src/Server.cpp
 	"Server.h"
 	"MessageOut.h"
 	"Message.h"
 	"Client.h"
 	"Gamefsm.h"
+	"MapManager.h"
 
 1179796617 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_accounts.cpp
 	<string>
@@ -2141,7 +2145,7 @@
 1179796617 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_exit.cpp
 	"Cmd_exit.h"
 
-1179796617 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_test.cpp
+1180061083 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_test.cpp
 	<string>
 	"Cmd_test.h"
 
@@ -2367,8 +2371,10 @@
 
 1179796617 /home/stonedz/progetti/lo_server/src/pawn/getch.h
 
-1180028154 source:/home/stonedz/progetti/lo_server/src/MapManager.cpp
+1180061365 source:/home/stonedz/progetti/lo_server/src/MapManager.cpp
 	"MapManager.h"
+	<math.h>
 
-1180028154 /home/stonedz/progetti/lo_server/src/MapManager.h
+1180056957 /home/stonedz/progetti/lo_server/src/MapManager.h
+	"Location.h"
 

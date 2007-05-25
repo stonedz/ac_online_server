@@ -224,10 +224,15 @@ void ClientFSM::move(MessageIn* message){
         std::cout << "Received a Move message, new coord are x:" << x << " y:" << y << std::endl;
         #endif
 
-        const Location* actualLocation = myClient->getAccount()->getChar()->getPosition();
-        const Location* destLocation = new Location(x,y,z);
-        //myServer->getMapManager()->validateMove(ORIG,DEST); <- TODO to be implemented!
-        myClient->getAccount()->getChar()->setDestination(*destLocation);
+        Location* actualLocation = myClient->getAccount()->getChar()->getPosition(); // Don't delete it!
+        Location* destLocation = new Location(x,y,z);
+
+        if(myServer->getMapManager()->validateMove(actualLocation,destLocation)){
+            myClient->getAccount()->getChar()->setDestination(*destLocation);
+        }
+        delete actualLocation;
+
+
     }
     else
         logger->log("Bad lenght in MSG_MOVE message <additional info here>", LOGMODE_ERROR); //TODO : fill additional info

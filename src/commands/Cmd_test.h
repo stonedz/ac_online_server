@@ -10,6 +10,7 @@ class Server;
 
 /**
  * This is a command to test the command system.
+ * It could be used to test some sever internals.
  */
 class Cmd_test : public ICommandServer
 {
@@ -21,6 +22,16 @@ public:
 	void help();
 
 	void execute();
+
+private:
+    /**
+     * Tests the movement and its validation.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @see validateMove
+     */
+    void test_move();
 };
 
 #endif /*CMD_TEST_H_*/

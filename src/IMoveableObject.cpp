@@ -15,7 +15,7 @@ IMoveableObject::~IMoveableObject()
 
 void IMoveableObject::move(){
     if (mDestPos != *(getPosition()))
-        setPosition(mDestPos); // Teletransport ! not for production use :D
+        setPosition(mDestPos); //we trust MapManager::validateMove()
 }
 
 
