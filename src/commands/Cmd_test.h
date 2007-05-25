@@ -24,6 +24,7 @@ public:
 	void execute();
 
 private:
+
     /**
      * Tests the movement and its validation.
      *

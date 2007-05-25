@@ -224,14 +224,12 @@ void ClientFSM::move(MessageIn* message){
         std::cout << "Received a Move message, new coord are x:" << x << " y:" << y << std::endl;
         #endif
 
-        Location* actualLocation = myClient->getAccount()->getChar()->getPosition(); // Don't delete it!
-        Location* destLocation = new Location(x,y,z);
+        Location& actualLocation = myClient->getAccount()->getChar()->getPosition(); // Don't delete it!!!
+        Location destLocation = Location(x,y,z);
 
         if(myServer->getMapManager()->validateMove(actualLocation,destLocation)){
-            myClient->getAccount()->getChar()->setDestination(*destLocation);
+            myClient->getAccount()->getChar()->setDestination(destLocation);
         }
-        delete actualLocation;
-
 
     }
     else

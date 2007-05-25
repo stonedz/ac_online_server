@@ -36,7 +36,7 @@ class MapManager
          * @todo Don't like pointers here...try to pass it as const.
          * @todo Find a better algorithm to evaluate valid movement.
          */
-        bool validateMove(Location* orig, Location* dest);
+        bool validateMove(Location& orig, Location& dest);
 
     protected:
     private:

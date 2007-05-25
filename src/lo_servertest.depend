@@ -1996,7 +1996,7 @@
 	"IGameObject.h"
 	"SDL.h"
 
-1180060551 /home/stonedz/progetti/lo_server/src/IGameObject.h
+1180102152 /home/stonedz/progetti/lo_server/src/IGameObject.h
 	<iostream>
 	"SDL.h"
 	"Location.h"
@@ -2025,7 +2025,7 @@
 	<SDL.h>
 	<SDL_net.h>
 
-1180058181 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
+1180102627 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
 	"Clientfsm.h"
 	"Connection.h"
 	"MessageIn.h"
@@ -2064,7 +2064,7 @@
 	<iostream>
 	"SDL.h"
 
-1180058835 /home/stonedz/progetti/lo_server/src/commands/Cmd_test.h
+1180099560 /home/stonedz/progetti/lo_server/src/commands/Cmd_test.h
 	<iostream>
 	"ICommandServer.h"
 
@@ -2113,7 +2113,7 @@
 	"Location.h"
 	"SDL.h"
 
-1180060594 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
+1180102260 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
 	"IMoveableObject.h"
 
 1179796617 source:/home/stonedz/progetti/lo_server/src/Location.cpp
@@ -2145,9 +2145,10 @@
 1179796617 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_exit.cpp
 	"Cmd_exit.h"
 
-1180061083 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_test.cpp
+1180101773 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_test.cpp
 	<string>
 	"Cmd_test.h"
+	<boost/lexical_cast.hpp>
 
 1179796617 source:/home/stonedz/progetti/lo_server/src/commands/ICommand.cpp
 	"ICommand.h"
@@ -2371,10 +2372,10 @@
 
 1179796617 /home/stonedz/progetti/lo_server/src/pawn/getch.h
 
-1180061365 source:/home/stonedz/progetti/lo_server/src/MapManager.cpp
+1180102578 source:/home/stonedz/progetti/lo_server/src/MapManager.cpp
 	"MapManager.h"
 	<math.h>
 
-1180056957 /home/stonedz/progetti/lo_server/src/MapManager.h
+1180102602 /home/stonedz/progetti/lo_server/src/MapManager.h
 	"Location.h"
 

@@ -14,7 +14,7 @@ IMoveableObject::~IMoveableObject()
 }
 
 void IMoveableObject::move(){
-    if (mDestPos != *(getPosition()))
+    if (mDestPos != getPosition())
         setPosition(mDestPos); //we trust MapManager::validateMove()
 }
 

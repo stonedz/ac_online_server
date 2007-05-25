@@ -96,7 +96,7 @@ public:
      * @see Location
      * @todo See if we can make this const for safety.
      */
-    Location* getPosition() {return &mPos;}
+    Location& getPosition() {return mPos;}
 
     /**
      * Sets the current position of the object with a Location object reference. Thread safe.
