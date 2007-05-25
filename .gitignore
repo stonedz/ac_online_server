@@ -7,4 +7,4 @@ accounts.db
 #Ignore  codeblocks's backups
 *.backup
 #IIgnore eventual logfiles
-src/log/*
+src/log/
