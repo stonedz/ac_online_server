@@ -89,7 +89,7 @@ public:
 	 *
 	 * @author sotnedz
 	 * @since pre-alpha
-	 * @retun Current time.
+	 * @return Current time.
 	 */
 	 std::string getCurrentTime();
 
