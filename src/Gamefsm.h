@@ -3,6 +3,9 @@
 
 #include "SDL/SDL.h"
 
+// We define here our game refresh rate, in millisecodns
+#define GAME_UPDATE (100)
+
 class Logger; // Forward declarations.
 class Server;
 
@@ -119,11 +122,15 @@ protected:
     /////////////////////////
 
 private:
-    Logger* myLogger;                   /**< A Logger instance, no need to free it (Singleton). */
-    bool exitRequest;                   /**< A polite exit request has been sent to the FSM. */
-    bool exitLoop;                      /**< If true the FSM has exited and the whole loop may terminate. */
-    SDL_Thread* myThread;               /**< The thread I'm running in (used to JOIN). */
-    Server* myServer;                   /**< Pointer to the Server instance that created the Gamefsm. */
+    Logger* myLogger;           /**< A Logger instance, no need to free it (Singleton). */
+    bool exitRequest;           /**< A polite exit request has been sent to the FSM. */
+    bool exitLoop;              /**< If true the FSM has exited and the whole loop may terminate. */
+    SDL_Thread* myThread;       /**< The thread I'm running in (used to JOIN). */
+    Server* myServer;           /**< Pointer to the Server instance that created the Gamefsm. */
+
+    Uint32 updateTime;          /**< Duration (in milliseconds) of the last Update() operation. */
+    Uint32 beginUpdate;         /**< Ticks (milliseconds) at the beginning of the Update() operation, used to calculate updateTime. */
+
     /**
      * Wrapper around SDL threads, it simply callbacks threadBody method.
      *

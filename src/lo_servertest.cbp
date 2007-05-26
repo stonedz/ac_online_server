@@ -31,8 +31,9 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
-					<Add option="-O2" />
-					<Add option="-DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX -I/usr/include/SDL -Ipawn/ -Icommands/ -I./" />
+					<Add option="-march=i686" />
+					<Add option="-O3" />
+					<Add option="-DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX -I/usr/include/SDL -Ipawn/ -Icommands/ -I./ -Inetwork/" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

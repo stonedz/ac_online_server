@@ -214,21 +214,21 @@ void ClientFSM::chat(MessageIn* message){
 }
 
 void ClientFSM::move(MessageIn* message){
-    Uint16 len, x, y ,z;
+    Uint32 len, x, y ,z;
     len = message->read2();
-    if (len == 6){
-        x = message->read2();
-        y = message->read2();
-        z = message->read2();
+    if (len == 12){
+        x = message->read4();
+        y = message->read4();
+        z = message->read4();
         #ifdef TESTPHASE
-        std::cout << "Received a Move message, new coord are x:" << x << " y:" << y << std::endl;
+        std::cout << "Received a Move message, requested coord are x:" << x << " y:" << y << std::endl;
         #endif
 
         Location& actualLocation = myClient->getAccount()->getChar()->getPosition(); // Don't delete it!!!
         Location destLocation = Location(x,y,z);
 
-        if(myServer->getMapManager()->validateMove(actualLocation,destLocation)){
-            myClient->getAccount()->getChar()->setDestination(destLocation);
+        if(myServer->getMapManager()->validateMove(actualLocation,destLocation)){   // The MapManager validates the movement,
+            myClient->getAccount()->getChar()->setDestination(destLocation);        // we can therefor set the destination of the player.
         }
 
     }

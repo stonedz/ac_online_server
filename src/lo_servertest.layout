@@ -2,37 +2,37 @@
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug_linux" />
 	<File name="Account.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="733" topLine="6" />
+		<Cursor position="850" topLine="1" />
 	</File>
-	<File name="Account.h" open="1" top="0" tabpos="7">
+	<File name="Account.h" open="0" top="0" tabpos="7">
 		<Cursor position="143" topLine="0" />
 	</File>
-	<File name="Char.cpp" open="1" top="0" tabpos="14">
+	<File name="Char.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="461" topLine="0" />
 	</File>
-	<File name="Char.h" open="1" top="0" tabpos="8">
+	<File name="Char.h" open="0" top="0" tabpos="8">
 		<Cursor position="221" topLine="1" />
 	</File>
-	<File name="Client.cpp" open="1" top="0" tabpos="16">
-		<Cursor position="762" topLine="0" />
+	<File name="Client.cpp" open="0" top="0" tabpos="16">
+		<Cursor position="762" topLine="1" />
 	</File>
 	<File name="Client.h" open="0" top="0" tabpos="8">
-		<Cursor position="1027" topLine="27" />
+		<Cursor position="283" topLine="32" />
 	</File>
-	<File name="Clientfsm.cpp" open="1" top="0" tabpos="4">
-		<Cursor position="6275" topLine="195" />
+	<File name="Clientfsm.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2629" topLine="0" />
 	</File>
-	<File name="Clientfsm.h" open="1" top="0" tabpos="3">
-		<Cursor position="3730" topLine="147" />
+	<File name="Clientfsm.h" open="1" top="0" tabpos="2">
+		<Cursor position="3730" topLine="0" />
 	</File>
-	<File name="CommandManager.cpp" open="1" top="0" tabpos="21">
-		<Cursor position="1032" topLine="23" />
+	<File name="CommandManager.cpp" open="0" top="0" tabpos="21">
+		<Cursor position="1032" topLine="26" />
 	</File>
-	<File name="CommandManager.h" open="1" top="0" tabpos="20">
+	<File name="CommandManager.h" open="0" top="0" tabpos="20">
 		<Cursor position="1789" topLine="38" />
 	</File>
 	<File name="CommandScheduler.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="572" topLine="0" />
+		<Cursor position="1089" topLine="12" />
 	</File>
 	<File name="Console.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="697" topLine="0" />
@@ -40,47 +40,50 @@
 	<File name="Console.h" open="0" top="0" tabpos="0">
 		<Cursor position="537" topLine="37" />
 	</File>
-	<File name="Gamefsm.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="1568" topLine="53" />
+	<File name="Gamefsm.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="844" topLine="3" />
 	</File>
-	<File name="Gamefsm.h" open="1" top="0" tabpos="1">
-		<Cursor position="446" topLine="45" />
+	<File name="Gamefsm.h" open="1" top="1" tabpos="6">
+		<Cursor position="2848" topLine="107" />
 	</File>
-	<File name="IGameObject.cpp" open="1" top="0" tabpos="22">
+	<File name="IGameObject.cpp" open="0" top="0" tabpos="22">
 		<Cursor position="384" topLine="0" />
 	</File>
-	<File name="IGameObject.h" open="1" top="0" tabpos="10">
-		<Cursor position="431" topLine="6" />
+	<File name="IGameObject.h" open="0" top="0" tabpos="10">
+		<Cursor position="2220" topLine="76" />
 	</File>
-	<File name="IMoveableObject.cpp" open="1" top="0" tabpos="13">
-		<Cursor position="353" topLine="0" />
+	<File name="IMoveableObject.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="217" topLine="0" />
 	</File>
-	<File name="IMoveableObject.h" open="1" top="0" tabpos="9">
+	<File name="IMoveableObject.h" open="0" top="0" tabpos="9">
 		<Cursor position="1174" topLine="12" />
 	</File>
-	<File name="Location.cpp" open="1" top="0" tabpos="11">
+	<File name="Location.cpp" open="0" top="0" tabpos="11">
 		<Cursor position="107" topLine="0" />
 	</File>
 	<File name="Location.h" open="0" top="0" tabpos="12">
 		<Cursor position="103" topLine="85" />
 	</File>
-	<File name="Logger.h" open="0" top="0" tabpos="0">
+	<File name="Logger.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="Logger.h" open="1" top="0" tabpos="12">
 		<Cursor position="707" topLine="15" />
 	</File>
-	<File name="MapManager.cpp" open="1" top="0" tabpos="15">
-		<Cursor position="818" topLine="0" />
+	<File name="MapManager.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="130" topLine="0" />
 	</File>
-	<File name="MapManager.h" open="1" top="0" tabpos="12">
-		<Cursor position="1022" topLine="1" />
+	<File name="MapManager.h" open="0" top="0" tabpos="12">
+		<Cursor position="1036" topLine="3" />
 	</File>
-	<File name="Server.cpp" open="1" top="0" tabpos="6">
-		<Cursor position="1361" topLine="17" />
+	<File name="Server.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="2489" topLine="71" />
 	</File>
-	<File name="Server.h" open="1" top="0" tabpos="5">
-		<Cursor position="3350" topLine="107" />
+	<File name="Server.h" open="1" top="0" tabpos="7">
+		<Cursor position="71" topLine="0" />
 	</File>
-	<File name="commands/Cmd_accounts.cpp" open="1" top="0" tabpos="18">
-		<Cursor position="4374" topLine="0" />
+	<File name="commands/Cmd_accounts.cpp" open="0" top="0" tabpos="18">
+		<Cursor position="917" topLine="16" />
 	</File>
 	<File name="commands/Cmd_accounts.h" open="0" top="0" tabpos="1">
 		<Cursor position="722" topLine="18" />
@@ -91,23 +94,26 @@
 	<File name="commands/Cmd_exit.h" open="0" top="0" tabpos="3">
 		<Cursor position="252" topLine="0" />
 	</File>
-	<File name="commands/Cmd_test.cpp" open="1" top="1" tabpos="17">
-		<Cursor position="866" topLine="0" />
+	<File name="commands/Cmd_test.cpp" open="1" top="0" tabpos="13">
+		<Cursor position="61" topLine="0" />
 	</File>
-	<File name="commands/Cmd_test.h" open="1" top="0" tabpos="19">
-		<Cursor position="548" topLine="0" />
+	<File name="commands/Cmd_test.h" open="0" top="0" tabpos="19">
+		<Cursor position="580" topLine="0" />
+	</File>
+	<File name="commands/ICommand.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="203" topLine="0" />
 	</File>
 	<File name="commands/ICommand.h" open="0" top="0" tabpos="0">
-		<Cursor position="1098" topLine="16" />
+		<Cursor position="1117" topLine="9" />
 	</File>
-	<File name="commands/ICommandServer.cpp" open="1" top="0" tabpos="23">
+	<File name="commands/ICommandServer.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="commands/ICommandServer.h" open="0" top="0" tabpos="8">
 		<Cursor position="282" topLine="0" />
 	</File>
-	<File name="lo_servertest.depend" open="0" top="0" tabpos="0">
-		<Cursor position="0" topLine="36" />
+	<File name="lo_servertest.depend" open="1" top="0" tabpos="14">
+		<Cursor position="51394" topLine="2106" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="935" topLine="57" />
@@ -124,14 +130,17 @@
 	<File name="network/ConnectionData.h" open="0" top="0" tabpos="9">
 		<Cursor position="358" topLine="2" />
 	</File>
-	<File name="network/Message.cpp" open="0" top="0" tabpos="3">
+	<File name="network/Message.cpp" open="1" top="0" tabpos="9">
 		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="network/Message.h" open="1" top="0" tabpos="10">
+		<Cursor position="1359" topLine="11" />
 	</File>
 	<File name="network/MessageIn.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="78" />
 	</File>
 	<File name="network/MessageIn.h" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
+		<Cursor position="1384" topLine="48" />
 	</File>
 	<File name="network/MessageOut.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />

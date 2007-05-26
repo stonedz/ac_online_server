@@ -1,6 +1,7 @@
 #include "Gamefsm.h"
 #include "Logger.h"
 #include "Server.h"
+#include <boost/lexical_cast.hpp>
 
 #include <iostream>
 
@@ -22,7 +23,15 @@ void Gamefsm::threadBody(){
     ExecTrans(t_init);
     while(!exitLoop){
         Evolve();
-        SDL_Delay(100); // this shouldn't be fixed but for exampe 100-lastUpdateTime.
+        if(updateTime > GAME_UPDATE){ // Last update took more than GAME_UPDATE time!
+            std::string toLog = "Last update took "+ boost::lexical_cast<std::string>(updateTime) +
+                                " to complete, GAME_UPDATE is set at " + boost::lexical_cast<std::string>(GAME_UPDATE)
+                                + " milliseconds. Lower GAME_UPDATE or buy a faster machine!";
+            myLogger->log(toLog,LOGMODE_NORMAL);
+            std::cerr << toLog << std::endl;
+        }
+        else
+            SDL_Delay(GAME_UPDATE - updateTime);
     }
 
 }
@@ -76,12 +85,19 @@ void Gamefsm::Init(){
 }
 
 void Gamefsm::Update(){
+    beginUpdate = SDL_GetTicks(); // we begin the update process and we have to know how much time we spend on it.
     if(exitRequest){
         ExecTrans(t_quit);
     }
     else{
-        //std::cout << "OK " ;
+        // Dummy loop to test updateTime behaviour
+        #ifdef TESTPHASE
+        Uint32 af;
+        for (Uint32 c =0; c< 10000000; c++)
+            af = c;
+        #endif
     }
+    updateTime = SDL_GetTicks() - beginUpdate;
 }
 
 void Gamefsm::Quit(){
