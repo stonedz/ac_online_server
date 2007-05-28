@@ -95,8 +95,11 @@ public:
      * @return Object position.
      * @see Location
      * @todo See if we can make this const for safety.
+     * @todo See if mutexes are necessary.
      */
-    Location& getPosition() {return mPos;}
+    Location& getPosition() {   SDL_LockMutex(mxPos);   //Locks the mutex...
+                                return mPos;
+                                SDL_UnlockMutex(mxPos);}//...unlocks it
 
     /**
      * Sets the current position of the object with a Location object reference. Thread safe.

@@ -2,9 +2,13 @@
 #define GAMEFSM_H
 
 #include "SDL/SDL.h"
+#include <vector>
 
 // We define here our game refresh rate, in millisecodns
-#define GAME_UPDATE (100)
+#define GAME_UPDATE         (100)   /**< Milliseconds to wait for an update. */
+#define GAME_LOOPS          (10)    /**< How many game updates are considered a whole loop. @todo Still experimental.*/
+#define PERFLOG_SIZE_SHORT  (1000)  /**< Size soft-limit (dynamic memory allocation) for the perfLogShort vector. */
+#define PERFLOG_SIZE_LONG   (1000)  /**< Size soft-limit (dynamic memory allocation) for the perfLong vector. */
 
 class Logger; // Forward declarations.
 class Server;
@@ -73,6 +77,18 @@ public:
      */
     SDL_Thread* getThread();
 
+    /**
+     * Sets the GameFSM logging capabilities,
+     *
+     * If set to true the all the logging capabilities of the GameFSM are turned on.
+     * As for now they are:<ul><li>Performance logging.</li></ul>
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @param set the state we want to set the logging capability.
+     */
+    void setLog(bool set = true);
+
 protected:
 
 
@@ -122,14 +138,21 @@ protected:
     /////////////////////////
 
 private:
-    Logger* myLogger;           /**< A Logger instance, no need to free it (Singleton). */
-    bool exitRequest;           /**< A polite exit request has been sent to the FSM. */
-    bool exitLoop;              /**< If true the FSM has exited and the whole loop may terminate. */
-    SDL_Thread* myThread;       /**< The thread I'm running in (used to JOIN). */
-    Server* myServer;           /**< Pointer to the Server instance that created the Gamefsm. */
+    Logger* myLogger;                   /**< A Logger instance, no need to free it (Singleton). */
+    bool exitRequest;                   /**< A polite exit request has been sent to the FSM. */
+    bool exitLoop;                      /**< If true the FSM has exited and the whole loop may terminate. */
+    SDL_Thread* myThread;               /**< The thread I'm running in (used to JOIN). */
+    Server* myServer;                   /**< Pointer to the Server instance that created the Gamefsm. */
+    Uint16 loopCounter;                 /**< Counts the game's cycles. @todo This is still experimental. */
+    bool logEnabled;                    /**< If true enables performance data collection. */
+    std::vector<Uint16> perfLogShort;   /**< If logEnabled is true, logs performances data (short term) ate every loop (not every update!). Thread-safe access should be provided. */
+    std::vector<Uint16> perfLogLong;    /**< If logEnabled is true, logs performances data (long term) ate every loop (not every update!). Thread-safe access should be provided. */
+    Uint16 updateTime;                  /**< Duration (in milliseconds) of the last Update() operation. */
+    Uint32 beginUpdate;                 /**< Ticks (milliseconds) at the beginning of the Update() operation, used to calculate updateTime. */
+    SDL_mutex* mxLogEnabled;            /**< Mutex for the access to the logEnabled var. */
+    SDL_mutex* mxPerfLogShort;          /**< Mutex for the access to the perfLogShort var. */
+    SDL_mutex* mxPerfLogLong;           /**< Mutex for the access to the perfLogLong var. */
 
-    Uint32 updateTime;          /**< Duration (in milliseconds) of the last Update() operation. */
-    Uint32 beginUpdate;         /**< Ticks (milliseconds) at the beginning of the Update() operation, used to calculate updateTime. */
 
     /**
      * Wrapper around SDL threads, it simply callbacks threadBody method.

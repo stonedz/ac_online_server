@@ -10,12 +10,29 @@ Gamefsm::Gamefsm(Server* server)
     exitRequest(false),
     exitLoop(false),
     myThread(NULL),
-    myServer(server)
+    myServer(server),
+    loopCounter(0),
+    logEnabled(false),
+    perfLogShort(),
+    perfLogLong(),
+    mxLogEnabled(SDL_CreateMutex()),
+    mxPerfLogShort(SDL_CreateMutex()),
+    mxPerfLogLong(SDL_CreateMutex())
+
 {
+    // This should enhanche performances for std::vector dynamic memory allocation.
+    perfLogShort.reserve(PERFLOG_SIZE_SHORT);
+    perfLogLong.reserve(PERFLOG_SIZE_LONG);
+    #ifdef TESTPHASE
+    setLog(true);   // enabling logging capabilies.
+    #endif
 }
 
 Gamefsm::~Gamefsm()
 {
+    SDL_DestroyMutex(mxLogEnabled);
+    SDL_DestroyMutex(mxPerfLogShort);
+    SDL_DestroyMutex(mxPerfLogLong);
 }
 
 
@@ -30,8 +47,14 @@ void Gamefsm::threadBody(){
             myLogger->log(toLog,LOGMODE_NORMAL);
             std::cerr << toLog << std::endl;
         }
-        else
+        else{
             SDL_Delay(GAME_UPDATE - updateTime);
+            //if ((loopCounter+1) == GAME_LOOPS){
+            //    std::cout << SDL_GetTicks() << "*" << updateTime << std::endl;
+            //}
+
+        }
+
     }
 
 }
@@ -89,11 +112,32 @@ void Gamefsm::Update(){
     if(exitRequest){
         ExecTrans(t_quit);
     }
-    else{
+    else{ // Main update loop
+        loopCounter = (loopCounter+1) % GAME_LOOPS; // Updates the loopCounter, it will be reset when GAME_LOOPS limit is reached.
         // Dummy loop to test updateTime behaviour
+        if ((loopCounter+1) == GAME_LOOPS){ // a game loop.
+
+            // LOG
+            if(logEnabled){
+                #ifdef TESTPHASE
+                perfLogShort.push_back(updateTime); // Logs performances as the time needed for previous update.
+
+                // TODO this should be done by the upcoming Garbage Collector (#3)
+                if(perfLogShort.size() > PERFLOG_SIZE_SHORT){
+                    Uint16 count = 1;
+                    while(count <= PERFLOG_SIZE_SHORT){
+                        perfLogLong.push_back(perfLogShort[count]); // Logs samples from the perfLogShort vector for long performances computation.
+                        count +=  (PERFLOG_SIZE_SHORT / 50);
+                    }
+                    perfLogShort.clear();                       // erase vector's content.
+                }
+                #endif
+            }
+
+        }
         #ifdef TESTPHASE
         Uint32 af;
-        for (Uint32 c =0; c< 10000000; c++)
+        for (Uint32 c =0; c< 1000000; c++)
             af = c;
         #endif
     }
@@ -110,4 +154,10 @@ int Gamefsm::startThread(void * data){
     Gamefsm* instance = reinterpret_cast<Gamefsm *>(data);
     instance->threadBody(); // Pass the control to the threadBody.
     return 1;
+}
+
+void Gamefsm::setLog(bool set){
+    SDL_LockMutex(mxLogEnabled);    // Locks the mutex...
+    logEnabled = set;               // ...sets the var...
+    SDL_UnlockMutex(mxLogEnabled);  // ...unlocks the mutex.
 }
