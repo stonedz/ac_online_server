@@ -49,10 +49,6 @@ void Gamefsm::threadBody(){
         }
         else{
             SDL_Delay(GAME_UPDATE - updateTime);
-            //if ((loopCounter+1) == GAME_LOOPS){
-            //    std::cout << SDL_GetTicks() << "*" << updateTime << std::endl;
-            //}
-
         }
 
     }
@@ -114,8 +110,8 @@ void Gamefsm::Update(){
     }
     else{ // Main update loop
         loopCounter = (loopCounter+1) % GAME_LOOPS; // Updates the loopCounter, it will be reset when GAME_LOOPS limit is reached.
-        // Dummy loop to test updateTime behaviour
-        if ((loopCounter+1) == GAME_LOOPS){ // a game loop.
+
+        if ((loopCounter+1) == GAME_LOOPS){ // a game loop has been reached!
 
             // LOG
             if(logEnabled){
@@ -133,10 +129,10 @@ void Gamefsm::Update(){
                 }
                 #endif
             }
-
         }
+
         #ifdef TESTPHASE
-        Uint32 af;
+        Uint32 af; // Dummy loop to test update.
         for (Uint32 c =0; c< 1000000; c++)
             af = c;
         #endif
