@@ -8,3 +8,6 @@ accounts.db
 *.backup
 #IIgnore eventual logfiles
 src/log/*log
+#Ignore codeblocks useless files
+*.depend
+lo_servertest.layout
