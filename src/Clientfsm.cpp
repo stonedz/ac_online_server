@@ -129,7 +129,7 @@ void ClientFSM::Ready(){
 		Sint32 ready = 0;
 		MessageIn* messagein = NULL;
 
-		ready = SDLNet_CheckSockets(this->set,0); // Check for socket's activity.
+		ready = SDLNet_CheckSockets(this->set,-1); // Check for socket's activity.
 		if(ready==-1){
 			std::cerr << "SDLNet_CheckSockets: " << SDLNet_GetError() << std::endl; // An error occurred, disconnect the socket.
 			ExecTrans(t_disconnect);
