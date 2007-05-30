@@ -93,7 +93,7 @@ void Server::startListen(ConnectionData * data){
 				std::cout <<"Socket id: "<< newSocket << std::endl;
 				#endif
 				newClient = new Client(newSocket, this);
-				addClient(newClient);
+				//addClient(newClient);
 				#ifdef TESTPHASE
 				std::cout << std::endl << "<Server> Now " << this->mClients.size() << " clients are connected." << std::endl;
 				#endif

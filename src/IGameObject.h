@@ -100,6 +100,16 @@ public:
     Location& getPosition() {   SDL_LockMutex(mxPos);   //Locks the mutex...
                                 return mPos;
                                 SDL_UnlockMutex(mxPos);}//...unlocks it
+    /**
+     * Returna a pointer to the current position of the object.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Pointer to object position.
+     */
+    Location* getPPosition(){   SDL_LockMutex(mxPos);
+                                return &mPos;
+                                SDL_UnlockMutex(mxPos);}
 
     /**
      * Sets the current position of the object with a Location object reference. Thread safe.

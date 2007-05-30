@@ -46,3 +46,7 @@ void Client::startListen(ConnectionData * data){
 void Client::setAccount(Account* account){
     myAccount = account;
 }
+
+Server& Client::getServer(){
+    return *myServer;
+}

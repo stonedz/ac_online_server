@@ -67,6 +67,14 @@ public:
 	 */
 	Account* getAccount() {return myAccount;}
 
+	/**
+	 * Returns a reference to the server the client is running in.
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 */
+	Server& getServer();
+
 private:
 
 	Server* myServer; 	/**< Points to the server I'm running in.*/

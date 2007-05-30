@@ -1958,14 +1958,14 @@
 
 1179796617 /home/stonedz/progetti/last-online/lo-server/branches/lo_server/src/pawn/getch.h
 
-1180379614 source:/home/stonedz/progetti/lo_server/src/Account.cpp
+1180536806 source:/home/stonedz/progetti/lo_server/src/Account.cpp
 	"Account.h"
 	"cppsqlite3.h"
 	"Server.h"
 	"Logger.h"
 	"Char.h"
 
-1180373969 /home/stonedz/progetti/lo_server/src/Account.h
+1180491303 /home/stonedz/progetti/lo_server/src/Account.h
 	<iostream>
 	"SDL.h"
 
@@ -1974,7 +1974,7 @@
 	<cstdio>
 	<cstring>
 
-1180374824 /home/stonedz/progetti/lo_server/src/Server.h
+1180491303 /home/stonedz/progetti/lo_server/src/Server.h
 	<map>
 	"SDL.h"
 	"Connection.h"
@@ -1988,15 +1988,15 @@
 	<iomanip>
 	"SDL.h"
 
-1180397579 /home/stonedz/progetti/lo_server/src/Char.h
+1180538166 /home/stonedz/progetti/lo_server/src/Char.h
 	"IMoveableObject.h"
 	"SDL.h"
 
-1180397153 /home/stonedz/progetti/lo_server/src/IMoveableObject.h
+1180491303 /home/stonedz/progetti/lo_server/src/IMoveableObject.h
 	"IGameObject.h"
 	"SDL.h"
 
-1180397503 /home/stonedz/progetti/lo_server/src/IGameObject.h
+1180535638 /home/stonedz/progetti/lo_server/src/IGameObject.h
 	<iostream>
 	"SDL.h"
 	"Location.h"
@@ -2004,18 +2004,20 @@
 1179796617 /home/stonedz/progetti/lo_server/src/Location.h
 	<SDL/SDL.h>
 
-1180397216 source:/home/stonedz/progetti/lo_server/src/Char.cpp
+1180539226 source:/home/stonedz/progetti/lo_server/src/Char.cpp
 	"Char.h"
 	"cppsqlite3.h"
 	"Logger.h"
+	"Client.h"
+	"Server.h"
 
-1180488824 source:/home/stonedz/progetti/lo_server/src/Client.cpp
+1180537769 source:/home/stonedz/progetti/lo_server/src/Client.cpp
 	"Client.h"
 	"Server.h"
 	"Account.h"
 	"Clientfsm.h"
 
-1179796617 /home/stonedz/progetti/lo_server/src/Client.h
+1180537509 /home/stonedz/progetti/lo_server/src/Client.h
 	"SDL.h"
 	"SDL_net.h"
 	"SDL_thread.h"
@@ -2025,7 +2027,7 @@
 	<SDL.h>
 	<SDL_net.h>
 
-1180445617 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/Clientfsm.cpp
 	"Clientfsm.h"
 	"Connection.h"
 	"MessageIn.h"
@@ -2039,7 +2041,7 @@
 	"Client.h"
 	"Char.h"
 
-1180403687 source:/home/stonedz/progetti/lo_server/src/CommandManager.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/CommandManager.cpp
 	<string>
 	"CommandManager.h"
 	"Logger.h"
@@ -2077,7 +2079,7 @@
 1179796617 /home/stonedz/progetti/lo_server/src/commands/Cmd_exit.h
 	"ICommandServer.h"
 
-1180403392 /home/stonedz/progetti/lo_server/src/commands/Cmd_chat.h
+1180491303 /home/stonedz/progetti/lo_server/src/commands/Cmd_chat.h
 	"ICommandServer.h"
 
 1179796617 /home/stonedz/progetti/lo_server/src/commands/Cmd_accounts.h
@@ -2100,7 +2102,7 @@
 	"SDL.h"
 	"SDL_thread.h"
 
-1180490122 source:/home/stonedz/progetti/lo_server/src/Gamefsm.cpp
+1180538505 source:/home/stonedz/progetti/lo_server/src/Gamefsm.cpp
 	"Gamefsm.h"
 	"Client.h"
 	"Account.h"
@@ -2111,7 +2113,7 @@
 	<iostream>
 	<map>
 
-1180374142 /home/stonedz/progetti/lo_server/src/Gamefsm.h
+1180491303 /home/stonedz/progetti/lo_server/src/Gamefsm.h
 	"SDL/SDL.h"
 	<vector>
 	<map>
@@ -2121,7 +2123,7 @@
 	"Location.h"
 	"SDL.h"
 
-1180398723 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/IMoveableObject.cpp
 	"IMoveableObject.h"
 
 1179796617 source:/home/stonedz/progetti/lo_server/src/Location.cpp
@@ -2131,7 +2133,7 @@
 	"Logger.h"
 	<time.h>
 
-1180490255 source:/home/stonedz/progetti/lo_server/src/Server.cpp
+1180537255 source:/home/stonedz/progetti/lo_server/src/Server.cpp
 	"Server.h"
 	"MessageOut.h"
 	"Message.h"
@@ -2191,7 +2193,7 @@
 	"Console.h"
 	"Account.h"
 
-1180489194 source:/home/stonedz/progetti/lo_server/src/network/Connection.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/network/Connection.cpp
 	"Connection.h"
 	"Message.h"
 	"MessageIn.h"
@@ -2200,7 +2202,7 @@
 	"crc32.h"
 	"Logger.h"
 
-1180380322 /home/stonedz/progetti/lo_server/src/network/Connection.h
+1180491303 /home/stonedz/progetti/lo_server/src/network/Connection.h
 	<iostream>
 	<SDL/SDL.h>
 	<SDL/SDL_net.h>
@@ -2244,7 +2246,7 @@
 	"NetPacket.h"
 	"crc32.h"
 
-1180489150 source:/home/stonedz/progetti/lo_server/src/network/MessageOut.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/network/MessageOut.cpp
 	"MessageOut.h"
 	"NetPacket.h"
 
@@ -2389,10 +2391,10 @@
 1180319858 /home/stonedz/progetti/lo_server/src/MapManager.h
 	"Location.h"
 
-1180404023 /home/stonedz/progetti/lo_server/src/commands/Cmd_login.h
+1180491303 /home/stonedz/progetti/lo_server/src/commands/Cmd_login.h
 	"ICommandServer.h"
 
-1180404964 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_login.cpp
+1180491303 source:/home/stonedz/progetti/lo_server/src/commands/Cmd_login.cpp
 	"Cmd_login.h"
 	"../network/Connection.h"
 	"../network/Message.h"

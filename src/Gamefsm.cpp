@@ -4,6 +4,8 @@
 #include "Char.h"
 #include "Logger.h"
 #include "Server.h"
+#include "Message.h"
+#include "MessageOut.h"
 #include <boost/lexical_cast.hpp>
 
 #include <iostream>
@@ -115,7 +117,6 @@ void Gamefsm::Update(){
     }
     else{ // Main update loop
         loopCounter = (loopCounter+1) % GAME_LOOPS; // Updates the loopCounter, it will be reset when GAME_LOOPS limit is reached.
-        Uint32 ax,ay,az;
 
         if ((loopCounter+1) == GAME_LOOPS){ // a game loop has been reached!
 
@@ -137,19 +138,32 @@ void Gamefsm::Update(){
             }
             //Movement!
             std::map<Uint32, Client*>& rClients = myServer->getClients();
+            Char* pAChar; //Tmp pointer to chars.
+            Uint32 ax,ay,az;
             for(miClientsIterator = rClients.begin(); miClientsIterator != rClients.end(); miClientsIterator++){
-                //if((miClientsIterator->second)->getAccount()->getChar()->move()){
-                    //((miClientsIterator->second)->getAccount()->getChar()->getPosition()).getXYZ(ax,ay,az);
-                    //tu lo sai
-                    //std::cout << ax << "," << ay << std::endl;
-                //}
-            //        (miClientsIterator->second)->getAccount()->getChar()->get
+                pAChar = (((miClientsIterator->second)->getAccount())->getChar());
+                if(pAChar->move()){ // We moved! let's inform the client of its new position.
+                    (pAChar->getPosition()).getXYZ(ax,ay,az);
+                    //Create a new messageout and send it!
+                    MessageOut* messageout;
+                    messageout = new MessageOut(MSG_MOVE);
+                    messageout->write2(12); //The lenght of a MSG_MOVE
+                    messageout->write4(ax);
+                    messageout->write4(ay);
+                    messageout->write4(az);
+                    messageout->addCRC();
+                    Connection::putMessage((miClientsIterator->second)->getSocket() ,messageout);
+                    delete messageout;
+
+
+                    std::cout << ax << "," << ay << std::endl;
+                }
             //std::cout << rClients.size();
 
             }
 
 
-            //std::cout << rClients.size();
+            std::cout << rClients.size();
 
         }
 

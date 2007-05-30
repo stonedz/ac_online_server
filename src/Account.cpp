@@ -23,8 +23,6 @@ Account::Account(Server* server,
     myChar(NULL)
 {
     // Builds the Character associated with the account.
-
-
     try{
         Uint32 tmpSerial;
         myServer->getNextGoSerial(tmpSerial);

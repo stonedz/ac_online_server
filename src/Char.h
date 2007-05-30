@@ -14,11 +14,16 @@ class Char : public IMoveableObject
 {
 public:
     /**
-     * Temporary constructor implementation. To be finished.
+     * Constructs a Game character.
+     *
+     * This is the last step in order to activate a Client,
+     * if everything is ok then we can add the Client to the mClients
+     * map of active clients.
      *
      * @param serial A valid, unique serial.
      * @param type The object type.
      * @param dbId Database id of the character.
+     * @param client Reference to the Client which owns this Char
      */
     Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client);
 
