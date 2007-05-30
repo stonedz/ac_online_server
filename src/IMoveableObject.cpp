@@ -13,9 +13,13 @@ IMoveableObject::~IMoveableObject()
     //dtor
 }
 
-void IMoveableObject::move(){
-    if (mDestPos != getPosition())
+bool IMoveableObject::move(){
+    if (mDestPos != getPosition()){
         setPosition(mDestPos); //we trust MapManager::validateMove()
+        return true;
+    }
+    else
+        return false;
 }
 
 

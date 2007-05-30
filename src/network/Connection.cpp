@@ -5,6 +5,7 @@
 #include "MessageOut.h"
 #include "NetPacket.h"
 #include "crc32.h"
+#include "Logger.h"
 
 Connection::Connection()
 	:data(new ConnectionData())
@@ -38,11 +39,13 @@ MessageIn* Connection::getMessage(TCPsocket socket){
 	Uint32 crc;
 	char* msg;
 	char* buf;
+    Logger* logger = Logger::getInstance();
 
 	result=SDLNet_TCP_Recv(socket,(char *) &type,2); // Gets message's type
 	if(result<2) {
 		if(SDLNet_GetError() && strlen(SDLNet_GetError())) // sometimes blank!
 			printf("SDLNet_TCP_Recv: %s\n", SDLNet_GetError());
+        logger->log("No message type in TCP socket.", LOGMODE_NORMAL);
 		return NULL;
 	}
 
@@ -50,6 +53,7 @@ MessageIn* Connection::getMessage(TCPsocket socket){
 	if(result<2) {
 		if(SDLNet_GetError() && strlen(SDLNet_GetError())) // sometimes blank!
 			printf("SDLNet_TCP_Recv: %s\n", SDLNet_GetError());
+			logger->log("No message lenght in TCP socket.", LOGMODE_NORMAL);
 		return NULL;
 	}
 
@@ -60,6 +64,7 @@ MessageIn* Connection::getMessage(TCPsocket socket){
 		if(SDLNet_GetError() && strlen(SDLNet_GetError())) // sometimes blank!
 			printf("SDLNet_TCP_Recv: %s\n", SDLNet_GetError());
 		free(msg);
+		logger->log("No message payload in TCP socket.", LOGMODE_NORMAL);
 		return NULL;
 	}
 
@@ -67,6 +72,7 @@ MessageIn* Connection::getMessage(TCPsocket socket){
 	if(result < 4){
 		if(SDLNet_GetError() && strlen(SDLNet_GetError())) // sometimes blank!
 			printf("SDLNet_TCP_Recv: %s\n", SDLNet_GetError());
+        logger->log("No message CRC in TCP socket.", LOGMODE_NORMAL);
 		return NULL;
 	}
 

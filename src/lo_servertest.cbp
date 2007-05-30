@@ -82,6 +82,8 @@
 		<Unit filename="commands/Cmd_chat.h" />
 		<Unit filename="commands/Cmd_exit.cpp" />
 		<Unit filename="commands/Cmd_exit.h" />
+		<Unit filename="commands/Cmd_login.cpp" />
+		<Unit filename="commands/Cmd_login.h" />
 		<Unit filename="commands/Cmd_test.cpp" />
 		<Unit filename="commands/Cmd_test.h" />
 		<Unit filename="commands/ICommand.cpp" />

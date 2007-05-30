@@ -79,7 +79,7 @@ void Server::startListen(ConnectionData * data){
 	#endif
 
 	while(!exit_request){ // Main server loop
-		ready = SDLNet_CheckSockets(set, (Uint32) 500);
+		ready = SDLNet_CheckSockets(set, (Uint32) 50);
 		if(ready==-1){
 			std::cout << "SDLNet_CheckSockets: " << SDLNet_GetError() << std::endl;
 			break;

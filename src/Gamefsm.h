@@ -3,6 +3,7 @@
 
 #include "SDL/SDL.h"
 #include <vector>
+#include <map>
 
 // We define here our game refresh rate, in millisecodns
 #define GAME_UPDATE         (100)   /**< Milliseconds to wait for an update. */
@@ -12,6 +13,7 @@
 
 class Logger; // Forward declarations.
 class Server;
+class Client;
 
 enum game_fsm_trans {t_main, t_quit, t_init};
 
@@ -152,6 +154,7 @@ private:
     SDL_mutex* mxLogEnabled;            /**< Mutex for the access to the logEnabled var. */
     SDL_mutex* mxPerfLogShort;          /**< Mutex for the access to the perfLogShort var. */
     SDL_mutex* mxPerfLogLong;           /**< Mutex for the access to the perfLogLong var. */
+    std::map<Uint32, Client*>::iterator miClientsIterator; /**< Iterator for scanning the clients map. */
 
 
     /**

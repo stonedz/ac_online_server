@@ -3,7 +3,9 @@
 
 #include "ICommandServer.h"
 
-
+/**
+ * Command to receive and send chat messages to the clients.
+ */
 class Cmd_chat : public ICommandServer
 {
 public:

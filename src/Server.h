@@ -17,7 +17,7 @@ class Client;
  * Represents a server.
  *
  * Waits for new connections at given port and manages the creation
- * of new Clients.
+ * of new Clients. It also manages the creation of every other object needed by the server itself.
  */
 class Server : public Connection
 {
@@ -134,6 +134,19 @@ public:
      * @return Pointer to the server's map manager.
      */
     MapManager* getMapManager() {return mMapManager;}
+
+    /**
+     * Gets a reference to clients' map.
+     *
+     * Returns a reference to client's map.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return reference to mClients srd::map
+     * @see mClients
+     * @todo Maybe return a copy in order to avoid problems with syncronization and data corruptrion.
+     */
+     std::map<Uint32, Client*>& getClients() {return mClients;}
 
 private:
 

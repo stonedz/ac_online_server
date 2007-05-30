@@ -4,6 +4,8 @@
 #include "IMoveableObject.h"
 #include "SDL.h"
 
+class Client; // Forward declaration.
+
 /**
  * Represents a playing character. This is only for a real player
  * chracter, NPC have their own class.
@@ -18,7 +20,7 @@ public:
      * @param type The object type.
      * @param dbId Database id of the character.
      */
-    Char(Uint32 serial, Uint16 type, Uint32 dbId);
+    Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client);
 
     /**
      * Virtual destructor.
@@ -36,7 +38,8 @@ public:
 
 private:
 
-    Uint32 myId;       /**< Character Database unique Id, this is NOT the serial. */
+    Uint32 myId;        /**< Character Database unique Id, this is NOT the serial. */
+    Client& myClient;   /**< Reference to my Client. */
 
 };
 

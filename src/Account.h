@@ -8,6 +8,9 @@ class Char; // Forward declarations.
 class Server;
 class Client;
 
+/**
+ * Represents an account.
+ */
 class Account {
 public:
     /**

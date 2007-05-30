@@ -87,7 +87,7 @@ public:
     void setName(std::string newName);
 
     /**
-     * Returns a pointer to the current position of the object in the
+     * Returns a reference to the current position of the object in the
      * form of a Location instance.
      *
      * @author stonedz
@@ -129,7 +129,7 @@ public:
      */
     virtual void update() = 0;
 
-private:
+protected:
 
     Uint32 mSerial;     /**< Unique object's serial. */
     Uint16 mType;       /**< Object type. */

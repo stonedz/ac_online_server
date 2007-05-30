@@ -28,7 +28,7 @@ Account::Account(Server* server,
     try{
         Uint32 tmpSerial;
         myServer->getNextGoSerial(tmpSerial);
-        myChar = new Char(tmpSerial, GO_PLAYER, myCharID); // We delegate database queries to the Char ctor.
+        myChar = new Char(tmpSerial, GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
 
     }
     catch(CppSQLite3Exception& e){

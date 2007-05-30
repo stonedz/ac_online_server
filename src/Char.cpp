@@ -2,9 +2,10 @@
 #include "cppsqlite3.h"
 #include "Logger.h"
 
-Char::Char(Uint32 serial, Uint16 type, Uint32 dbId)
+Char::Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client)
     :IMoveableObject(serial, type),
-    myId(dbId)
+    myId(dbId),
+    myClient(client)
 {
     CppSQLite3DB accDb;
     accDb.open("accounts.db");
@@ -33,5 +34,6 @@ Char::~Char()
 void Char::update(){
 
 }
+
 
 

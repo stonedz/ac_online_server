@@ -41,12 +41,13 @@ public:
     /**
      * Moves the object towards its destination.
      *
-     * @todo Temporary implementation, teleports to the destination Location
-     * @see mDestPos
+     * @author stonedz
+     * @since pre-alpha
+     * @return True if moved, false elsewhere
      */
-    void move();
+    virtual bool move();
 
-private:
+protected:
 
     Location mDestPos;      /**< Where am I going to? */
 };

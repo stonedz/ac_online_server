@@ -102,6 +102,13 @@ public:
 	 */
 	SDL_Thread* getThread();
 
+    /**
+     * Returns connection's socket. Used to send network messages.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return The TCPsocket of the this connection (usually a Client)
+     */
 	TCPsocket getSocket();
 
 protected:

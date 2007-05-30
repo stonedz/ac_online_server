@@ -1,9 +1,13 @@
 #include "Gamefsm.h"
+#include "Client.h"
+#include "Account.h"
+#include "Char.h"
 #include "Logger.h"
 #include "Server.h"
 #include <boost/lexical_cast.hpp>
 
 #include <iostream>
+#include <map>
 
 Gamefsm::Gamefsm(Server* server)
     :myLogger(Logger::getInstance()),
@@ -110,6 +114,7 @@ void Gamefsm::Update(){
     }
     else{ // Main update loop
         loopCounter = (loopCounter+1) % GAME_LOOPS; // Updates the loopCounter, it will be reset when GAME_LOOPS limit is reached.
+        Uint32 ax,ay,az;
 
         if ((loopCounter+1) == GAME_LOOPS){ // a game loop has been reached!
 
@@ -129,12 +134,28 @@ void Gamefsm::Update(){
                 }
                 #endif
             }
+            //Movement!
+            std::map<Uint32, Client*>& rClients = myServer->getClients();
+            for(miClientsIterator = rClients.begin(); miClientsIterator != rClients.end(); miClientsIterator++){
+                //if((miClientsIterator->second)->getAccount()->getChar()->move()){
+                    //((miClientsIterator->second)->getAccount()->getChar()->getPosition()).getXYZ(ax,ay,az);
+                    //tu lo sai
+                    //std::cout << ax << "," << ay << std::endl;
+                //}
+            //        (miClientsIterator->second)->getAccount()->getChar()->get
+            //std::cout << rClients.size();
+
+            }
+
+
+            //std::cout << rClients.size();
+
         }
 
         #ifdef TESTPHASE
-        Uint32 af; // Dummy loop to test update.
-        for (Uint32 c =0; c< 1000000; c++)
-            af = c;
+        //Uint32 af; // Dummy loop to test update.
+        //for (Uint32 c =0; c< 1000000; c++)
+        //    af = c;
         #endif
     }
     updateTime = SDL_GetTicks() - beginUpdate;

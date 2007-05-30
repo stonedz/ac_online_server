@@ -8,6 +8,7 @@
 #include "commands/Cmd_exit.h"
 #include "commands/Cmd_chat.h"
 #include "commands/Cmd_accounts.h"
+#include "commands/Cmd_login.h"
 
 CommandManager* CommandManager::pUniqueInstance = NULL; 	// Reference to the unique instance.
 SDL_mutex* CommandManager::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -60,7 +61,10 @@ void CommandManager::processCommand(std::string &cmd){
     else if ( tmp == "exit" || tmp == "quit" ){ // Quit command sent.
         cmdObj = new Cmd_exit(cmd, myServer);
     }
-	else if (tmp == "test"){
+    else if ( tmp == "login"){ //login test command.
+        cmdObj = new Cmd_login(cmd, myServer);
+    }
+	else if ( tmp == "test"){
 		cmdObj = new Cmd_test(cmd, myServer);
 	}
 	else{ // Invalid or non-existent command.
