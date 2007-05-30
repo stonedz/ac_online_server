@@ -19,6 +19,7 @@ Gamefsm::Gamefsm(Server* server)
     logEnabled(false),
     perfLogShort(),
     perfLogLong(),
+    updateTime(0),
     mxLogEnabled(SDL_CreateMutex()),
     mxPerfLogShort(SDL_CreateMutex()),
     mxPerfLogLong(SDL_CreateMutex())

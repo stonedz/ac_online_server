@@ -14,6 +14,7 @@ MessageOut::MessageOut(const message_type m_type)
 MessageOut::~MessageOut(){
 	if(this->myPacket)
 		delete this->myPacket;
+    free(myData);
 }
 
 

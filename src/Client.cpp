@@ -36,6 +36,9 @@ void Client::startListen(ConnectionData * data){
 		fsm->Evolve();
 		SDL_Delay(100);
 	}
+	//Deletes the FSM
+	delete fsm;
+
 	//Delete the client.
 	this->myServer->removeClient(this);
 }

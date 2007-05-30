@@ -101,11 +101,13 @@ void Server::startListen(ConnectionData * data){
 		}
 	}
 
+    SDLNet_FreeSocketSet(set);
 	// Since the server is exiting do the same with the game FSM.
 	myGamefsm->Stop();
 	SDL_Thread* tmpThread = myGamefsm->getThread();
 	if (tmpThread != NULL) // If necessary wait for the GameFSM to finish.
         SDL_WaitThread(tmpThread, NULL);
+    delete myGamefsm;
 
 	#ifdef TESTPHASE
 	std::cout << "<Server> Now quitting!" << std::endl;

@@ -83,8 +83,12 @@ MessageIn* Connection::getMessage(TCPsocket socket){
 	memcpy(buf + 4, (char *) msg, SDL_SwapBE16(len));
 	memcpy((buf + 4 + SDL_SwapBE16(len)),(char *) &crc ,4);
 
+	free(msg);
+
 	NetPacket* packet = new NetPacket(buf, (SDL_SwapBE16(len) + 8));// This will be destroyed by MessageIn destructor.
 	MessageIn* message = new MessageIn(packet);
+
+	free(buf);
 
 	return message;
 }
