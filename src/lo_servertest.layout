@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Debug_linux" />
+	<ActiveTarget name="Release_linux_google_perftools" />
 	<File name="Account.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="732" topLine="0" />
 	</File>
@@ -41,7 +41,7 @@
 		<Cursor position="537" topLine="3" />
 	</File>
 	<File name="Gamefsm.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="3299" topLine="128" />
+		<Cursor position="3299" topLine="83" />
 	</File>
 	<File name="Gamefsm.h" open="0" top="0" tabpos="6">
 		<Cursor position="646" topLine="128" />

@@ -2,6 +2,7 @@
 *.o
 #Ignore compiled binary
 lo_servertest
+lo_servertest_release*
 #Ignore accounts database
 accounts.db
 #Ignore  codeblocks's backups
