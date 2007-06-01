@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
-	<ActiveTarget name="Release_linux_google_perftools" />
+	<ActiveTarget name="Debug_linux" />
 	<File name="Account.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="732" topLine="0" />
 	</File>
@@ -19,14 +19,14 @@
 	<File name="Client.h" open="0" top="0" tabpos="10">
 		<Cursor position="1470" topLine="40" />
 	</File>
-	<File name="Clientfsm.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="2393" topLine="181" />
+	<File name="Clientfsm.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="2393" topLine="155" />
 	</File>
 	<File name="Clientfsm.h" open="0" top="0" tabpos="2">
 		<Cursor position="3751" topLine="149" />
 	</File>
-	<File name="CommandManager.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="2195" topLine="24" />
+	<File name="CommandManager.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2372" topLine="46" />
 	</File>
 	<File name="CommandManager.h" open="0" top="0" tabpos="20">
 		<Cursor position="1789" topLine="38" />
@@ -40,11 +40,11 @@
 	<File name="Console.h" open="0" top="0" tabpos="16">
 		<Cursor position="537" topLine="3" />
 	</File>
-	<File name="Gamefsm.cpp" open="1" top="1" tabpos="2">
-		<Cursor position="3299" topLine="83" />
+	<File name="Gamefsm.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="5526" topLine="135" />
 	</File>
-	<File name="Gamefsm.h" open="0" top="0" tabpos="6">
-		<Cursor position="646" topLine="128" />
+	<File name="Gamefsm.h" open="1" top="1" tabpos="2">
+		<Cursor position="378" topLine="0" />
 	</File>
 	<File name="IGameObject.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="208" topLine="0" />
@@ -77,16 +77,16 @@
 		<Cursor position="1036" topLine="3" />
 	</File>
 	<File name="Server.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="4540" topLine="137" />
+		<Cursor position="355" topLine="3" />
 	</File>
 	<File name="Server.h" open="0" top="0" tabpos="13">
-		<Cursor position="3807" topLine="46" />
+		<Cursor position="4064" topLine="134" />
 	</File>
 	<File name="commands/Cmd_accounts.cpp" open="0" top="0" tabpos="6">
 		<Cursor position="917" topLine="0" />
 	</File>
 	<File name="commands/Cmd_accounts.h" open="0" top="0" tabpos="1">
-		<Cursor position="722" topLine="18" />
+		<Cursor position="722" topLine="31" />
 	</File>
 	<File name="commands/Cmd_chat.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="77" topLine="0" />
@@ -100,17 +100,23 @@
 	<File name="commands/Cmd_exit.h" open="0" top="0" tabpos="3">
 		<Cursor position="252" topLine="0" />
 	</File>
-	<File name="commands/Cmd_login.cpp" open="0" top="0" tabpos="2">
-		<Cursor position="2059" topLine="49" />
+	<File name="commands/Cmd_login.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="259" topLine="0" />
 	</File>
-	<File name="commands/Cmd_login.h" open="0" top="0" tabpos="4">
-		<Cursor position="165" topLine="0" />
+	<File name="commands/Cmd_login.h" open="0" top="0" tabpos="6">
+		<Cursor position="825" topLine="7" />
 	</File>
 	<File name="commands/Cmd_test.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="61" topLine="0" />
+		<Cursor position="61" topLine="10" />
 	</File>
 	<File name="commands/Cmd_test.h" open="0" top="0" tabpos="19">
 		<Cursor position="580" topLine="0" />
+	</File>
+	<File name="commands/Cmd_top.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="456" topLine="0" />
+	</File>
+	<File name="commands/Cmd_top.h" open="0" top="0" tabpos="5">
+		<Cursor position="1000" topLine="5" />
 	</File>
 	<File name="commands/ICommand.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="203" topLine="0" />

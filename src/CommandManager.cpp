@@ -9,6 +9,7 @@
 #include "commands/Cmd_chat.h"
 #include "commands/Cmd_accounts.h"
 #include "commands/Cmd_login.h"
+#include "commands/Cmd_top.h"
 
 CommandManager* CommandManager::pUniqueInstance = NULL; 	// Reference to the unique instance.
 SDL_mutex* CommandManager::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -66,6 +67,9 @@ void CommandManager::processCommand(std::string &cmd){
     }
 	else if ( tmp == "test"){
 		cmdObj = new Cmd_test(cmd, myServer);
+	}
+	else if ( tmp == "top"){
+	    cmdObj = new Cmd_top(cmd, myServer);
 	}
 	else{ // Invalid or non-existent command.
 		cmdObj = NULL;

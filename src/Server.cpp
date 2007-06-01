@@ -12,7 +12,8 @@ Server::Server(int port)
 	chat_mode(false),
 	mxGoSerial(SDL_CreateMutex()),
 	gameObjectSerial(1),
-	initialized(false)
+	initialized(false),
+    myGamefsm(this)
 {
 	/*
 	 * Fills the IPaddress object with correct data to create
@@ -67,8 +68,8 @@ void Server::startListen(ConnectionData * data){
 	}
 	SDLNet_TCP_AddSocket(set, data->socket);
 
-    Gamefsm* myGamefsm = new Gamefsm(this);
-    myGamefsm->Start(); // Starts the game state machine.
+
+    myGamefsm.Start(); // Starts the game state machine.
 
     while(!initialized){ // Wait for the server to be initialized
         SDL_Delay(100);
@@ -103,11 +104,11 @@ void Server::startListen(ConnectionData * data){
 
     SDLNet_FreeSocketSet(set);
 	// Since the server is exiting do the same with the game FSM.
-	myGamefsm->Stop();
-	SDL_Thread* tmpThread = myGamefsm->getThread();
+	myGamefsm.Stop();
+	SDL_Thread* tmpThread = myGamefsm.getThread();
 	if (tmpThread != NULL) // If necessary wait for the GameFSM to finish.
         SDL_WaitThread(tmpThread, NULL);
-    delete myGamefsm;
+
 
 	#ifdef TESTPHASE
 	std::cout << "<Server> Now quitting!" << std::endl;

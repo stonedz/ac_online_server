@@ -7,11 +7,13 @@
 
 #include "Connection.h"
 #include "MapManager.h"
+#include "Gamefsm.h"
 
 class Message;	// Forward declarations.
 class MessageIn;
 class MessageOut;
 class Client;
+class Gamefsm;
 
 /**
  * Represents a server.
@@ -136,8 +138,6 @@ public:
     MapManager* getMapManager() {return mMapManager;}
 
     /**
-     * Gets a reference to clients' map.
-     *
      * Returns a reference to client's map.
      *
      * @author stonedz
@@ -146,7 +146,15 @@ public:
      * @see mClients
      * @todo Maybe return a copy in order to avoid problems with syncronization and data corruptrion.
      */
-     std::map<Uint32, Client*>& getClients() {return mClients;}
+    std::map<Uint32, Client*>& getClients() {return mClients;}
+
+    /**
+     * Returns a reference to the gamefsm the server is currently running.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     */
+    Gamefsm& getGamefsm() {return myGamefsm;}
 
 private:
 
@@ -166,6 +174,7 @@ private:
 	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */
 	Uint32 gameObjectSerial;    /**< The current Serial counter for game Objects (IGameObjects derived). */
 	bool initialized;           /**< If true the server has been initialized, and may accept incoming connections. */
+	Gamefsm myGamefsm;         /**< The Gamefsm that is running inside the Server. */
 };
 
 #endif /*SERVER_H_*/

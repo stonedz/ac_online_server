@@ -115,6 +115,8 @@
 		<Unit filename="commands/Cmd_login.h" />
 		<Unit filename="commands/Cmd_test.cpp" />
 		<Unit filename="commands/Cmd_test.h" />
+		<Unit filename="commands/Cmd_top.cpp" />
+		<Unit filename="commands/Cmd_top.h" />
 		<Unit filename="commands/ICommand.cpp" />
 		<Unit filename="commands/ICommand.h" />
 		<Unit filename="commands/ICommandServer.cpp" />

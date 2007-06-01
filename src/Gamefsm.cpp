@@ -163,15 +163,16 @@ void Gamefsm::Update(){
             }
 
 
-            std::cout << rClients.size();
+            //std::cout << rClients.size();
 
         }
 
         #ifdef TESTPHASE
-        //Uint32 af; // Dummy loop to test update.
-        //for (Uint32 c =0; c< 1000000; c++)
-        //    af = c;
+        Uint32 af; // Dummy loop to test update.
+        for (Uint32 c =0; c< 10000000; c++)
+            af = c;
         #endif
+
     }
     updateTime = SDL_GetTicks() - beginUpdate;
 }

@@ -91,6 +91,30 @@ public:
      */
     void setLog(bool set = true);
 
+    /**
+     * Returns a reference to the std::vector which contains collected short-term
+     * performance data.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Reference to perfLogShort
+     */
+    std::vector<Uint16>& getPerformanceShort() {SDL_LockMutex(mxPerfLogShort);
+                                                return perfLogShort;
+                                                SDL_UnlockMutex(mxPerfLogShort);}
+
+    /**
+     * Returns a reference to the std::vector which contains collected long-term
+     * performance data.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Reference to perfLogLong
+     */
+    std::vector<Uint16>& getPerformanceLong() {SDL_LockMutex(mxPerfLogLong);
+                                                return perfLogLong;
+                                                SDL_UnlockMutex(mxPerfLogLong);}
+
 protected:
 
 
