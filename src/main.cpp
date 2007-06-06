@@ -6,11 +6,11 @@
 #include <SDL_thread.h>
 #include <SDL_net.h>
 #include <stdio.h>
- #include <stdlib.h>
- #include <signal.h>
- #include <string.h>     /* for memset() (on some compilers) */
- #include <osdefs.h>     /* for _MAX_PATH */
- #include <amx.h>
+#include <stdlib.h>
+#include <signal.h>
+#include <string.h>     /* for memset() (on some compilers) */
+#include <osdefs.h>     /* for _MAX_PATH */
+#include <amx.h>
 
  #include <time.h>
  #if !defined CLOCKS_PER_SEC     /* some (older) compilers do not have it */
@@ -34,6 +34,7 @@
 #include "Server.h"
 #include "Logger.h"
 #include "Console.h"
+#include "defs.h"       // Useful constant values are defined here.
 
 #ifdef TESTPHASE
 #include "Account.h"
@@ -79,14 +80,8 @@ int main(int argc, char **argv){
 	// What to do before exiting.
 	atexit(SDL_Quit);
 
-	cout << "OK" << endl << endl;
+	Server* server = new Server(SERVER_MAIN_PORT); // Here we start our main server.
 
-	cout << "Creating a new server instance...";
-	Server* server = new Server(9999);
-	cout << "OK" << endl << endl;
-
-	Console * console = new Console(server);	// Creates and initializes the console.
-	console->setServer(server);
 
 	SDL_WaitThread(server->getThread(), NULL);
 

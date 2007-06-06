@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <map>
+#include <deque>
 
 Gamefsm::Gamefsm(Server* server)
     :myLogger(Logger::getInstance()),
@@ -19,17 +20,16 @@ Gamefsm::Gamefsm(Server* server)
     myServer(server),
     loopCounter(0),
     logEnabled(false),
-    perfLogShort(),
-    perfLogLong(),
+    perfLogShort(0),
+    perfLogLong(0),
+    perfLogMedium(0),
     updateTime(0),
     mxLogEnabled(SDL_CreateMutex()),
     mxPerfLogShort(SDL_CreateMutex()),
-    mxPerfLogLong(SDL_CreateMutex())
+    mxPerfLogLong(SDL_CreateMutex()),
+    mxPerfLogMedium(SDL_CreateMutex())
 
 {
-    // This should enhanche performances for std::vector dynamic memory allocation.
-    perfLogShort.reserve(PERFLOG_SIZE_SHORT);
-    perfLogLong.reserve(PERFLOG_SIZE_LONG);
     #ifdef TESTPHASE
     setLog(true);   // enabling logging capabilies.
     #endif
@@ -39,6 +39,7 @@ Gamefsm::~Gamefsm()
 {
     SDL_DestroyMutex(mxLogEnabled);
     SDL_DestroyMutex(mxPerfLogShort);
+    SDL_DestroyMutex(mxPerfLogMedium);
     SDL_DestroyMutex(mxPerfLogLong);
 }
 
@@ -49,10 +50,10 @@ void Gamefsm::threadBody(){
         Evolve();
         if(updateTime > GAME_UPDATE){ // Last update took more than GAME_UPDATE time!
             std::string toLog = "Last update took "+ boost::lexical_cast<std::string>(updateTime) +
-                                " to complete, GAME_UPDATE is set at " + boost::lexical_cast<std::string>(GAME_UPDATE)
+                                " milliseconds to complete, GAME_UPDATE is set at " + boost::lexical_cast<std::string>(GAME_UPDATE)
                                 + " milliseconds. Lower GAME_UPDATE or buy a faster machine!";
             myLogger->log(toLog,LOGMODE_NORMAL);
-            std::cerr << toLog << std::endl;
+            myServer->getConsole().printMsg(toLog, CONSOLE_ERROR);
         }
         else{
             SDL_Delay(GAME_UPDATE - updateTime);
@@ -116,27 +117,35 @@ void Gamefsm::Update(){
         ExecTrans(t_quit);
     }
     else{ // Main update loop
-        loopCounter = (loopCounter+1) % GAME_LOOPS; // Updates the loopCounter, it will be reset when GAME_LOOPS limit is reached.
+        loopCounter++; // We can run 13,5 years with an update of 100 milliseconds.
+        std::cout.flush(); // Flush the standard out stream to prevent console lockups.
 
-        if ((loopCounter+1) == GAME_LOOPS){ // a game loop has been reached!
+        if ((loopCounter % GAME_UPDATES_SECOND) == 0){ // Every second do...
 
-            // LOG
+            // Performance log
             if(logEnabled){
                 #ifdef TESTPHASE
-                perfLogShort.push_back(updateTime); // Logs performances as the time needed for previous update.
-
-                // TODO this should be done by the upcoming Garbage Collector (#3)
-                if(perfLogShort.size() > PERFLOG_SIZE_SHORT){
-                    Uint16 count = 1;
-                    while(count <= PERFLOG_SIZE_SHORT){
-                        perfLogLong.push_back(perfLogShort[count]); // Logs samples from the perfLogShort vector for long performances computation.
-                        count +=  (PERFLOG_SIZE_SHORT / 50);
+                perfLogShort.push_back(updateTime);             // Logs performances as the time needed for previous update.
+                if (perfLogShort.size() > PERFLOG_SIZE_SHORT){  // If the queue is empty deletes the oldest record
+                    perfLogShort.pop_front();
+                    if((loopCounter % GAME_UPDATES_MIN) == 0){  // First minute is ignored here.
+                        perfLogMedium.push_back(getPerformanceShort());
+                        if (perfLogMedium.size() > PERFLOG_SIZE_MED){
+                            perfLogMedium.pop_front();
+                            if((loopCounter % (GAME_UPDATES_MIN * 30)) == 0){
+                                perfLogLong.push_back(getPerformanceLong());
+                                if(perfLogLong.size() > PERFLOG_SIZE_LONG){
+                                    perfLogLong.pop_front();
+                                }
+                            }
+                        }
                     }
-                    perfLogShort.clear();                       // erase vector's content.
                 }
+
                 #endif
             }
-            //Movement!
+
+            // Start movement
             std::map<Uint32, Client*>& rClients = myServer->getClients();
             Char* pAChar; //Tmp pointer to chars.
             Uint32 ax,ay,az;
@@ -158,18 +167,13 @@ void Gamefsm::Update(){
 
                     std::cout << ax << "," << ay << std::endl;
                 }
-            //std::cout << rClients.size();
-
             }
-
-
-            //std::cout << rClients.size();
-
-        }
+            // END movement
+        } // END second update.
 
         #ifdef TESTPHASE
         Uint32 af; // Dummy loop to test update.
-        for (Uint32 c =0; c< 10000000; c++)
+        for (Uint32 c =0; c< 1000000; c++)
             af = c;
         #endif
 
@@ -193,4 +197,52 @@ void Gamefsm::setLog(bool set){
     SDL_LockMutex(mxLogEnabled);    // Locks the mutex...
     logEnabled = set;               // ...sets the var...
     SDL_UnlockMutex(mxLogEnabled);  // ...unlocks the mutex.
+}
+
+Uint16 Gamefsm::getPerformanceInst(){
+    SDL_LockMutex(mxPerfLogShort);
+    Uint16 tmp = perfLogShort.back();
+    SDL_UnlockMutex(mxPerfLogShort);
+
+    return (tmp * 100) / GAME_UPDATE; // Returns the percentage.
+
+}
+
+Uint16 Gamefsm::getPerformanceShort(){
+    Uint16 tmp = 0;
+    Uint16 size;
+    if((size = perfLogShort.size())){
+        for (Uint16 counter = 0; counter < size; counter++)
+            tmp += perfLogShort[counter];
+
+        return (((tmp / size) * 100) / GAME_UPDATE); // Calculates the average.
+    }
+    else
+        return 0;
+}
+
+Uint16 Gamefsm::getPerformanceMedium(){
+    Uint16 tmp = 0;
+    Uint16 size;
+    if((size = perfLogMedium.size())){
+        for (Uint16 counter = 0; counter < size; counter++)
+            tmp += perfLogMedium[counter];
+
+        return (((tmp / size) * 100) / GAME_UPDATE); // Calculates the average.
+    }
+    else
+        return 0;
+}
+
+Uint16 Gamefsm::getPerformanceLong(){
+    Uint16 tmp = 0;
+    Uint16 size;
+    if((size = perfLogLong.size())){
+        for (Uint16 counter = 0; counter < size; counter++)
+            tmp += perfLogLong[counter];
+
+        return (((tmp / size) * 100) / GAME_UPDATE); // Calculates the average.
+    }
+    else
+        return 0;
 }

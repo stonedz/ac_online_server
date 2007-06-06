@@ -8,16 +8,9 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
-
 #include <SDL/SDL_net.h>
 
-#define MSG_INVALID (0)		/**< Invalid message. */
-#define MSG_LOGIN 	(1)		/**< Login message, a client wants to authenticate. */
-#define MSG_LOGOUT 	(2)		/**< Logout message, a client wants to quit. */
-#define MSG_CHAT 	(3)		/**< Chat message, a normal (generic)  chat message.*/
-#define MSG_KA		(4)		/**< Keep Alive message (client send this message).*/
-#define MSG_KA_ACK	(5)		/**< Keep Alive ACK (server reply to KA with this message).*/
-#define MSG_MOVE	(6)		/**< Movement message: from client to server requests a destination, from server to client allow a movement. */
+#include "defs.h"
 
 /**
  * A new type to describe message's types -> two first

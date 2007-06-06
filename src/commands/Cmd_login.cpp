@@ -70,7 +70,7 @@ void Cmd_login::execute(){
 
         messageout->writeString(hash);
         messageout->addCRC();
-        int res = Connection::putMessage(sck, messageout);
+        Connection::putMessage(sck, messageout);
 
         delete messageout;
 
@@ -80,7 +80,7 @@ void Cmd_login::execute(){
 
             messageout->write2(0);
             messageout->addCRC();
-            int ret = Connection::putMessage(sck, messageout);
+            Connection::putMessage(sck, messageout);
 
             delete messageout;
             SDL_Delay(1000);

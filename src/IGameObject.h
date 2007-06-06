@@ -5,12 +5,7 @@
 
 #include "SDL.h"
 #include "Location.h"
-
-
-
-//Objects types
-#define GO_INVALID  (0)     /**< Invalid game object. */
-#define GO_PLAYER   (1)     /**< A player. */
+#include "defs.h"
 
 /**
  * This abstract interface represents a generic game object. It is

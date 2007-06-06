@@ -2,9 +2,12 @@
 #define ICOMMANDSERVER_H_
 
 #include <iostream>
+#include <sstream>
+#include <boost/lexical_cast.hpp>
 
 #include "ICommand.h"
-#include "../Server.h"
+#include "Server.h"
+#include "Console.h"
 
 class Server;
 

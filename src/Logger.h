@@ -8,18 +8,7 @@
 #include <iomanip>
 
 #include "SDL.h"
-
-//Log modes
-#define LOGMODE_NORMAL (1)	/**< Log to the standard logfile. */
-#define LOGMODE_ERROR (2)	/**< Log to the error logfile. */
-#define LOGMODE_AUTH (3)	/**< Log to the auth logfile. */
-#define LOGMODE_DB (4)      /**< Log to the database logfile. */
-
-//Define the paths of previously defined log-modes.
-#define LOGFILE_NORMAL "log/log"
-#define LOGFILE_ERROR "log/error-log"
-#define LOGFILE_AUTH "log/auth-log"
-#define LOGFILE_DB "log/db-log"
+#include "defs.h"
 
 /**
  * A simple logging system, implements Singleton pattern. Threadsafe.

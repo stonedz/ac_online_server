@@ -2,14 +2,9 @@
 #define GAMEFSM_H
 
 #include "SDL/SDL.h"
-#include <vector>
+#include <deque>
 #include <map>
-
-// We define here our game refresh rate, in millisecodns
-#define GAME_UPDATE         (100)   /**< Milliseconds to wait for an update. */
-#define GAME_LOOPS          (10)    /**< How many game updates are considered a whole loop. @todo Still experimental.*/
-#define PERFLOG_SIZE_SHORT  (1000)  /**< Size soft-limit (dynamic memory allocation) for the perfLogShort vector. */
-#define PERFLOG_SIZE_LONG   (1000)  /**< Size soft-limit (dynamic memory allocation) for the perfLong vector. */
+#include "defs.h" // Constant definitions are defined here.
 
 class Logger; // Forward declarations.
 class Server;
@@ -99,7 +94,7 @@ public:
      * @since pre-alpha
      * @return Reference to perfLogShort
      */
-    std::vector<Uint16>& getPerformanceShort() {SDL_LockMutex(mxPerfLogShort);
+    std::deque<Uint16>& getPerfLogShort() {SDL_LockMutex(mxPerfLogShort);
                                                 return perfLogShort;
                                                 SDL_UnlockMutex(mxPerfLogShort);}
 
@@ -111,9 +106,63 @@ public:
      * @since pre-alpha
      * @return Reference to perfLogLong
      */
-    std::vector<Uint16>& getPerformanceLong() {SDL_LockMutex(mxPerfLogLong);
+    std::deque<Uint16>& getPerfLogLong() {SDL_LockMutex(mxPerfLogLong);
                                                 return perfLogLong;
                                                 SDL_UnlockMutex(mxPerfLogLong);}
+
+    /**
+     * Returns a reference to the std::deque which contains collected mid-term
+     * performance data.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Reference to perfLogLong
+     */
+    std::deque<Uint16>& getPerfLogMedium() {SDL_LockMutex(mxPerfLogMedium);
+                                                return perfLogMedium;
+                                                SDL_UnlockMutex(mxPerfLogMedium);}
+
+    /**
+     * Returns Instant performance.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Instant percentage of use of the server.
+     */
+    Uint16 getPerformanceInst();
+
+    /**
+     * Computes average perfomrance in the short-term period.
+     *
+     * The amount of time is PERFLOG_SIZE_SHORT seconds.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Percentage of use of the server in the short-term period.
+     */
+    Uint16 getPerformanceShort();
+
+    /**
+     * Computes average performance in the mid-term period.
+     *
+     * The amount of time is PERFLOG_SIZE_MED minutes.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Percentage of use of the server in the medium-term period.
+     */
+    Uint16 getPerformanceMedium();
+
+    /**
+     * Computes average performance in the very-long-term period.
+     *
+     * The amount of time is (PERFLOG_SIZE_LONG * 30) minutes.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Percentage of use of the server in the long-term period.
+     */
+    Uint16 getPerformanceLong();
 
 protected:
 
@@ -169,15 +218,17 @@ private:
     bool exitLoop;                      /**< If true the FSM has exited and the whole loop may terminate. */
     SDL_Thread* myThread;               /**< The thread I'm running in (used to JOIN). */
     Server* myServer;                   /**< Pointer to the Server instance that created the Gamefsm. */
-    Uint16 loopCounter;                 /**< Counts the game's cycles. @todo This is still experimental. */
+    Uint32 loopCounter;                 /**< Counts the game's cycles. */
     bool logEnabled;                    /**< If true enables performance data collection. */
-    std::vector<Uint16> perfLogShort;   /**< If logEnabled is true, logs performances data (short term) ate every loop (not every update!). Thread-safe access should be provided. */
-    std::vector<Uint16> perfLogLong;    /**< If logEnabled is true, logs performances data (long term) ate every loop (not every update!). Thread-safe access should be provided. */
+    std::deque<Uint16> perfLogShort;    /**< If logEnabled is true, logs performances data (short term) at every loop (not every update!). Thread-safe access should be provided. */
+    std::deque<Uint16> perfLogLong;     /**< If logEnabled is true, logs performances data (long term) at every loop (not every update!). Thread-safe access should be provided. */
+    std::deque<Uint16> perfLogMedium;   /**< If logEnabled is true, logs performances data (medium term). */
     Uint16 updateTime;                  /**< Duration (in milliseconds) of the last Update() operation. */
     Uint32 beginUpdate;                 /**< Ticks (milliseconds) at the beginning of the Update() operation, used to calculate updateTime. */
     SDL_mutex* mxLogEnabled;            /**< Mutex for the access to the logEnabled var. */
     SDL_mutex* mxPerfLogShort;          /**< Mutex for the access to the perfLogShort var. */
     SDL_mutex* mxPerfLogLong;           /**< Mutex for the access to the perfLogLong var. */
+    SDL_mutex* mxPerfLogMedium;         /**< Mutex for the access to the perrfLogMedium var. */
     std::map<Uint32, Client*>::iterator miClientsIterator; /**< Iterator for scanning the clients map. */
 
 

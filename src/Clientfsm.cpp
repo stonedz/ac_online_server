@@ -26,7 +26,6 @@ ClientFSM::ClientFSM(ConnectionData * data, Server* server,Client* client)
 		exit(0);
 	}
 	SDLNet_TCP_AddSocket(this->set, this->data->socket); // Add our TCP socket to the set.
-	std::cerr <<"Client thread socket id: "<< data->socket << std::endl;
 }
 
 void ClientFSM::Start(){
@@ -62,7 +61,7 @@ bool ClientFSM::ExecTrans(client_fsm_trans t){
 		ExecState = &ClientFSM::Disconnect;
 		break;
 	default:
-		std::cerr << "Unsupported transition in ClientFSM" << std::endl;
+        myServer->getConsole().printMsg("Unsupported transition in ClientFSM", CONSOLE_ERROR);
 	}
 
 return true;
@@ -122,7 +121,9 @@ void ClientFSM::SendKA_ACK(){
 void ClientFSM::Ready(){
 
 	if ((SDL_GetTicks() - lastKA) > KEEPALIVE_TIMEOUT){
-		std::cerr<<"KEEPALIVE_TIMEOUT occoured\n";
+	    std::ostringstream tmp;
+	    tmp << "KEEPALIVE_TIMEOUT occoured, Account id: " << myClient->getAccount()->getId();
+	    myServer->getConsole().printMsg(tmp, CONSOLE_WARNING);
 		ExecTrans(t_ka_timeout);
 	}
 	else{
@@ -156,14 +157,17 @@ void ClientFSM::Ready(){
 }
 
 void ClientFSM::Disconnect(){
-	std::cout << "Closing connection with Client " << this->data->socket << "...";
 	SDLNet_FreeSocketSet(this->set);
 	this->set = NULL;
 	SDLNet_TCP_Close(this->data->socket);
 	this->data->socket = NULL;
 	this->data->running = false;
 	this->endFSM = true;
-	std::cout << "OK"<< std::endl;
+	#ifdef TESTPHASE
+	std::ostringstream tmp;
+	tmp << "Closed connection with Client, Account id: " << myClient->getAccount()->getId();
+	myServer->getConsole().printMsg(tmp);
+	#endif
 }
 
 void ClientFSM::ResetKATime(){
@@ -177,7 +181,6 @@ bool ClientFSM::authenticate(MessageIn *msg){
 	CppSQLite3DB db;
 
 	string login_data = msg->readString();
-	std::cout << "Received a login request, processing it..." << std::endl;
 
 	if (msg->checkCRC()){
         try{
@@ -188,6 +191,11 @@ bool ClientFSM::authenticate(MessageIn *msg){
             if (!q.eof()){ // found a valid hash.
                 this->myClient->setAccount(new Account(myServer, myClient, q.getIntField(0),q.fieldValue(1),q.fieldValue(3),q.fieldValue(4),q.fieldValue(5),q.getIntField(6))); // Attach an account to the Client.
                 ret = true;
+                #ifdef TESTPHASE
+                std::ostringstream tmp;
+                tmp << "Client successfully logged, Account id: " << myClient->getAccount()->getId();
+                myServer->getConsole().printMsg(tmp);
+                #endif
             }
 
             db.close();

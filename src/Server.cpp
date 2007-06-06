@@ -5,6 +5,8 @@
 #include "Gamefsm.h"
 #include "MapManager.h"
 
+#include <sstream>
+
 Server::Server(int port)
 	:mxClients(SDL_CreateMutex()),
 	mMapManager(new MapManager()),
@@ -13,7 +15,8 @@ Server::Server(int port)
 	mxGoSerial(SDL_CreateMutex()),
 	gameObjectSerial(1),
 	initialized(false),
-    myGamefsm(this)
+    myGamefsm(this),
+    myConsole(this)
 {
 	/*
 	 * Fills the IPaddress object with correct data to create
@@ -75,11 +78,11 @@ void Server::startListen(ConnectionData * data){
         SDL_Delay(100);
     }
 
-    #ifdef TESTPHASE
-	std::cout << "Server " << (Uint32)(data->thread) << " is now listening." << std::endl;
-	#endif
+    // Now the server is up and running, inform the user.
+    myConsole.printMsg("Server is now running!");
 
-	while(!exit_request){ // Main server loop
+    // Main server loop. Here we accept new connections.
+	while(!exit_request){
 		ready = SDLNet_CheckSockets(set, (Uint32) 50);
 		if(ready==-1){
 			std::cout << "SDLNet_CheckSockets: " << SDLNet_GetError() << std::endl;
@@ -90,13 +93,11 @@ void Server::startListen(ConnectionData * data){
 		if(SDLNet_SocketReady(data->socket)){
 			newSocket=SDLNet_TCP_Accept(data->socket);
 			if (newSocket){
-			    #ifdef TESTPHASE
-				std::cout <<"Socket id: "<< newSocket << std::endl;
-				#endif
 				newClient = new Client(newSocket, this);
 				//addClient(newClient);
 				#ifdef TESTPHASE
-				std::cout << std::endl << "<Server> Now " << this->mClients.size() << " clients are connected." << std::endl;
+				myConsole.printMsg("Connection received, authenticating it...");
+				//std::cout << std::endl << "<Server> Now " << this->mClients.size() << " clients are connected." << std::endl;
 				#endif
 			}
 		}
@@ -109,10 +110,8 @@ void Server::startListen(ConnectionData * data){
 	if (tmpThread != NULL) // If necessary wait for the GameFSM to finish.
         SDL_WaitThread(tmpThread, NULL);
 
+	myConsole.printMsg("Server is now quitting, good bye!");
 
-	#ifdef TESTPHASE
-	std::cout << "<Server> Now quitting!" << std::endl;
-	#endif
 }
 
 

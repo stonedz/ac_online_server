@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_net.h>
+#include "defs.h"
 
 class Connection;		// Forward declarations.
 class ConnectionData;
@@ -12,9 +13,6 @@ class MessageOut;
 class Logger;
 class Server;
 class Client;
-
-#define KEEPALIVE_TIME		(1000)	/**< Time elapsed between two consecutive Keep Alive.*/
-#define KEEPALIVE_TIMEOUT	(4000)		/**< Time to wait for KeepAlive from client.*/
 
 enum client_fsm_trans {t_ack_time, t_login, t_login_ok, t_login_failed, t_ka_ack_sent,
 						t_ka_received, t_ka_timeout, t_sck_down, t_disconnect};

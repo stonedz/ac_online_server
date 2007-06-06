@@ -8,12 +8,12 @@
 #include "Connection.h"
 #include "MapManager.h"
 #include "Gamefsm.h"
+#include "Console.h"
 
 class Message;	// Forward declarations.
 class MessageIn;
 class MessageOut;
 class Client;
-class Gamefsm;
 
 /**
  * Represents a server.
@@ -153,8 +153,18 @@ public:
      *
      * @author stonedz
      * @since pre-alpha
+     * @return Reference to myGamefsm
      */
     Gamefsm& getGamefsm() {return myGamefsm;}
+
+    /**
+     * Returns a reference to the server's Console
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @return Reference to myConsole.
+     */
+    Console& getConsole() {return myConsole;}
 
 private:
 
@@ -174,7 +184,8 @@ private:
 	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */
 	Uint32 gameObjectSerial;    /**< The current Serial counter for game Objects (IGameObjects derived). */
 	bool initialized;           /**< If true the server has been initialized, and may accept incoming connections. */
-	Gamefsm myGamefsm;         /**< The Gamefsm that is running inside the Server. */
+	Gamefsm myGamefsm;          /**< The Gamefsm that is running inside the Server. */
+	Console myConsole;          /**< A console to control the server. */
 };
 
 #endif /*SERVER_H_*/

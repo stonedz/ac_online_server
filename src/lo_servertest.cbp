@@ -15,7 +15,13 @@
 					<Add option="-Wfatal-errors" />
 					<Add option="-Wall" />
 					<Add option="-g" />
-					<Add option="-DTESTPHASE -DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX -I/usr/include/SDL -Ipawn/ -Icommands/ -Inetwork/ -I./" />
+					<Add option="-DTESTPHASE -DFIXEDPOINT -DFLOATINGPOINT -DNDEBUG -DLINUX" />
+					<Add directory="/usr/include/SDL" />
+					<Add directory="commands/" />
+					<Add directory="network/" />
+					<Add directory="pawn/" />
+					<Add directory="utils/linux/" />
+					<Add directory="." />
 				</Compiler>
 				<Linker>
 					<Add library="SDL" />
@@ -185,6 +191,8 @@
 		<Unit filename="pawn/getch.h" />
 		<Unit filename="pawn/osdefs.h" />
 		<Unit filename="pawn/sclinux.h" />
+		<Unit filename="utils/linux/Console_linux.h" />
+		<Unit filename="utils/windows/Console_windows.h" />
 		<Extensions>
 			<code_completion />
 		</Extensions>

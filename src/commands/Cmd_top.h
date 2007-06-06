@@ -2,6 +2,9 @@
 #define CMD_TOP_H
 
 #include "ICommandServer.h"
+#include <iostream>
+#include <iomanip>
+
 
 /**
  * Command that shows server performances.
@@ -42,8 +45,24 @@ class Cmd_top : public ICommandServer
          * @see perfLogLong
          */
         void execute();
-};
 
+        /**
+         * Prints detailed statistics of the server.
+         *
+         * @author stonedz
+         * @since pre-alpha
+         */
+        void stats();
+
+        /**
+         * Prints a resume of the server's performance stats
+         *
+         * @author stonedz
+         * @since pre-alpha
+         */
+        void resume();
+
+};
 
 
 #endif // CMD_TOP_H

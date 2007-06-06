@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug_linux" />
-	<File name="Account.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="732" topLine="0" />
+	<File name="Account.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="892" topLine="0" />
 	</File>
-	<File name="Account.h" open="0" top="0" tabpos="7">
-		<Cursor position="1369" topLine="13" />
+	<File name="Account.h" open="1" top="0" tabpos="9">
+		<Cursor position="39" topLine="31" />
 	</File>
 	<File name="Char.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="1003" topLine="0" />
@@ -13,14 +13,14 @@
 	<File name="Char.h" open="0" top="0" tabpos="4">
 		<Cursor position="493" topLine="4" />
 	</File>
-	<File name="Client.cpp" open="0" top="0" tabpos="12">
-		<Cursor position="1202" topLine="8" />
+	<File name="Client.cpp" open="1" top="0" tabpos="6">
+		<Cursor position="495" topLine="5" />
 	</File>
-	<File name="Client.h" open="0" top="0" tabpos="10">
-		<Cursor position="1470" topLine="40" />
+	<File name="Client.h" open="1" top="0" tabpos="2">
+		<Cursor position="1470" topLine="37" />
 	</File>
-	<File name="Clientfsm.cpp" open="0" top="0" tabpos="1">
-		<Cursor position="2393" topLine="155" />
+	<File name="Clientfsm.cpp" open="1" top="1" tabpos="7">
+		<Cursor position="5214" topLine="159" />
 	</File>
 	<File name="Clientfsm.h" open="0" top="0" tabpos="2">
 		<Cursor position="3751" topLine="149" />
@@ -31,20 +31,20 @@
 	<File name="CommandManager.h" open="0" top="0" tabpos="20">
 		<Cursor position="1789" topLine="38" />
 	</File>
-	<File name="CommandScheduler.cpp" open="0" top="0" tabpos="0">
-		<Cursor position="1089" topLine="12" />
+	<File name="CommandScheduler.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1211" topLine="9" />
 	</File>
-	<File name="Console.cpp" open="0" top="0" tabpos="15">
-		<Cursor position="697" topLine="0" />
+	<File name="Console.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="1782" topLine="41" />
 	</File>
-	<File name="Console.h" open="0" top="0" tabpos="16">
-		<Cursor position="537" topLine="3" />
+	<File name="Console.h" open="0" top="0" tabpos="3">
+		<Cursor position="2069" topLine="68" />
 	</File>
-	<File name="Gamefsm.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="5526" topLine="135" />
+	<File name="Gamefsm.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="1734" topLine="159" />
 	</File>
-	<File name="Gamefsm.h" open="1" top="1" tabpos="2">
-		<Cursor position="378" topLine="0" />
+	<File name="Gamefsm.h" open="1" top="0" tabpos="4">
+		<Cursor position="7477" topLine="206" />
 	</File>
 	<File name="IGameObject.cpp" open="0" top="0" tabpos="14">
 		<Cursor position="208" topLine="0" />
@@ -76,19 +76,19 @@
 	<File name="MapManager.h" open="0" top="0" tabpos="12">
 		<Cursor position="1036" topLine="3" />
 	</File>
-	<File name="Server.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="355" topLine="3" />
+	<File name="Server.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="2588" topLine="78" />
 	</File>
 	<File name="Server.h" open="0" top="0" tabpos="13">
 		<Cursor position="4064" topLine="134" />
 	</File>
 	<File name="commands/Cmd_accounts.cpp" open="0" top="0" tabpos="6">
-		<Cursor position="917" topLine="0" />
+		<Cursor position="1633" topLine="137" />
 	</File>
 	<File name="commands/Cmd_accounts.h" open="0" top="0" tabpos="1">
 		<Cursor position="722" topLine="31" />
 	</File>
-	<File name="commands/Cmd_chat.cpp" open="0" top="0" tabpos="1">
+	<File name="commands/Cmd_chat.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="77" topLine="0" />
 	</File>
 	<File name="commands/Cmd_chat.h" open="0" top="0" tabpos="3">
@@ -106,17 +106,17 @@
 	<File name="commands/Cmd_login.h" open="0" top="0" tabpos="6">
 		<Cursor position="825" topLine="7" />
 	</File>
-	<File name="commands/Cmd_test.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="61" topLine="10" />
+	<File name="commands/Cmd_test.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="1436" topLine="4" />
 	</File>
 	<File name="commands/Cmd_test.h" open="0" top="0" tabpos="19">
 		<Cursor position="580" topLine="0" />
 	</File>
-	<File name="commands/Cmd_top.cpp" open="0" top="0" tabpos="4">
-		<Cursor position="456" topLine="0" />
+	<File name="commands/Cmd_top.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2761" topLine="17" />
 	</File>
 	<File name="commands/Cmd_top.h" open="0" top="0" tabpos="5">
-		<Cursor position="1000" topLine="5" />
+		<Cursor position="53" topLine="0" />
 	</File>
 	<File name="commands/ICommand.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="203" topLine="0" />
@@ -127,20 +127,20 @@
 	<File name="commands/ICommandServer.cpp" open="0" top="0" tabpos="23">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="commands/ICommandServer.h" open="0" top="0" tabpos="8">
-		<Cursor position="282" topLine="0" />
+	<File name="commands/ICommandServer.h" open="0" top="0" tabpos="12">
+		<Cursor position="106" topLine="0" />
 	</File>
 	<File name="cppsqlite3.cc" open="0" top="0" tabpos="0">
 		<Cursor position="85" topLine="30" />
 	</File>
 	<File name="lo_servertest.depend" open="0" top="0" tabpos="14">
-		<Cursor position="51394" topLine="2106" />
+		<Cursor position="50337" topLine="2084" />
 	</File>
 	<File name="main.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="935" topLine="57" />
 	</File>
 	<File name="network/Connection.cpp" open="0" top="0" tabpos="11">
-		<Cursor position="2531" topLine="48" />
+		<Cursor position="456" topLine="22" />
 	</File>
 	<File name="network/Connection.h" open="0" top="0" tabpos="10">
 		<Cursor position="982" topLine="31" />
@@ -177,5 +177,11 @@
 	</File>
 	<File name="pawn/float.c" open="0" top="0" tabpos="0">
 		<Cursor position="10058" topLine="296" />
+	</File>
+	<File name="utils/linux/Console_linux.h" open="0" top="0" tabpos="10">
+		<Cursor position="1081" topLine="23" />
+	</File>
+	<File name="utils/windows/Console_windows.h" open="0" top="0" tabpos="11">
+		<Cursor position="6063" topLine="0" />
 	</File>
 </CodeBlocks_layout_file>

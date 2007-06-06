@@ -2,9 +2,6 @@
 #include "Cmd_test.h"
 #include "Client.h"
 
-#include <boost/lexical_cast.hpp>
-
-
 Cmd_test::~Cmd_test()
 {
 }
