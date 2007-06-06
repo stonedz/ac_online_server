@@ -33,7 +33,7 @@ void Cmd_top::resume(){
         perfInst = (myServer->getGamefsm()).getPerformanceInst();
         perfShort = (myServer->getGamefsm()).getPerformanceShort();
         perfMed = (myServer->getGamefsm()).getPerformanceMedium();
-        perfLong = (myServer->getGamefsm()).getPerformanceLong();
+        //perfLong = (myServer->getGamefsm()).getPerformanceLong();
 
 
         std::cout << colors::green << "Server's performances" << colors::reset << std::endl << "For a full overview the server should be running for 30"
@@ -73,7 +73,29 @@ void Cmd_top::resume(){
 }
 
 void Cmd_top::stats(){
-    std::cout << "To be implmented..." << std::endl;
+    Uint16 perfMed, perfLong;
+
+    perfMed = (myServer->getGamefsm()).getPerformanceMedium();
+    perfLong = (myServer->getGamefsm()).getPerformanceLong();
+    Uint32 uptime = SDL_GetTicks() / 1000;
+
+    Uint16 uptimeH = uptime / 3600;
+    Uint16 uptimeM = (uptime - (uptimeH * 3600)) / 60 ;
+    Uint16 uptimeS = (uptime - (uptimeH * 3600) ) % 60;
+
+
+    std::cout << colors::green << "Server's statistics" << colors::reset << std::endl << "For a full overview the server should be running for 30"
+                 << " minutes."<< std::endl;
+    std::cout << std::left;
+    std::cout << std::endl << std::setw(30) << " Performances (30 minutes): " << colors::blue << perfMed << " % " << colors::reset;
+    std::cout << std::endl << std::setw(30) << " Performances (2 days)    : " << colors::blue << perfLong << " % " << colors::reset;
+    std::cout << std::endl << std::setw(30) << " Uptime                   : " << colors::blue << std::setw(2) << uptimeH << ":"
+                << std::setw(2) << uptimeM << ":" << std::setw(2) << uptimeS << colors::reset;
+    std::cout << std::endl << std::setw(30) << " Connected clients        : " << colors::blue << myServer->getClients().size() << colors::reset;
+
+
+
+    std::cout << std::endl;
 }
 
 
