@@ -133,7 +133,7 @@ void Gamefsm::Update(){
                         if (perfLogMedium.size() > PERFLOG_SIZE_MED){
                             perfLogMedium.pop_front();
                             if((loopCounter % (GAME_UPDATES_MIN * 30)) == 0){
-                                perfLogLong.push_back(getPerformanceLong());
+                                perfLogLong.push_back(getPerformanceMedium());
                                 if(perfLogLong.size() > PERFLOG_SIZE_LONG){
                                     perfLogLong.pop_front();
                                 }
