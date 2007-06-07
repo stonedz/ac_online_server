@@ -93,8 +93,9 @@ public:
      * @todo See if mutexes are necessary.
      */
     Location& getPosition() {   SDL_LockMutex(mxPos);   //Locks the mutex...
-                                return mPos;
-                                SDL_UnlockMutex(mxPos);}//...unlocks it
+                                Location& tmp = mPos;
+                                SDL_UnlockMutex(mxPos); //...unlocks it
+                                return tmp;}
     /**
      * Returna a pointer to the current position of the object.
      *
@@ -103,8 +104,9 @@ public:
      * @return Pointer to object position.
      */
     Location* getPPosition(){   SDL_LockMutex(mxPos);
-                                return &mPos;
-                                SDL_UnlockMutex(mxPos);}
+                                Location* tmp = &mPos;
+                                SDL_UnlockMutex(mxPos);
+                                return tmp;}
 
     /**
      * Sets the current position of the object with a Location object reference. Thread safe.
