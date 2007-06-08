@@ -4,14 +4,15 @@
 Location::Location(Uint32 x, Uint32 y, Uint32 z)
     :mX(x),
     mY(y),
-    mZ(z)
+    mZ(z),
+    mxCoords(SDL_CreateMutex())
 {
     //ctor
 }
 
 Location::~Location()
 {
-    //dtor
+    SDL_DestroyMutex(mxCoords);
 }
 
 Location& Location::operator= (const Location& l){
@@ -19,11 +20,16 @@ Location& Location::operator= (const Location& l){
             return *this;
 
         //Deletes eventual dyamic allocated memory here.
-
+        SDL_DestroyMutex(mxCoords);     // I think that this is useless...
+        mxCoords = SDL_CreateMutex();
         //Copy members.
+        SDL_LockMutex(mxCoords);
+        SDL_LockMutex(l.mxCoords);
         mX = l.mX;
         mY = l.mY;
         mZ = l.mZ;
+        SDL_UnlockMutex(l.mxCoords);
+        SDL_UnlockMutex(mxCoords);
 
         return *this;
 }
@@ -38,6 +44,8 @@ bool Location::operator== (const Location& l)
 	}
 
 	ret = false;
+	SDL_LockMutex(mxCoords);
+    SDL_LockMutex(l.mxCoords);
 	if (
 		(mX == l.mX) &&
 		(mY == l.mY) &&
@@ -46,6 +54,8 @@ bool Location::operator== (const Location& l)
 	{
 		ret = true;
 	}
+    SDL_UnlockMutex(l.mxCoords);
+    SDL_UnlockMutex(mxCoords);
 
 	return ret;
 }
@@ -60,6 +70,8 @@ bool Location::operator!= (const Location& l)
 	}
 
 	ret = true;
+    SDL_LockMutex(mxCoords);
+    SDL_LockMutex(l.mxCoords);
 	if (
 		(mX == l.mX) &&
 		(mY == l.mY) &&
@@ -68,6 +80,8 @@ bool Location::operator!= (const Location& l)
 	{
 		ret = false;
 	}
+    SDL_UnlockMutex(l.mxCoords);
+    SDL_UnlockMutex(mxCoords);
 
 	return ret;
 }

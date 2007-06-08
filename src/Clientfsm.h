@@ -15,7 +15,7 @@ class Server;
 class Client;
 
 enum client_fsm_trans {t_ack_time, t_login, t_login_ok, t_login_failed, t_ka_ack_sent,
-						t_ka_received, t_ka_timeout, t_sck_down, t_disconnect};
+						t_ka_received, t_ka_timeout, t_sck_down, t_disconnect, t_init_ok};
 
 /**
  * Finished states machine for the client.
@@ -108,7 +108,7 @@ protected:
 	void Ready(void);
 
 	/**
-	 * Logs an user.
+	 * Logs in an user.
 	 *
 	 * @author stonedz
 	 * @since pre-alpha
@@ -133,6 +133,14 @@ protected:
 	 * @since pre-alpha
 	 */
 	void ResetKATime(void);
+
+    /**
+     * Initializes the remote character and client with correct informations.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     */
+	void Initialize(void);
 
 	////////////////////////
 	// Machine States STOP

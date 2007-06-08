@@ -60,6 +60,9 @@ bool ClientFSM::ExecTrans(client_fsm_trans t){
 	case t_disconnect:
 		ExecState = &ClientFSM::Disconnect;
 		break;
+    case t_init_ok:
+        ExecState = &ClientFSM::Ready;
+        break;
 	default:
         myServer->getConsole().printMsg("Unsupported transition in ClientFSM", CONSOLE_ERROR);
 	}
@@ -173,8 +176,9 @@ void ClientFSM::Disconnect(){
 void ClientFSM::ResetKATime(){
 	lastKA = SDL_GetTicks();
 	ExecTrans(t_ack_time);
-	//std::cerr<<"ResetKATime\n";
 }
+
+
 
 bool ClientFSM::authenticate(MessageIn *msg){
 	bool ret = false;

@@ -20,6 +20,8 @@ void Cmd_test::execute(void){   // Actual implemetation of the command.
         help();
     else if (param1 == "validateMove")
         test_move();
+    else if (param1 == "location")
+        test_location();
     else
         std::cout << "You passed this string as parameter(s): " << getParam(1,true);
 }
@@ -46,6 +48,16 @@ void Cmd_test::test_move(){
         std::cout << "This is a valid move for MapManager::validateMove()" <<std::endl;
     else
         std::cout << "This is NOT a valid move for MapManager::validateMove()!!!" << std::endl;
+
+}
+
+void Cmd_test::test_location(){
+Location a(1,1,0);
+Location b;
+Location c;
+
+b = a;
+c = b;
 
 }
 

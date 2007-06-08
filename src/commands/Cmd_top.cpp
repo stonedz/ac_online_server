@@ -28,7 +28,7 @@ void Cmd_top::execute(){
 }
 
 void Cmd_top::resume(){
-    Uint16 perfInst, perfShort, perfMed, perfLong;
+    Uint16 perfInst, perfShort, perfMed;
 
         perfInst = (myServer->getGamefsm()).getPerformanceInst();
         perfShort = (myServer->getGamefsm()).getPerformanceShort();

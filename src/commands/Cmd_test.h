@@ -34,6 +34,8 @@ private:
      */
     void test_move();
 
+    void test_location();
+
 };
 
 #endif /*CMD_TEST_H_*/
