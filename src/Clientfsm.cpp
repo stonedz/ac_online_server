@@ -43,7 +43,7 @@ bool ClientFSM::ExecTrans(client_fsm_trans t){
 	switch (t)
 	{
 	case t_login_ok:
-		ExecState = &ClientFSM::Ready;
+		ExecState = &ClientFSM::Initialize;
 		break;
 	case t_ka_received:
 		ExecState = &ClientFSM::ResetKATime;
@@ -70,8 +70,6 @@ bool ClientFSM::ExecTrans(client_fsm_trans t){
 return true;
 }
 
-
-
 void ClientFSM::Login(){
 	Sint32 ready = 0;
 	MessageIn* message = NULL;
@@ -83,27 +81,22 @@ void ClientFSM::Login(){
 	}
 	if(SDLNet_SocketReady(data->socket)){
 		message = Connection::getMessage(data->socket);
-		if (message->getType() == MSG_LOGIN) // We now proceed with the autentication process
-		{
+		if (message->getType() == MSG_LOGIN){ // We now proceed with the autentication process
 			bool authenticated = false;
 			authenticated = authenticate(message);
-			if (authenticated == true)
-			{
+			if (authenticated == true){
 				ExecTrans(t_login_ok);
 			}
-			else
-			{
+			else{
 				ExecTrans(t_disconnect);
 			}
 		}
-		else
-		{
+		else{
 			ExecTrans(t_disconnect);
 		}
 		delete message;
 	}
-	else
-	{
+	else{
 		ExecTrans(t_disconnect); // No data to read means no username and pasword, something went wrong.
 	}
 }
@@ -185,7 +178,22 @@ void ClientFSM::ResetKATime(){
 	ExecTrans(t_ack_time);
 }
 
+void ClientFSM::Initialize(){
+    Char* AChar = myClient->getAccount()->getChar();
+    // Sends current position
+    Uint32 ax,ay,az;
+    (AChar->getPosition()).getXYZ(ax,ay,az);
+    MessageOut* messageout = new MessageOut(MSG_MOVE);
+    messageout->write2(12);
+    messageout->write4(ax);
+    messageout->write4(ay);
+    messageout->write4(az);
+    messageout->addCRC();
+    Connection::putMessage(data->socket, messageout);
+    delete messageout;
 
+    ExecTrans(t_init_ok);
+}
 
 bool ClientFSM::authenticate(MessageIn *msg){
 	bool ret = false;
@@ -233,6 +241,7 @@ void ClientFSM::chat(MessageIn& message){
 }
 
 void ClientFSM::move(MessageIn& message){
+
     Uint32 len, x, y ,z;
     len = message.read2();
     if (len == 12){
@@ -260,6 +269,7 @@ void ClientFSM::move(MessageIn& message){
 void ClientFSM::logout(MessageIn& message){
     myClient->save();   //Save changes to the database. Account::save() and Char::save() are called.
     //myClient->getAccount()->getChar()->setVisibility(0); // To be implemented.
+
     // Send a message MSG_LOGOUT to the client
     MessageOut* messageout = new MessageOut(MSG_LOGOUT);
     messageout->write2(0);

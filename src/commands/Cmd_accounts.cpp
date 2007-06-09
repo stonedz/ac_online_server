@@ -144,22 +144,24 @@ void Cmd_accounts::addAccount(const std::string& username,
 }
 
 void Cmd_accounts::attachChar(){
-    std::string charname, xPos, yPos, accNumber;
+    std::string charname, xPos, yPos, zPos, accNumber;
 
     std::cout << "Account ID :";
     std::getline(std::cin, accNumber);
     std::cout << "Initial X position :";
     std::getline(std::cin, xPos);   // Not really good...
     std::cout << "Initial Y position :";
-    std::getline(std::cin, yPos);              //This neither
+    std::getline(std::cin, yPos);
+    std::cout << "Initial Z position :";
+    std::getline(std::cin, zPos);              //This neither
     std::cout << "Character name :";
     std::getline(std::cin, charname);
 
     Sint32 nRows;
     #ifdef TESTPHASE
-    nRows = myAccDb.execDML("CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, account_id INTEGER, name TEXT UNIQUE, x_position INTEGER, y_position INTEGER);");
+    nRows = myAccDb.execDML("CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, account_id INTEGER, name TEXT UNIQUE, x_position INTEGER, y_position INTEGER, z_position INTEGER);");
     #endif
-    std::string query = "insert into characters(account_id, name, x_position, y_position) VALUES ( \""+accNumber+"\", \""+charname+"\", \""+xPos+"\", \""+yPos+"\");";
+    std::string query = "insert into characters(account_id, name, x_position, y_position, z_position) VALUES ( \""+accNumber+"\", \""+charname+"\", \""+xPos+"\", \""+yPos+"\", \""+zPos+"\");";
     nRows = myAccDb.execDML(query.data());
 
     if (nRows){

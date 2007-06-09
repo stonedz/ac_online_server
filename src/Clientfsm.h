@@ -139,6 +139,7 @@ protected:
      *
      * @author stonedz
      * @since pre-alpha
+     * @todo To be designed and finished.
      */
 	void Initialize(void);
 

@@ -20,7 +20,7 @@ Char::Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client)
 
     if (!q.eof()){
         setName(q.fieldValue(2));
-        setPosition(Location(q.getIntField(3),q.getIntField(4),0));
+        setPosition(Location(q.getIntField(3),q.getIntField(4),q.getIntField(5)));
         (client.getServer()).addClient(&client); // Since everything went fine we add the client to the list of active clients.
         mDestPos = mPos; // We set our destination to our actual location.
     }
