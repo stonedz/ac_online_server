@@ -131,6 +131,7 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="cppsqlite3.h" />
+		<Unit filename="defs.h" />
 		<Unit filename="lo_servertest" />
 		<Unit filename="lo_servertest.cbp" />
 		<Unit filename="lo_servertest.depend" />
