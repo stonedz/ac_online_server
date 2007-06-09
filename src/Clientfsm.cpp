@@ -140,15 +140,22 @@ void ClientFSM::Ready(){
 		}
 		if(SDLNet_SocketReady(data->socket)){
 			messagein = Connection::getMessage(data->socket);
+
+                // This is were we decide what to do, analyzing what we received.
                 if (messagein){
-                    if (messagein->getType() == MSG_KA){
+                    Uint16 msgType =  messagein->getType();
+                    if (msgType == MSG_LOGOUT){
+                        logout(*messagein);
+                        ExecTrans(t_disconnect);
+                    }
+                    else if (msgType == MSG_CHAT){  // General chat message received. No reason to change the state of the FSM.
+                        chat(*messagein);
+                    }
+                    else if (msgType == MSG_KA){         // Keep alive received, the client is still here.
                         ExecTrans(t_ka_received);
                     }
-                    else if (messagein->getType() == MSG_CHAT){ // General chat message received.
-                        chat(messagein);
-                    }
-                    else if (messagein->getType() == MSG_MOVE){ // A movement message received.
-                        move(messagein);
+                    else if (msgType == MSG_MOVE){  // A movement message received. No reason to change the state of the FSM.
+                        move(*messagein);
                     }
                 }
                 else{
@@ -218,22 +225,24 @@ bool ClientFSM::authenticate(MessageIn *msg){
 	return ret;
 }
 
-void ClientFSM::chat(MessageIn* message){
-    Uint32 tmp = reinterpret_cast<Uint32>(this->data->self); // Client* to an int in order to find the client in mClients map.
+void ClientFSM::chat(MessageIn& message){
+    Uint32 clientID = reinterpret_cast<Uint32>(this->data->self); // Client* to an int in order to find the client in mClients map.
     // A MSG_CHAT has been received
-    myServer->generalChatMsg(tmp, message->readString());
+    myServer->generalChatMsg(clientID, message.readString());
 
 }
 
-void ClientFSM::move(MessageIn* message){
+void ClientFSM::move(MessageIn& message){
     Uint32 len, x, y ,z;
-    len = message->read2();
+    len = message.read2();
     if (len == 12){
-        x = message->read4();
-        y = message->read4();
-        z = message->read4();
+        x = message.read4();
+        y = message.read4();
+        z = message.read4();
         #ifdef TESTPHASE
-        std::cout << "Received a Move message, requested coord are x:" << x << " y:" << y << std::endl;
+        std::ostringstream tmp;
+        tmp << "Received a Move message from account with id:"<< myClient->getAccount()->getId() <<", requested coord are x:" << x << " y:" << y;
+        myServer->getConsole().printMsg(tmp, CONSOLE_DEBUG);
         #endif
 
         Location& actualLocation = myClient->getAccount()->getChar()->getPosition(); // Don't delete it!!!
@@ -246,6 +255,18 @@ void ClientFSM::move(MessageIn* message){
     }
     else
         logger->log("Bad lenght in MSG_MOVE message <additional info here>", LOGMODE_ERROR); //TODO : fill additional info
+}
+
+void ClientFSM::logout(MessageIn& message){
+    myClient->save();   //Save changes to the database. Account::save() and Char::save() are called.
+    //myClient->getAccount()->getChar()->setVisibility(0); // To be implemented.
+    // Send a message MSG_LOGOUT to the client
+    MessageOut* messageout = new MessageOut(MSG_LOGOUT);
+    messageout->write2(0);
+	messageout->addCRC();
+	Connection::putMessage(data->socket, messageout);
+
+	delete messageout;
 }
 
 bool ClientFSM::getStatus(){

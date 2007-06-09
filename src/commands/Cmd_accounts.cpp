@@ -7,7 +7,7 @@
 Cmd_accounts::Cmd_accounts(std::string& params, Server* server)
     : ICommandServer(params, server)
 {
-        myAccDb.open("accounts.db");
+    myAccDb.open(DB_ACCOUNTS);
 }
 
 Cmd_accounts::~Cmd_accounts()

@@ -9,6 +9,7 @@
 #define CONSOLE_INFO        (1)
 #define CONSOLE_WARNING     (2)
 #define CONSOLE_ERROR       (3)
+#define CONSOLE_DEBUG       (4) /**< Debug messages. */
 
 // Timers, in milliseconds.
 #define KEEPALIVE_TIME		(1000)	/**< Time elapsed between two consecutive Keep Alive.*/
@@ -34,10 +35,10 @@
 #define LOGMODE_DB (4)              /**< Log to the database logfile. */
 
 // Define the paths of previously defined log-modes.
-#define LOGFILE_NORMAL "log/log"
-#define LOGFILE_ERROR "log/error-log"
-#define LOGFILE_AUTH "log/auth-log"
-#define LOGFILE_DB "log/db-log"
+#define LOGFILE_NORMAL  "log/log"
+#define LOGFILE_ERROR   "log/error-log"
+#define LOGFILE_AUTH    "log/auth-log"
+#define LOGFILE_DB      "log/db-log"
 
 // Network messages types
 #define MSG_INVALID (0)		/**< Invalid message. */
@@ -47,5 +48,7 @@
 #define MSG_KA		(4)		/**< Keep Alive message (client send this message).*/
 #define MSG_KA_ACK	(5)		/**< Keep Alive ACK (server reply to KA with this message).*/
 #define MSG_MOVE	(6)		/**< Movement message: from client to server requests a destination, from server to client allow a movement. */
+
+#define DB_ACCOUNTS     "accounts.db"   /**< Filename for the accounts database. */
 
 #endif

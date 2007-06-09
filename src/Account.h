@@ -57,6 +57,14 @@ public:
      */
     Char* getChar() {return myChar;}
 
+    /**
+     * Begins the save process.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     */
+    void save();
+
 private:
     Server* myServer;       /**< The server I'm running in. */
     Client* myClient;       /**< The client to which I belong. */

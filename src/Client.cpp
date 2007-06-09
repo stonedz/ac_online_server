@@ -39,7 +39,7 @@ void Client::startListen(ConnectionData * data){
 	//Deletes the FSM
 	delete fsm;
 
-	//Delete the client.
+	//Deletes the client.
 	this->myServer->removeClient(this);
 }
 
@@ -49,4 +49,8 @@ void Client::setAccount(Account* account){
 
 Server& Client::getServer(){
     return *myServer;
+}
+
+void Client::save(){
+    myAccount->save();
 }

@@ -41,6 +41,14 @@ public:
      */
     void update();
 
+    /**
+     * Saves the char to database.
+     *
+     * @author stonedz
+     * @since pre-alph
+     */
+    void save();
+
 private:
 
     Uint32 myId;        /**< Character Database unique Id, this is NOT the serial. */

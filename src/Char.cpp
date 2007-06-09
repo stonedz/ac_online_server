@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include "Client.h"
 #include "Server.h"
+#include <boost/lexical_cast.hpp>
 
 Char::Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client)
     :IMoveableObject(serial, type),
@@ -39,5 +40,21 @@ void Char::update(){
 
 }
 
-
-
+void Char::save(){
+    Uint32 x,y,z;
+    Location& loc = getPosition();
+    loc.getXYZ(x,y,z);
+    try{
+        CppSQLite3DB accDb;
+        accDb.open(DB_ACCOUNTS);
+        std::string query = "UPDATE characters SET name=\""+getName() +"\", x_position="+ boost::lexical_cast< std::string >(x)+", y_position="+ boost::lexical_cast< std::string >(y)+", z_position="+ boost::lexical_cast< std::string >(z)+" WHERE id="+ boost::lexical_cast< std::string >(myId)+";";
+        accDb.execQuery(query.c_str());
+        accDb.close();
+    }
+    catch(CppSQLite3Exception e){
+        std::string error = "Error saving Character with ID "+boost::lexical_cast< std::string >(myId)+
+                                ", SQLite says: "+ e.errorMessage();
+        Logger::getInstance()->log(error, LOGMODE_DB);
+        myClient.getServer().getConsole().printMsg(error, CONSOLE_ERROR);
+    }
+}

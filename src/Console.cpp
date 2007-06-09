@@ -66,6 +66,11 @@ void Console::printMsg(const std::string& msg, Uint16 mode){
         std::cout << colors::red << "[ERROR] " <<  msg << colors::reset << std::endl << "> ";
         SDL_UnlockMutex(mxMsgQueue);
     }
+    else if (mode == CONSOLE_DEBUG){
+        SDL_LockMutex(mxMsgQueue);
+        std::cout << colors::grey << "[Debug] " <<  msg << colors::reset << std::endl << "> ";
+        SDL_UnlockMutex(mxMsgQueue);
+    }
 }
 
 void Console::printMsg(const std::ostringstream& msg, Uint16 mode){
@@ -83,6 +88,11 @@ void Console::printMsg(const std::ostringstream& msg, Uint16 mode){
     else if (mode == CONSOLE_ERROR){
         SDL_LockMutex(mxMsgQueue);
         std::cout << colors::red << "[ERROR] " <<  msg.str() << colors::reset << std::endl << "> ";
+        SDL_UnlockMutex(mxMsgQueue);
+    }
+    else if (mode == CONSOLE_DEBUG){
+        SDL_LockMutex(mxMsgQueue);
+        std::cout << colors::grey << "[Debug] " <<  msg.str() << colors::reset << std::endl << "> ";
         SDL_UnlockMutex(mxMsgQueue);
     }
 }

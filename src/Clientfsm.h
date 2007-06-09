@@ -168,9 +168,8 @@ private:
 	 * @author stonedz
 	 * @since pre-alpha
 	 * @param message Pointer to the received message. No need do delete it.
-	 * @todo Implements a real MSG_* handler!
 	 */
-    void chat(MessageIn* message);
+    void chat(MessageIn& message);
 
     /**
      * Manages received MSG_MOVE messages.
@@ -178,11 +177,20 @@ private:
      * @author stonedz
      * @since pre-alpha
      * @param message Pointer to the received message. No need do delete it.
-     * @todo Implements a real MSG_* handler!
-     * @todo To be tested.
      * @todo Since it's peformed _very_ often, check out for performances improvements.
      */
-    void move(MessageIn* message);
+    void move(MessageIn& message);
+
+    /**
+     * Logout routine.
+     *
+     * Performs all the operations that have to be done before shutting down the socket.
+     *
+     * @author stonedz
+     * @since pre-alpha
+     * @param message Pointer to the received message. No need do delete it.
+     */
+    void logout (MessageIn& message);
 
 private:
 

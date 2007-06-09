@@ -3,6 +3,7 @@
 #include "Server.h"
 #include "Logger.h"
 #include "Char.h"
+#include <boost/lexical_cast.hpp>
 
 Account::Account(Server* server,
                 Client* client,
@@ -40,4 +41,23 @@ Account::Account(Server* server,
 Account::~Account(){
     if(myChar)
         delete myChar;
+}
+
+void Account::save(){
+    try{
+    CppSQLite3DB myAccDb;
+    myAccDb.open(DB_ACCOUNTS);
+    std::string query = "UPDATE registered_users SET username=\""+myUsername+"\", name=\""+myName+
+                        "\", surname=\""+mySurname+"\", email=\""+myEmail+"\" WHERE id="+ boost::lexical_cast< std::string >(myId) +";";
+
+    myAccDb.execDML(query.data());
+    myAccDb.close();
+    }
+    catch(CppSQLite3Exception e){
+        std::string error = "Error saving Account with ID "+boost::lexical_cast< std::string >(myId)+
+                                ", SQLite says: "+ e.errorMessage();
+        Logger::getInstance()->log(error, LOGMODE_DB);
+        myServer->getConsole().printMsg(error, CONSOLE_ERROR);
+    }
+    myChar->save();
 }

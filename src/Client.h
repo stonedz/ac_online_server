@@ -75,6 +75,17 @@ public:
 	 */
 	Server& getServer();
 
+	/**
+	 * Begins the save proces for this client.
+	 *
+	 * Calls recursively Account::save() and Char::save()
+	 *
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @todo finish implementation.
+	 */
+	void save();
+
 private:
 
 	Server* myServer; 	/**< Points to the server I'm running in.*/
