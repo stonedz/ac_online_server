@@ -1,6 +1,8 @@
 #Ignore objects directory created by compiling with codeblocks.
 *.o
 #Ignore compiled binary
+lod
+lod_dbg
 lo_servertest
 lo_servertest_release*
 #Ignore accounts database
@@ -12,3 +14,5 @@ src/log/*log
 #Ignore codeblocks useless files
 src/*.depend
 src/*.layout
+#Ignore Scons tmp files
+.sconsign.dblite

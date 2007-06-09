@@ -1,0 +1,94 @@
+debug = ARGUMENTS.get('DEBUG', 0)
+
+opts = Options()
+opts.Add('DEBUG', 'Set to 1 to build for debug', 0)
+
+ccflags_dbg = Split("""-g
+						-Wall
+						-Wfatal-errors
+						-DLINUX
+						-DFIXEDPOINT 
+						-DFLOATINGPOINT
+						-DNDEBUG
+						-DTESTPHASE""")
+						
+
+						
+ccflags_rls = Split("""-s
+						-O3
+						-DLINUX
+						-DFIXEDPOINT 
+						-DFLOATINGPOINT
+						-DNDEBUG""")
+
+files = Split("""Account.cpp
+				Char.cpp
+				Client.cpp
+				Clientfsm.cpp
+				CommandManager.cpp
+				CommandScheduler.cpp
+				Console.cpp
+				Gamefsm.cpp
+				IGameObject.cpp
+				IMoveableObject.cpp
+				Location.cpp
+				Logger.cpp
+				MapManager.cpp
+				Server.cpp
+				main.cpp
+				cppsqlite3.cc
+				commands/Cmd_accounts.cpp
+				commands/Cmd_chat.cpp
+				commands/Cmd_exit.cpp
+				commands/Cmd_login.cpp
+				commands/Cmd_test.cpp
+				commands/Cmd_top.cpp
+				commands/ICommand.cpp
+				commands/ICommandServer.cpp
+				network/Connection.cpp
+				network/ConnectionData.cpp
+				network/Message.cpp
+				network/MessageIn.cpp
+				network/MessageOut.cpp
+				network/NetPacket.cpp
+				network/Packet.cpp
+				network/crc32.cc
+				network/sha1.cc
+				pawn/amx.c
+				pawn/amxServLang.cc
+				pawn/amxcons.c
+				pawn/amxcore.c
+				pawn/amxdbg.c
+				pawn/binreloc.c
+				pawn/fixed.c
+				pawn/float.c
+				pawn/getch.c""")
+				
+libs_dbg = Split("""SDL
+				SDL_net
+				m
+				pthread
+				sqlite3""")
+				
+libs_rls = Split("""SDL
+				SDL_net
+				m
+				pthread
+				sqlite3""")
+							
+cpppath = Split(""".
+					commands/
+					network/
+					pawn/
+					utils/windows/
+					utils/linux/
+					/usr/include/SDL""")
+					
+
+rls = Environment(LIBS = libs_rls, CCFLAGS = ccflags_rls)
+dbg = Environment(LIBS = libs_dbg,  CCFLAGS = ccflags_dbg)
+				
+if int(debug):
+	dbg.Program('lod_dbg', files, CPPPATH = cpppath)
+else:
+	rls.Program('lod', files, CPPPATH = cpppath)
