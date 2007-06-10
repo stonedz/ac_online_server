@@ -1,94 +1,172 @@
-debug = ARGUMENTS.get('DEBUG', 0)
+"""
+Scons build file for Last Online Server
 
+author : stonedz
+since : 10.06.2007
+version : 0.0.1
+"""
+
+import platform
+
+""" Define some helpers for the command line options """
 opts = Options()
-opts.Add('DEBUG', 'Set to 1 to build for debug', 0)
+opts.Add('DEBUG', 'Set to 1 to *also*  build for debug', 0)
+opts.Add('COLORS', 'Set to 1 to use console colors', 0)
+opts.Add('GPERF', 'Set to 1 to use google-perftools', 0)
 
+""" Get the command line arguments and store them into variables """
+debug = ARGUMENTS.get('DEBUG', 0)
+colors = ARGUMENTS.get('COLORS',0)
+gperf = ARGUMENTS.get('GPERF',0)
+
+""" General CCFLAGS for debug configuration """
 ccflags_dbg = Split("""-g
-						-Wall
-						-Wfatal-errors
-						-DLINUX
-						-DFIXEDPOINT 
-						-DFLOATINGPOINT
-						-DNDEBUG
-						-DTESTPHASE""")
-						
+				-Wall
+				-Wfatal-errors
+				-DFIXEDPOINT 
+				-DFLOATINGPOINT
+				-DNDEBUG
+				-DTESTPHASE""")
 
-						
+""" General CCFLAGS for release configuration """	
 ccflags_rls = Split("""-s
-						-O3
-						-DLINUX
-						-DFIXEDPOINT 
-						-DFLOATINGPOINT
-						-DNDEBUG""")
+				-O3
+				-DFIXEDPOINT 
+				-DFLOATINGPOINT
+				-DNDEBUG
+				-DTESTPHASE""") 
+"""TESTPHASE should be cancelled from release, but is still needed."""
 
+""" File list, this has to be kept UP TO DATE! """
 files = Split("""Account.cpp
-				Char.cpp
-				Client.cpp
-				Clientfsm.cpp
-				CommandManager.cpp
-				CommandScheduler.cpp
-				Console.cpp
-				Gamefsm.cpp
-				IGameObject.cpp
-				IMoveableObject.cpp
-				Location.cpp
-				Logger.cpp
-				MapManager.cpp
-				Server.cpp
-				main.cpp
-				cppsqlite3.cc
-				commands/Cmd_accounts.cpp
-				commands/Cmd_chat.cpp
-				commands/Cmd_exit.cpp
-				commands/Cmd_login.cpp
-				commands/Cmd_test.cpp
-				commands/Cmd_top.cpp
-				commands/ICommand.cpp
-				commands/ICommandServer.cpp
-				network/Connection.cpp
-				network/ConnectionData.cpp
-				network/Message.cpp
-				network/MessageIn.cpp
-				network/MessageOut.cpp
-				network/NetPacket.cpp
-				network/Packet.cpp
-				network/crc32.cc
-				network/sha1.cc
-				pawn/amx.c
-				pawn/amxServLang.cc
-				pawn/amxcons.c
-				pawn/amxcore.c
-				pawn/amxdbg.c
-				pawn/binreloc.c
-				pawn/fixed.c
-				pawn/float.c
-				pawn/getch.c""")
-				
+			Char.cpp
+			Client.cpp
+			Clientfsm.cpp
+			CommandManager.cpp
+			CommandScheduler.cpp
+			Console.cpp
+			Gamefsm.cpp
+			IGameObject.cpp
+			IMoveableObject.cpp
+			Location.cpp
+			Logger.cpp
+			MapManager.cpp
+			Server.cpp
+			main.cpp
+			cppsqlite3.cc
+			commands/Cmd_accounts.cpp
+			commands/Cmd_chat.cpp
+			commands/Cmd_exit.cpp
+			commands/Cmd_login.cpp
+			commands/Cmd_test.cpp
+			commands/Cmd_top.cpp
+			commands/ICommand.cpp
+			commands/ICommandServer.cpp
+			network/Connection.cpp
+			network/ConnectionData.cpp
+			network/Message.cpp
+			network/MessageIn.cpp
+			network/MessageOut.cpp
+			network/NetPacket.cpp
+			network/Packet.cpp
+			network/crc32.cc
+			network/sha1.cc
+			pawn/amx.c
+			pawn/amxServLang.cc
+			pawn/amxcons.c
+			pawn/amxcore.c
+			pawn/amxdbg.c
+			pawn/binreloc.c
+			pawn/fixed.c
+			pawn/float.c
+			pawn/getch.c""")
+
+""" General shared libraries used by the debug executable """
 libs_dbg = Split("""SDL
 				SDL_net
 				m
 				pthread
 				sqlite3""")
-				
+
+""" General shared libraries used by the release executable """
 libs_rls = Split("""SDL
 				SDL_net
 				m
-				pthread
+				pthread 
 				sqlite3""")
-							
-cpppath = Split(""".
-					commands/
-					network/
-					pawn/
-					utils/windows/
-					utils/linux/
-					/usr/include/SDL""")
-					
+""" I don't think that pthread is so portable..."""
 
-rls = Environment(LIBS = libs_rls, CCFLAGS = ccflags_rls)
-dbg = Environment(LIBS = libs_dbg,  CCFLAGS = ccflags_dbg)
-				
-if int(debug):
+""" CPPPATH directories, shared between debug and release """
+cpppath = Split(""".
+				commands/
+				network/
+				pawn/
+				utils/
+				utils/windows/
+				utils/linux/
+				/usr/include/SDL
+				/usr/local/include/SDL""")
+	
+
+"""Two main environments that will be used to build executables, rls is for release, dbg for debug."""
+rls = Environment(LIBS = libs_rls, CCFLAGS = ccflags_rls, OBJPREFIX = "rls_")
+dbg = Environment(LIBS = libs_dbg,  CCFLAGS = ccflags_dbg, OBJPREFIX = "dbg_")
+
+"""
+Configuring release environment, which is always build, this should be enough even i we build
+debug configuration.
+"""
+conf_rls = Configure( rls )
+if not conf_rls.CheckCHeader( 'math.h' ):
+	print 'math.h is needed, exiting...'
+	Exit(1)
+if not conf_rls.CheckCXXHeader( 'boost/lexical_cast.hpp'):
+	print 'Boost lib is requirered! please install it.'
+	Exit(1)
+if not conf_rls.CheckLibWithHeader( 'SDL', 'SDL/SDL.h', 'c'):
+	print 'Cannot find SDL library and its headers, exiting...'
+	Exit(1)
+if not conf_rls.CheckLibWithHeader( 'SDL_net', 'SDL/SDL_net.h', 'c'):
+	print 'Cannot find SDL_net library and its headers, exiting...'
+	Exit(1)
+if not conf_rls.CheckLibWithHeader('sqlite3', 'sqlite3.h', 'c'):
+	print 'Cannot find sqlite3 library and its headers, exiting...'
+	Exit(1)
+rls = conf_rls.Finish()
+
+"""Find if we can link against google-perftools (linux only)"""
+if debug and gperf:
+	print " * I won't link against libtcmalloc and libprofiler if DEBUG is actve."
+	gperf = 0
+elif  gperf and (platform.system() != "Linux"):
+	print " * Google-perftools is a linux-only product..."
+	gperf = 0
+
+"""Enable console colors"""
+if colors:
+	rls.Append(CCFLAGS = Split("-DWITH_COLORS"))
+	dbg.Append(CCFLAGS = Split("-DWITH_COLORS"))
+
+"""Enable Platform-dependant characteristics"""
+if platform.system() == "Linux":
+	print " * We are on a  Linux platform, that's good..."
+	rls.Append(CCFLAGS = Split("-DLINUX"))
+	dbg.Append(CCFLAGS = Split("-DLINUX"))
+elif  platform.system() == "Windows":
+	print " * We are on a Windows platform... "
+	rls.Append(CCFLAGS = Split("-DWINDOWS"))
+	dbg.Append(CCFLAGS = Split("-DWINDOWS"))
+else:
+	print " *  I don't know what platform we're on, exiting..."
+	Exit(1)
+
+"""Links against google-perftools"""
+if gperf:
+	rls.Append(LIBS = Split("tcmalloc profiler"))
+
+if debug:
+	print ' * I\'m going to build both release AND debug executables'
 	dbg.Program('lod_dbg', files, CPPPATH = cpppath)
+	rls.Program('lod', files, CPPPATH = cpppath)
 else:
 	rls.Program('lod', files, CPPPATH = cpppath)

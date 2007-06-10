@@ -9,11 +9,19 @@
 #include "defs.h"
 
 #ifdef LINUX
+#ifdef WITH_COLORS
 #include "utils/linux/Console_linux.h"
+#else
+#include "utils/Console_no_colors.h"
+#endif
 #endif
 
 #ifdef WINDOWS
+#ifdef WITH_COLORS
 #include "utils/windows/Console_windows.h"
+#else
+#include "utils/Console_no_colors.h"
+#endif
 #endif
 
 
@@ -25,10 +33,10 @@ using namespace std;
 class Console; // forward declaration.
 
 struct ConsoleData{
-	Console* self;			    /**< Pointer to self */
+	Console* self;			    	/**< Pointer to self */
 	std::ostringstream banner;	/**< Welcome message */
-	SDL_Thread* myThread;	    /**< Thread I'm running in */
-	bool running;			    /**< State of the console */
+	SDL_Thread* myThread;	    	/**< Thread I'm running in */
+	bool running;			    	/**< State of the console */
 };
 /**
  * Manages console-like interaction: accepts admin commands and performs

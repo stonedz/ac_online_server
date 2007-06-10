@@ -16,3 +16,10 @@ src/*.depend
 src/*.layout
 #Ignore Scons tmp files
 .sconsign.dblite
+.sconf_temp/*
+#Ignore API documentation
+Doc/*
+#Ignore Kdevelop personal project files.
+lo_server.kdevelop.pcs
+lo_server.kdevses
+config.log
