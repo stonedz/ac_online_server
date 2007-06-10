@@ -12,8 +12,8 @@ accounts.db
 #IIgnore eventual logfiles
 src/log/*log
 #Ignore codeblocks useless files
-src/*.depend
-src/*.layout
+*.depend
+*.layout
 #Ignore Scons tmp files
 .sconsign.dblite
 .sconf_temp/*

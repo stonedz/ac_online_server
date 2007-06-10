@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="lo_server" />
+		<Option platforms="Windows;Unix;" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="lo_server_debug">
+				<Option platforms="Windows;Unix;" />
+				<Option output="build/lod_dbg" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="lo_server">
+				<Option platforms="Windows;Unix;" />
+				<Option output="build/lod" prefix_auto="0" extension_auto="0" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="src/Account.cpp" />
+		<Unit filename="src/Account.h" />
+		<Unit filename="src/Char.cpp" />
+		<Unit filename="src/Char.h" />
+		<Unit filename="src/Client.cpp" />
+		<Unit filename="src/Client.h" />
+		<Unit filename="src/Clientfsm.cpp" />
+		<Unit filename="src/Clientfsm.h" />
+		<Unit filename="src/CommandManager.cpp" />
+		<Unit filename="src/CommandManager.h" />
+		<Unit filename="src/CommandScheduler.cpp" />
+		<Unit filename="src/CommandScheduler.h" />
+		<Unit filename="src/Console.cpp" />
+		<Unit filename="src/Console.h" />
+		<Unit filename="src/Gamefsm.cpp" />
+		<Unit filename="src/Gamefsm.h" />
+		<Unit filename="src/IGameObject.cpp" />
+		<Unit filename="src/IGameObject.h" />
+		<Unit filename="src/IMoveableObject.cpp" />
+		<Unit filename="src/IMoveableObject.h" />
+		<Unit filename="src/Location.cpp" />
+		<Unit filename="src/Location.h" />
+		<Unit filename="src/Logger.cpp" />
+		<Unit filename="src/Logger.h" />
+		<Unit filename="src/MapManager.cpp" />
+		<Unit filename="src/MapManager.h" />
+		<Unit filename="src/Server.cpp" />
+		<Unit filename="src/Server.h" />
+		<Unit filename="src/commands/Cmd_accounts.cpp" />
+		<Unit filename="src/commands/Cmd_accounts.h" />
+		<Unit filename="src/commands/Cmd_chat.cpp" />
+		<Unit filename="src/commands/Cmd_chat.h" />
+		<Unit filename="src/commands/Cmd_exit.cpp" />
+		<Unit filename="src/commands/Cmd_exit.h" />
+		<Unit filename="src/commands/Cmd_login.cpp" />
+		<Unit filename="src/commands/Cmd_login.h" />
+		<Unit filename="src/commands/Cmd_test.cpp" />
+		<Unit filename="src/commands/Cmd_test.h" />
+		<Unit filename="src/commands/Cmd_top.cpp" />
+		<Unit filename="src/commands/Cmd_top.h" />
+		<Unit filename="src/commands/ICommand.cpp" />
+		<Unit filename="src/commands/ICommand.h" />
+		<Unit filename="src/commands/ICommandServer.cpp" />
+		<Unit filename="src/commands/ICommandServer.h" />
+		<Unit filename="src/cppsqlite3.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/cppsqlite3.h" />
+		<Unit filename="src/defs.h" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/network/Connection.cpp" />
+		<Unit filename="src/network/Connection.h" />
+		<Unit filename="src/network/ConnectionData.cpp" />
+		<Unit filename="src/network/ConnectionData.h" />
+		<Unit filename="src/network/Message.cpp" />
+		<Unit filename="src/network/Message.h" />
+		<Unit filename="src/network/MessageIn.cpp" />
+		<Unit filename="src/network/MessageIn.h" />
+		<Unit filename="src/network/MessageOut.cpp" />
+		<Unit filename="src/network/MessageOut.h" />
+		<Unit filename="src/network/NetPacket.cpp" />
+		<Unit filename="src/network/NetPacket.h" />
+		<Unit filename="src/network/Packet.cpp" />
+		<Unit filename="src/network/Packet.h" />
+		<Unit filename="src/network/crc32.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/network/crc32.h" />
+		<Unit filename="src/network/sha1.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/network/sha1.h" />
+		<Unit filename="src/pawn/amx.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/amx.h" />
+		<Unit filename="src/pawn/amxServLang.cc">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/amxcons.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/amxcons.h" />
+		<Unit filename="src/pawn/amxcore.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/amxdbg.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/amxdbg.h" />
+		<Unit filename="src/pawn/binreloc.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/binreloc.h" />
+		<Unit filename="src/pawn/fixed.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/float.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/getch.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/pawn/getch.h" />
+		<Unit filename="src/pawn/osdefs.h" />
+		<Unit filename="src/pawn/sclinux.h" />
+		<Unit filename="src/utils/Console_no_colors.h" />
+		<Unit filename="src/utils/linux/Console_linux.h" />
+		<Unit filename="src/utils/windows/Console_windows.h" />
+		<Extensions>
+			<code_completion />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
