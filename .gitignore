@@ -23,3 +23,5 @@ Doc/*
 lo_server.kdevelop.pcs
 lo_server.kdevses
 config.log
+#Ignore ctags file
+tags
