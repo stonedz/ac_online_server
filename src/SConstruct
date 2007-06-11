@@ -79,7 +79,8 @@ files = Split("""Account.cpp
 			pawn/binreloc.c
 			pawn/fixed.c
 			pawn/float.c
-			pawn/getch.c""")
+			pawn/getch.c
+			utils/xmlParser.cpp""")
 
 """ General shared libraries used by the debug executable """
 libs_dbg = Split("""SDL

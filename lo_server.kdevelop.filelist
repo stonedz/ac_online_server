@@ -91,3 +91,5 @@ src/utils/linux/Console_linux.h
 src/utils/windows
 src/utils/windows/Console_windows.h
 Makefile
+src/utils/xmlParser.cpp
+src/utils/xmlParser.h
