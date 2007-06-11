@@ -5,6 +5,7 @@ lod
 lod_dbg
 lo_servertest
 lo_servertest_release*
+build/*
 #Ignore accounts database
 accounts.db
 #Ignore  codeblocks's backups
