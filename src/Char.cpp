@@ -10,25 +10,34 @@ Char::Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client)
     myId(dbId),
     myClient(client)
 {
-    CppSQLite3DB accDb;
-    accDb.open("accounts.db");
+	if (dbId != 0) {// The account has a valid character attached.
+		CppSQLite3DB accDb;
+		accDb.open("accounts.db");
 
-    std::ostringstream oss;
-    oss << myId;
-    std::string query = "SELECT * FROM characters WHERE id = \""+oss.str()+"\";";
-    CppSQLite3Query q = accDb.execQuery(query.c_str());
+		std::ostringstream oss;
+		oss << myId;
+		std::string query = "SELECT * FROM characters WHERE id = \""+oss.str()+"\";";
+		CppSQLite3Query q = accDb.execQuery(query.c_str());
 
-    if (!q.eof()){
-        setName(q.fieldValue(2));
-        setPosition(Location(q.getIntField(3),q.getIntField(4),q.getIntField(5)));
-        (client.getServer()).addClient(&client); // Since everything went fine we add the client to the list of active clients.
-        mDestPos = mPos; // We set our destination to our actual location.
-    }
-    else{
-        Logger::getInstance()->log("Error creating Character with ID "+oss.str(), LOGMODE_DB);
-    }
+		if (!q.eof()){
+			setName(q.fieldValue(2));
+			setPosition(Location(q.getIntField(3),q.getIntField(4),q.getIntField(5)));
+			mDestPos = mPos; // We set our destination to our actual location.
+			// Since everything went fine we add the client to the list of active clients.
+			(client.getServer()).addClient(&client); 
+		}
+		else{
+			Logger::getInstance()->log("Error creating Character with ID "+oss.str(), LOGMODE_DB);
+		}
 
-    accDb.close();
+    		accDb.close();
+	}
+	else{ // Create a dummy char
+		setName("Dummy");
+		setPosition(Location(0,0,0));
+		mDestPos = mPos;
+		(client.getServer()).addClient(&client); 
+	}
 }
 
 Char::~Char()

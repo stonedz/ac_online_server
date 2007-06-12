@@ -40,8 +40,8 @@ void ClientFSM::Stop(){
 }
 
 bool ClientFSM::ExecTrans(client_fsm_trans t){
-	switch (t)
-	{
+	
+	switch (t){
 	case t_login_ok:
 		ExecState = &ClientFSM::Initialize;
 		break;
@@ -60,11 +60,11 @@ bool ClientFSM::ExecTrans(client_fsm_trans t){
 	case t_disconnect:
 		ExecState = &ClientFSM::Disconnect;
 		break;
-    case t_init_ok:
-        ExecState = &ClientFSM::Ready;
-        break;
+	case t_init_ok:
+		ExecState = &ClientFSM::Ready;
+		break;
 	default:
-        myServer->getConsole().printMsg("Unsupported transition in ClientFSM", CONSOLE_ERROR);
+        	myServer->getConsole().printMsg("Unsupported transition in ClientFSM", CONSOLE_ERROR);
 	}
 
 return true;
@@ -168,8 +168,8 @@ void ClientFSM::Disconnect(){
 	this->endFSM = true;
 	#ifdef TESTPHASE
 	std::ostringstream tmp;
-	tmp << "Closed connection with Client, Account id: " << myClient->getAccount()->getId();
-	myServer->getConsole().printMsg(tmp);
+	tmp << "Client with id: "<< myClient->getAccount()->getId() <<" disconncted.";
+	myServer->getConsole().printMsg(tmp, CONSOLE_INFO);
 	#endif
 }
 
@@ -202,31 +202,32 @@ bool ClientFSM::authenticate(MessageIn *msg){
 	string login_data = msg->readString();
 
 	if (msg->checkCRC()){
-        try{
-            db.open("accounts.db");
-            string tmpQuery = "SELECT * FROM registered_users WHERE index_hash = '"+login_data+"';";
+		try{
+            		db.open("accounts.db");
+            		string tmpQuery = "SELECT * FROM registered_users WHERE index_hash = '"+login_data+"';";
 
-            CppSQLite3Query q = db.execQuery(tmpQuery.data());
-            if (!q.eof()){ // found a valid hash.
-                this->myClient->setAccount(new Account(myServer, myClient, q.getIntField(0),q.fieldValue(1),q.fieldValue(3),q.fieldValue(4),q.fieldValue(5),q.getIntField(6))); // Attach an account to the Client.
-                ret = true;
-                #ifdef TESTPHASE
-                std::ostringstream tmp;
-                tmp << "Client successfully logged, Account id: " << myClient->getAccount()->getId();
-                myServer->getConsole().printMsg(tmp);
-                #endif
-            }
+           		 CppSQLite3Query q = db.execQuery(tmpQuery.data());
+            		if (!q.eof()){ // found a valid hash.
+          			this->myClient->setAccount(new Account(myServer, myClient, q.getIntField(0),q.fieldValue(1),q.fieldValue(3),q.fieldValue(4),q.fieldValue(5),q.getIntField(6))); // Attach an account to the Client.
+                		ret = true;
+                		#ifdef TESTPHASE
+                		std::ostringstream tmp;
+                		tmp << "Client successfully logged, Account id: " << myClient->getAccount()->getId();
+                		myServer->getConsole().printMsg(tmp);
+                		#endif
+            		}
+			else
+				ret = false;
 
-            db.close();
-	    }
-	    catch(CppSQLite3Exception& e){
-	        logger->log("Authentication failed due to a database problem.", LOGMODE_AUTH);
-            logger->log(e.errorMessage(), LOGMODE_DB);
-	    }
-
+            		db.close();
+		}
+		catch(CppSQLite3Exception& e){
+	        	logger->log("Authentication failed due to a database problem.", LOGMODE_AUTH);
+            		logger->log(e.errorMessage(), LOGMODE_DB);
+	    	}
 	}
 	else{
-	    string toLog = "!! Failed CRC check during authentification ";
+		string toLog = "!! Failed CRC check during authentification ";
 		logger->log(toLog, LOGMODE_AUTH);
 	}
 

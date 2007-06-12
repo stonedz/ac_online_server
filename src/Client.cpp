@@ -11,7 +11,7 @@ Client::Client(TCPsocket socket, Server* server)
 	this->data->socket = socket;// This is our socket.
 	this->data->running = true; // The server is running ...
 	this->data->self = this;	// Pointer to the object itself (useful for threading)
-	this->data->id= 0; 			// This may be set as the key of clients' map ...
+	this->data->id= 0; 		// This may be set as the key of clients' map ...
 
 	/*
 	 * Creates a new thread for the server socket.
@@ -39,8 +39,11 @@ void Client::startListen(ConnectionData * data){
 	//Deletes the FSM
 	delete fsm;
 
-	//Deletes the client.
-	this->myServer->removeClient(this);
+	// Deletes the client from Server's clients' map, if this fails
+	// it means that incorrect username or password has been 
+	// provided. In this case delete myself.
+	if(!this->myServer->removeClient(this))
+		delete this;
 }
 
 void Client::setAccount(Account* account){

@@ -79,7 +79,7 @@ public:
      * @since pre-alpha
      * @param newName The string containing the new object's name.
      */
-    void setName(std::string newName);
+    void setName(const std::string& newName);
 
     /**
      * Returns a reference to the current position of the object in the
