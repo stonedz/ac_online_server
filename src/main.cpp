@@ -36,10 +36,6 @@
 #include "Console.h"
 #include "defs.h"       // Useful constant values are defined here.
 
-#ifdef TESTPHASE
-#include "Account.h"
-#endif
-
 
 int main(int argc, char **argv){
 
@@ -50,19 +46,12 @@ int main(int argc, char **argv){
 	logger->setDebugMode(false);
 	#endif
 
-//	#ifdef TESTPHASE
-//	Account* acc = new Account();
-//	acc->save("test", "password");
-//	delete acc;
-//	#endif
-
 	logger->log("Initializing SDL subsystems...", LOGMODE_NORMAL);
 
 	/*
 	 * Initializes SDL, this maybe should be moved to another class...
 	 */
-	if(SDL_Init(0)==-1)
-	{
+	if(SDL_Init(0)==-1){
 		cerr << "SDL_Init: "<< SDL_GetError() << endl;
 		exit(1);
 	}
@@ -70,8 +59,7 @@ int main(int argc, char **argv){
 	/*
 	 * Initializes SDL_net, this maybe should be moved to another class...
 	 */
-	if(SDLNet_Init()==-1)
-	{
+	if(SDLNet_Init()==-1){
 		cerr << "SDLNet_Init: " << SDLNet_GetError() << endl;
 		SDL_Quit();
 		exit(2);
@@ -81,7 +69,6 @@ int main(int argc, char **argv){
 	atexit(SDL_Quit);
 
 	Server* server = new Server(SERVER_MAIN_PORT); // Here we start our main server.
-
 
 	SDL_WaitThread(server->getThread(), NULL);
 

@@ -79,7 +79,8 @@ files = Split("""Account.cpp
 			pawn/binreloc.c
 			pawn/fixed.c
 			pawn/float.c
-			pawn/getch.c""")
+			pawn/getch.c
+			utils/xmlParser.cpp""")
 
 """ General shared libraries used by the debug executable """
 libs_dbg = Split("""SDL
@@ -170,3 +171,7 @@ if debug:
 	rls.Program('lod', files, CPPPATH = cpppath)
 else:
 	rls.Program('lod', files, CPPPATH = cpppath)
+
+""" Copy a dummy map into build dir in order to test MapManager """
+Command( "../build/Map.xml", "../data/dummyMap.xml", Copy("$TARGET", "$SOURCE"))
+Command("../build/accounts.db", "../data/simpleAccounts.db", Copy("$TARGET", "$SOURCE"))

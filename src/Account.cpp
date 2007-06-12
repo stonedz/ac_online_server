@@ -24,18 +24,16 @@ Account::Account(Server* server,
     myChar(NULL)
 {
     // Builds the Character associated with the account.
-    try{
-        Uint32 tmpSerial;
-        myServer->getNextGoSerial(tmpSerial);
-        myChar = new Char(tmpSerial, GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
-
-    }
-    catch(CppSQLite3Exception& e){
-        std::ostringstream oss;
-        oss << myCharID;
-        Logger::getInstance()->log("Error creating Char with id :"+oss.str(), LOGMODE_DB);
-    }
-
+		try{
+        		Uint32 tmpSerial;
+       			myServer->getNextGoSerial(tmpSerial);
+        		myChar = new Char(tmpSerial, GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
+    		}
+    		catch(CppSQLite3Exception& e){
+        		std::ostringstream oss;
+        		oss << myCharID;
+        		Logger::getInstance()->log("Error creating Char with id :"+oss.str(), LOGMODE_DB);
+    		}
 }
 
 Account::~Account(){

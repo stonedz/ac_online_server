@@ -30,7 +30,7 @@ void IGameObject::setOwner(Uint32 newOwner){
     SDL_UnlockMutex(mxOwner);
 }
 
-void IGameObject::setName(std::string newName){
+void IGameObject::setName(const std::string& newName){
     SDL_LockMutex(mxName);
     mName = newName;
     SDL_UnlockMutex(mxName);

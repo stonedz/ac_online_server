@@ -133,7 +133,7 @@ bool Server::removeClient(Client* oldClient){
 	std::map<Uint32, Client*>::iterator i;// Gets an iterator for the clients' map.
 
 	i = this->mClients.find(tmp);
-	if (i != this->mClients.end()){ // Client found!
+		if (i != this->mClients.end()){ // Client found!
 		delete i->second;
 		this->mClients.erase(i);
 		SDL_UnlockMutex(this->mxClients);// ...unlocks the mutex
