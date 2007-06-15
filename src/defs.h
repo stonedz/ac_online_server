@@ -5,6 +5,9 @@
 #define SERVER_VERSION     "pre-alpha"	/**< Server version. */
 #define SERVER_MAIN_PORT	(9999)		/**< Network port the server is listening to. */
 
+// Maps
+#define MAP_TESTING		"Map"		/**< Filename of the testing map. */
+
 // Different types of messages that the console can print.
 #define CONSOLE_INFO        	(1)
 #define CONSOLE_WARNING (2)

@@ -135,7 +135,7 @@ public:
      * @since pre-alpha
      * @return Pointer to the server's map manager.
      */
-    MapManager* getMapManager() {return mMapManager;}
+    MapManager* getMapManager() {return myMapManager;}
 
     /**
      * Returns a reference to client's map.
@@ -178,7 +178,7 @@ private:
 	std::map<Uint32, Client*> mClients;
 
 	SDL_mutex* mxClients;       /**< Mutex to avoid problems when dealing with the mClients map.*/
-	MapManager* mMapManager;    /**< Pointer to a MapManager object which manages the game map (nothing to do with mClients). */
+	MapManager* myMapManager;    /**< Pointer to a MapManager object which manages the game map (nothing to do with mClients). */
 	bool exit_request;          /**< Proper exit request has benn submitted.*/
 	bool chat_mode;             /**< This server's console will act like chat client, mainly for testing MSG_CHAT implementation. */
 	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */

@@ -9,14 +9,14 @@
 
 Server::Server(int port)
 	:mxClients(SDL_CreateMutex()),
-	mMapManager(new MapManager()),
+	myMapManager(MapManager::getInstance()),
 	exit_request(false),
 	chat_mode(false),
 	mxGoSerial(SDL_CreateMutex()),
 	gameObjectSerial(1),
 	initialized(false),
-    myGamefsm(this),
-    myConsole(this)
+	myGamefsm(this),
+	myConsole(this)
 {
 	/*
 	 * Fills the IPaddress object with correct data to create
@@ -71,17 +71,28 @@ void Server::startListen(ConnectionData * data){
 	}
 	SDLNet_TCP_AddSocket(set, data->socket);
 
+	if(myMapManager->loadXMLMap(MAP_TESTING)){
+		std::ostringstream tmp;
+		tmp << "Loaded Map -> " << MAP_TESTING << ".xml";
+		myConsole.printMsg(tmp);
+	}
+	else{
+		std::ostringstream tmp;
+		tmp << "Failed to load Map -> " << MAP_TESTING << ".xml";
+		myConsole.printMsg(tmp, CONSOLE_ERROR);
+		return;
+	}
+		
+	myGamefsm.Start(); // Starts the game state machine.
 
-    myGamefsm.Start(); // Starts the game state machine.
+	while(!initialized){ // Wait for the server to be initialized
+		SDL_Delay(100);
+	}
 
-    while(!initialized){ // Wait for the server to be initialized
-        SDL_Delay(100);
-    }
+	// Now the server is up and running, inform the user.
+	myConsole.printMsg("Server is now running!");
 
-    // Now the server is up and running, inform the user.
-    myConsole.printMsg("Server is now running!");
-
-    // Main server loop. Here we accept new connections.
+	// Main server loop. Here we accept new connections.
 	while(!exit_request){
 		ready = SDLNet_CheckSockets(set, (Uint32) 50);
 		if(ready==-1){
@@ -103,7 +114,7 @@ void Server::startListen(ConnectionData * data){
 		}
 	}
 
-    SDLNet_FreeSocketSet(set);
+	SDLNet_FreeSocketSet(set);
 	// Since the server is exiting do the same with the game FSM.
 	myGamefsm.Stop();
 	SDL_Thread* tmpThread = myGamefsm.getThread();

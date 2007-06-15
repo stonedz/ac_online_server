@@ -1,7 +1,5 @@
 #include "Logger.h"
-
 #include <time.h>
-
 
 Logger* Logger::pUniqueInstance = NULL; // Reference to the unique instance.
 SDL_mutex* Logger::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -9,19 +7,19 @@ SDL_mutex* Logger::mxInstance = SDL_CreateMutex();	// Reference to instance mute
 Logger* Logger::getInstance(){
 	SDL_LockMutex(mxInstance);	// Locks the mutex...
 	if (pUniqueInstance == NULL){ // No instance, create one.
-        pUniqueInstance = new Logger;
-    }
-    SDL_UnlockMutex(mxInstance);	// Locks the mutex...
-    return pUniqueInstance;
+		pUniqueInstance = new Logger;
+	}
+	SDL_UnlockMutex(mxInstance);	// Locks the mutex...
+	return pUniqueInstance;
 }
 
 void Logger::freeInstance(){
 	SDL_LockMutex(mxInstance);	// Locks the mutex...
 	if (pUniqueInstance != NULL) {
-        delete pUniqueInstance;
-        pUniqueInstance = NULL;
-    }
- 	SDL_LockMutex(mxInstance);	// Locks the mutex...
+		delete pUniqueInstance;
+		pUniqueInstance = NULL;
+	}
+	SDL_LockMutex(mxInstance);	// Locks the mutex...
 }
 
 Logger::Logger()
@@ -53,19 +51,18 @@ std::string Logger::getCurrentTime(){
 	time_t rawtime;
 
 	time(&rawtime);
-    timeinfo = *(localtime(&rawtime));
+	timeinfo = *(localtime(&rawtime));
 
-    std::ostringstream os;
-   	os  << std::setw(2) << std::setfill('0') << timeinfo.tm_mday
-   		<< "-" << std::setw(2) << std::setfill('0') << (timeinfo.tm_mon)+1
-   		<< " "
-   		<< "[" << std::setw(2) << std::setfill('0') << timeinfo.tm_hour
-    	<< ":" << std::setw(2) << std::setfill('0') << timeinfo.tm_min
-    	<< ":" << std::setw(2) << std::setfill('0') << timeinfo.tm_sec
-    	<< "] ";
+	std::ostringstream os;
+	os  << std::setw(2) << std::setfill('0') << timeinfo.tm_mday
+		<< "-" << std::setw(2) << std::setfill('0') << (timeinfo.tm_mon)+1
+		<< " "
+		<< "[" << std::setw(2) << std::setfill('0') << timeinfo.tm_hour
+		<< ":" << std::setw(2) << std::setfill('0') << timeinfo.tm_min
+		<< ":" << std::setw(2) << std::setfill('0') << timeinfo.tm_sec
+		<< "] ";
 
-    return os.str();
-
+	return os.str();
 }
 
 void Logger::setDebugMode(bool flag){

@@ -12,8 +12,6 @@
 
 /**
  * A simple logging system, implements Singleton pattern. Threadsafe.
- *
- * @todo TODO Porting existing code in order to use logging system.
  */
 class Logger
 {
@@ -89,14 +87,14 @@ private:
 	 * runtime.
 	 */
 	std::ofstream LogFile;		/**< Standard log file.*/
-	std::ofstream ErrLogFile;	/**< Error log file. */
+	std::ofstream ErrLogFile;		/**< Error log file. */
 	std::ofstream AuthLogFile;	/**< Authentication log file. */
-	std::ofstream DBLogFile;    /**< Database log file. */
+	std::ofstream DBLogFile;    	/**< Database log file. */
 
-	SDL_mutex* mxStdLogger;     /**< Mutex for standard logfile. */
-	SDL_mutex* mxErrLogger;     /**< Mutex for error logfile. */
-	SDL_mutex* mxAuthLogger;    /**< Mutex for authentication logfile. */
-    SDL_mutex* mxDBLogger;       /**< Mutex for the Database logfile. */
+	SDL_mutex* mxStdLogger;	 /**< Mutex for standard logfile. */
+	SDL_mutex* mxErrLogger;	/**< Mutex for error logfile. */
+	SDL_mutex* mxAuthLogger;	/**< Mutex for authentication logfile. */
+	SDL_mutex* mxDBLogger;	/**< Mutex for the Database logfile. */
 
 	SDL_mutex* mxLoggerProp;    /**< Mutex fo general Logger's properties. */
 
