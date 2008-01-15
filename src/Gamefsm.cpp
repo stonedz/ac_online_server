@@ -145,7 +145,7 @@ void Gamefsm::Update(){
                 #endif
             }
 
-            // Start movement
+            // Start movement (shouldn't be in the sec update)
             std::map<Uint32, Client*>& rClients = myServer->getClients();
             Char* pAChar; //Tmp pointer to chars.
             Uint32 ax,ay,az;

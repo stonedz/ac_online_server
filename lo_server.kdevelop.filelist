@@ -94,3 +94,13 @@ src/utils/windows
 src/utils/windows/Console_windows.h
 src/utils/xmlParser.cpp
 src/utils/xmlParser.h
+src/MapData.cpp
+src/MapData.h
+src/IDServer.h
+src/IDServer.cpp
+.
+./ID.h
+./ID.cpp
+./D.cpp
+src/ID.cpp
+src/ID.h

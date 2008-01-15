@@ -76,7 +76,7 @@ int main(int argc, char **argv){
 }
 
 
-///* These initialization functions are part of the "extension modules"
+//* These initialization functions are part of the "extension modules"
 //* (libraries with native functions) that this run-time uses. More
 //* extension modules may be dynamically linked (depending on whether
 //* support for dynamic linking is enabled).

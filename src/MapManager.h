@@ -1,6 +1,7 @@
 #ifndef MAPMANAGER_H
 #define MAPMANAGER_H
 
+#include "MapData.h"
 #include "Location.h"
 #include <iostream>
 
@@ -9,7 +10,7 @@
  * implement it. Implements the Sinlgeton pattern.
  *
  * @todo Design, see #15
- * @todo Should this be thread safe?
+ * @todo Should be Thread safe
  */
 class MapManager
 {

@@ -46,10 +46,13 @@ files = Split("""Account.cpp
 			CommandScheduler.cpp
 			Console.cpp
 			Gamefsm.cpp
+			ID.cpp
+			IDServer.cpp
 			IGameObject.cpp
 			IMoveableObject.cpp
 			Location.cpp
 			Logger.cpp
+			MapData.cpp
 			MapManager.cpp
 			Server.cpp
 			main.cpp
