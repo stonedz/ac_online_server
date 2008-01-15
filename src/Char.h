@@ -4,7 +4,7 @@
 #include "IMoveableObject.h"
 #include "SDL.h"
 
-class Client; // Forward declaration.
+class Client; //Forward declaration.
 
 /**
  * Represents a playing character. This is only for a real player
