@@ -69,7 +69,7 @@ void Cmd_login::execute(){
         messageout = new MessageOut(MSG_LOGIN);
 
         messageout->writeString(hash);
-        messageout->addCRC();
+        std::cout << messageout->addCRC();
         Connection::putMessage(sck, messageout);
 
         delete messageout;

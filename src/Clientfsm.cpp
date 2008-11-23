@@ -222,7 +222,6 @@ bool ClientFSM::authenticate(MessageIn *msg){
                 		#endif
             		}
 			else
-				std::cout << "dai" << std::endl;
 				ret = false;
 
             		db.close();
