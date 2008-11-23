@@ -1,4 +1,5 @@
 # KDevelop Custom Project File List
+.
 Makefile
 src
 src/Account.cpp
@@ -17,6 +18,10 @@ src/Console.cpp
 src/Console.h
 src/Gamefsm.cpp
 src/Gamefsm.h
+src/ID.cpp
+src/ID.h
+src/IDServer.cpp
+src/IDServer.h
 src/IGameObject.cpp
 src/IGameObject.h
 src/IMoveableObject.cpp
@@ -25,6 +30,8 @@ src/Location.cpp
 src/Location.h
 src/Logger.cpp
 src/Logger.h
+src/MapData.cpp
+src/MapData.h
 src/MapManager.cpp
 src/MapManager.h
 src/Server.cpp
@@ -94,13 +101,3 @@ src/utils/windows
 src/utils/windows/Console_windows.h
 src/utils/xmlParser.cpp
 src/utils/xmlParser.h
-src/MapData.cpp
-src/MapData.h
-src/IDServer.h
-src/IDServer.cpp
-.
-./ID.h
-./ID.cpp
-./D.cpp
-src/ID.cpp
-src/ID.h

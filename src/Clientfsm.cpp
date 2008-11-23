@@ -87,7 +87,12 @@ void ClientFSM::Login(){
 			if (authenticated == true){
 				ExecTrans(t_login_ok);
 			}
-			else{
+			else{	
+				SDL_Delay(500);
+				std::ostringstream tmp;
+	    			tmp << "Failed authentication! ";
+	    			myServer->getConsole().printMsg(tmp, CONSOLE_ERROR);
+				
 				ExecTrans(t_disconnect);
 			}
 		}
@@ -167,9 +172,9 @@ void ClientFSM::Disconnect(){
 	this->data->running = false;
 	this->endFSM = true;
 	#ifdef TESTPHASE
-	std::ostringstream tmp;
-	tmp << "Client with id: "<< myClient->getAccount()->getId() <<" disconncted.";
-	myServer->getConsole().printMsg(tmp, CONSOLE_INFO);
+	//std::ostringstream tmp;
+	//tmp << "Client with id: "<< myClient->getAccount()->getId() <<" disconncted.";
+	//myServer->getConsole().printMsg(tmp, CONSOLE_INFO);
 	#endif
 }
 
@@ -217,6 +222,7 @@ bool ClientFSM::authenticate(MessageIn *msg){
                 		#endif
             		}
 			else
+				std::cout << "dai" << std::endl;
 				ret = false;
 
             		db.close();
@@ -227,6 +233,10 @@ bool ClientFSM::authenticate(MessageIn *msg){
 	    	}
 	}
 	else{
+		SDL_Delay(500);
+		std::ostringstream tmp;
+	    	tmp << "Failed CRC check during authentification";
+	    	myServer->getConsole().printMsg(tmp, CONSOLE_ERROR);
 		string toLog = "!! Failed CRC check during authentification ";
 		logger->log(toLog, LOGMODE_AUTH);
 	}
