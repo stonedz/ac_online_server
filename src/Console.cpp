@@ -9,9 +9,9 @@ Console::Console(Server * server)
 {
 	this->data.self = this;
 	this->data.running = true;
-    this->data.banner << std::endl << colors::blue << ":: "<< colors::green << "Welcome to Last Online" << colors::blue << " ::"
-                    << std::endl << ":: " << colors::cyan << std::setw(22) << SERVER_VERSION << colors::blue << " ::"<< colors::reset
-                    << std::endl << std::endl << "Please refer to " << colors::cyan << "http://last-online.sourceforge.net" << colors::reset
+    this->data.banner << std::endl << colors::blue << ":: "<< colors::green << "Welcome to Ancient Chronicles online" << colors::blue << " ::"
+                    << std::endl << ":: " << colors::cyan << std::setw(36) << SERVER_VERSION << colors::blue << " ::"<< colors::reset
+                    << std::endl << std::endl << "Please refer to " << colors::cyan << "http://www.assembla.com/spaces/aconlineserver" << colors::reset
                     << " for more informations.";
 
 	this->data.myThread = SDL_CreateThread(this->startThread, &(this->data));
