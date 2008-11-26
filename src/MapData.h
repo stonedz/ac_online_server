@@ -4,11 +4,8 @@
 #include "SDL.h"
 
 struct coord{
-	Uint32 x;
-	Uint32 y;
-	Uint32 z;
-	bool walkable;
-	bool see;	
+	Sint8 z;
+	Uint16 t_type;	
 };
 
 /**
@@ -19,6 +16,8 @@ public:
     MapData();
 
     ~MapData();
+private :
+	coord** Data;
 
 };
 

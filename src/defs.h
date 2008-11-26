@@ -7,6 +7,7 @@
 
 // Maps
 #define MAP_TESTING		"Map"		/**< Filename of the testing map. */
+#define MAP_T			"t_map.dat"	/**< Terrain map */
 
 // Different types of messages that the console can print.
 #define CONSOLE_INFO        	(1)

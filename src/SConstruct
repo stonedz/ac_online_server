@@ -35,7 +35,7 @@ ccflags_rls = Split("""-s
 				-DFLOATINGPOINT
 				-DNDEBUG
 				-DTESTPHASE""") 
-"""TESTPHASE should be cancelled from release, but is still needed."""
+"""TESTPHASE should be cancelled from release, but it's still needed."""
 
 """ File list, this has to be kept UP TO DATE! """
 files = Split("""Account.cpp
@@ -63,6 +63,7 @@ files = Split("""Account.cpp
 			commands/Cmd_login.cpp
 			commands/Cmd_test.cpp
 			commands/Cmd_top.cpp
+			commands/Cmd_map.cpp
 			commands/ICommand.cpp
 			commands/ICommandServer.cpp
 			network/Connection.cpp
@@ -177,4 +178,5 @@ else:
 
 """ Copy a dummy map into build dir in order to test MapManager """
 Command( "../build/Map.xml", "../data/dummyMap.xml", Copy("$TARGET", "$SOURCE"))
+""" Copy simple accounts database. """
 Command("../build/accounts.db", "../data/simpleAccounts.db", Copy("$TARGET", "$SOURCE"))

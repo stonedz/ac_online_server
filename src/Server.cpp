@@ -73,7 +73,7 @@ void Server::startListen(ConnectionData * data){
 
 	if(myMapManager->loadXMLMap(MAP_TESTING)){
 		std::ostringstream tmp;
-		tmp << "Loaded Map -> " << MAP_TESTING << ".xml";
+		tmp << "Loaded XML Map -> " << MAP_TESTING << ".xml";
 		myConsole.printMsg(tmp);
 	}
 	else{
@@ -82,6 +82,19 @@ void Server::startListen(ConnectionData * data){
 		myConsole.printMsg(tmp, CONSOLE_ERROR);
 		return;
 	}
+	
+	if(myMapManager->loadBinTMap(MAP_T)){
+		std::ostringstream tmp;
+		tmp << "Loaded Terrain Map -> " << MAP_T;
+		myConsole.printMsg(tmp);
+	}
+	else{
+		std::ostringstream tmp;
+		tmp << "Failed to load Map -> " << MAP_T;
+		myConsole.printMsg(tmp, CONSOLE_ERROR);
+		return;
+	}
+	
 		
 	myGamefsm.Start(); // Starts the game state machine.
 

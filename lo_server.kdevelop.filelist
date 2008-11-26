@@ -45,6 +45,8 @@ src/commands/Cmd_exit.cpp
 src/commands/Cmd_exit.h
 src/commands/Cmd_login.cpp
 src/commands/Cmd_login.h
+src/commands/Cmd_map.cpp
+src/commands/Cmd_map.h
 src/commands/Cmd_test.cpp
 src/commands/Cmd_test.h
 src/commands/Cmd_top.cpp

@@ -5,6 +5,7 @@
 #include "Location.h"
 #include <iostream>
 
+
 /**
  * Manages a game map. This is still work in rpogress since we've not decided how to
  * implement it. Implements the Sinlgeton pattern.
@@ -62,6 +63,18 @@ public:
 	 */
 	bool loadXMLMap(const std::string& filename);
 	
+	
+	/**
+	 * Loads the main terrain map
+	 * 
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param filename Complete map filename.
+	 * @return True if the map is correctly loaded, false elsewhere.
+	 * @todo This is WORK IN PROGRESS
+	 */
+	bool loadBinTMap(const std::string& filename);
+	
 	/**
 	 * Validates a Location on the map
 	 * 
@@ -85,6 +98,7 @@ public:
 	bool validateMove(Location& orig, Location& dest);
 
 private:
+	MapData* myTMap;
 };
 
 

@@ -1,7 +1,7 @@
 <?xml version = '1.0'?>
 <kdevelop>
   <general>
-    <author>Paolo Fagni, Alessandro Sperindé</author>
+    <author>Paolo Fagni, Alessandro Sperindé, Davide Bardone</author>
     <email>paolo.fagni@gmail.com</email>
     <version>0.1</version>
     <projectmanagement>KDevCustomProject</projectmanagement>
@@ -10,17 +10,17 @@
     <projectname>lo_server</projectname>
     <projectdirectory>.</projectdirectory>
     <absoluteprojectpath>false</absoluteprojectpath>
-    <description/>
-    <defaultencoding/>
+    <description></description>
+    <defaultencoding></defaultencoding>
     <versioncontrol/>
   </general>
   <kdevcustomproject>
     <run>
       <directoryradio>executable</directoryradio>
-      <mainprogram>build/lod_dbg</mainprogram>
-      <programargs/>
-      <globaldebugarguments/>
-      <globalcwd>/home/stonedz/progetti/lo_server/build</globalcwd>
+      <mainprogram>/home/stonedz_/Desktop/progetti/aconlineserver/build/lod</mainprogram>
+      <programargs></programargs>
+      <globaldebugarguments></globaldebugarguments>
+      <globalcwd>/home/stonedz_/Desktop/progetti/aconlineserver/build</globalcwd>
       <useglobalprogram>false</useglobalprogram>
       <terminal>true</terminal>
       <autocompile>true</autocompile>
@@ -98,13 +98,13 @@
     </blacklist>
     <build>
       <buildtool>make</buildtool>
-      <builddir/>
+      <builddir></builddir>
     </build>
     <other>
       <prio>0</prio>
-      <otherbin/>
-      <defaulttarget/>
-      <otheroptions/>
+      <otherbin></otherbin>
+      <defaulttarget></defaulttarget>
+      <otheroptions></otheroptions>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
@@ -115,9 +115,9 @@
       <numberofjobs>1</numberofjobs>
       <prio>0</prio>
       <dontact>false</dontact>
-      <makebin/>
-      <defaulttarget/>
-      <makeoptions/>
+      <makebin></makebin>
+      <defaulttarget></defaulttarget>
+      <makeoptions></makeoptions>
       <selectedenvironment>default</selectedenvironment>
       <environments>
         <default/>
@@ -126,14 +126,15 @@
   </kdevcustomproject>
   <kdevdebugger>
     <general>
-      <dbgshell/>
+      <dbgshell></dbgshell>
       <gdbpath>/usr/bin/gdb</gdbpath>
-      <configGdbScript/>
-      <runShellScript/>
-      <runGdbScript/>
+      <configGdbScript></configGdbScript>
+      <runShellScript></runShellScript>
+      <runGdbScript></runGdbScript>
       <breakonloadinglibs>true</breakonloadinglibs>
       <separatetty>true</separatetty>
       <floatingtoolbar>false</floatingtoolbar>
+      <raiseGDBOnStart>false</raiseGDBOnStart>
     </general>
     <display>
       <staticmembers>false</staticmembers>
@@ -230,7 +231,7 @@
       <includePaths>.;</includePaths>
     </codecompletion>
     <creategettersetter>
-      <prefixGet/>
+      <prefixGet></prefixGet>
       <prefixSet>set</prefixSet>
       <prefixVariable>m_,_</prefixVariable>
       <parameterName>theValue</parameterName>
@@ -252,7 +253,7 @@
   </cppsupportpart>
   <kdevdocumentation>
     <projectdoc>
-      <docsystem>Raccolta documentazione Doxygen</docsystem>
+      <docsystem>Doxygen Documentation Collection</docsystem>
       <docurl>Doc/html/index.html</docurl>
       <usermanualurl/>
     </projectdoc>

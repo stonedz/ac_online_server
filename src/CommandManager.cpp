@@ -10,6 +10,7 @@
 #include "commands/Cmd_accounts.h"
 #include "commands/Cmd_login.h"
 #include "commands/Cmd_top.h"
+#include "commands/Cmd_map.h"
 
 CommandManager* CommandManager::pUniqueInstance = NULL; 	// Reference to the unique instance.
 SDL_mutex* CommandManager::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -65,6 +66,9 @@ void CommandManager::processCommand(std::string &cmd){
     else if ( tmp == "login"){ //login test command.
         cmdObj = new Cmd_login(cmd, myServer);
     }
+	else if (tmp == "map"){
+		cmdObj = new Cmd_map(cmd, myServer);
+	}
 	else if ( tmp == "test"){
 		cmdObj = new Cmd_test(cmd, myServer);
 	}

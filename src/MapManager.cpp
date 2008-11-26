@@ -1,5 +1,6 @@
 #include "MapManager.h"
 #include "xmlParser.h"
+#include <fstream>
 
 MapManager* MapManager::pUniqueInstance = NULL; // Reference to the unique instance.
 SDL_mutex* MapManager::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -23,6 +24,7 @@ void MapManager::freeInstance(){
 }
 
 MapManager::MapManager()
+	:myTMap(NULL)
 {
     //ctor
 }
@@ -39,6 +41,25 @@ bool MapManager::loadXMLMap(const std::string& filename){
 	//XMLNode xNode=xMainNode.getChildNode("region").getChildNode("zone",1);
 	//std::cout << xNode.getAttribute("name");
 	return true;
+}
+
+bool MapManager::loadBinTMap(const std::string& filename){
+	 
+	try{
+		std::ifstream fin;
+		fin.open ( filename.c_str(), std::ios::binary);
+		Uint16 xx, yy;
+		fin.read((char *) (&xx), sizeof(xx));
+		fin.read((char *) (&yy), sizeof(yy));
+	
+	
+		std::cout << "x: "<< xx << std::endl << "y: "<< yy<<std::endl;
+	
+		fin.close();
+	}
+	catch(std::ifstream::failure e){
+		std::cout << "Exception opening/reading file"<<std::endl;
+	}
 }
 
 bool MapManager::validateMove(Location& orig,Location& dest){
