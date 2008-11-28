@@ -40,6 +40,14 @@ class Cmd_map : public ICommandServer{
 		 */
 		void create(const std::string& filename);
 		
+		/**
+		 * Gets the information for a given coordinate
+		 * 
+		 * @param x The x coordinate
+		 * @param y The y coordinate
+		 */
+		void getInfo(const std::string& x, const std::string& y);
+		
 };
 
 #endif /*CMD_MAP_H_*/

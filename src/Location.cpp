@@ -1,7 +1,7 @@
 #include "Location.h"
 
 
-Location::Location(Uint32 x, Uint32 y, Uint32 z)
+Location::Location(Uint16 x, Uint16 y, Uint16 z)
     :mX(x),
     mY(y),
     mZ(z),

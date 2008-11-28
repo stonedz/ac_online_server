@@ -148,7 +148,7 @@ void Gamefsm::Update(){
             // Start movement (shouldn't be in the sec update)
             std::map<Uint32, Client*>& rClients = myServer->getClients();
             Char* pAChar; //Tmp pointer to chars.
-            Uint32 ax,ay,az;
+            Uint16 ax,ay,az;
             for(miClientsIterator = rClients.begin(); miClientsIterator != rClients.end(); miClientsIterator++){
                 pAChar = (((miClientsIterator->second)->getAccount())->getChar());
                 if(pAChar->move()){ // We moved! let's inform the client of its new position.
@@ -156,10 +156,10 @@ void Gamefsm::Update(){
                     //Create a new messageout and send it!
                     MessageOut* messageout;
                     messageout = new MessageOut(MSG_MOVE);
-                    messageout->write2(12); //The lenght of a MSG_MOVE
-                    messageout->write4(ax);
-                    messageout->write4(ay);
-                    messageout->write4(az);
+                    messageout->write2(6); //The lenght of a MSG_MOVE
+                    messageout->write2(ax);
+                    messageout->write2(ay);
+                    messageout->write2(az);
                     messageout->addCRC();
                     Connection::putMessage((miClientsIterator->second)->getSocket() ,messageout);
                     delete messageout;

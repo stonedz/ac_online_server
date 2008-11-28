@@ -50,7 +50,7 @@ void Char::update(){
 }
 
 void Char::save(){
-    Uint32 x,y,z;
+    Uint16 x,y,z;
     Location& loc = getPosition();
     loc.getXYZ(x,y,z);
     try{

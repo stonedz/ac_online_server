@@ -186,13 +186,13 @@ void ClientFSM::ResetKATime(){
 void ClientFSM::Initialize(){
     Char* AChar = myClient->getAccount()->getChar();
     // Sends current position
-    Uint32 ax,ay,az;
+    Uint16 ax,ay,az;
     (AChar->getPosition()).getXYZ(ax,ay,az);
     MessageOut* messageout = new MessageOut(MSG_MOVE);
-    messageout->write2(12);
-    messageout->write4(ax);
-    messageout->write4(ay);
-    messageout->write4(az);
+    messageout->write2(6);
+    messageout->write2(ax);
+    messageout->write2(ay);
+    messageout->write2(az);
     messageout->addCRC();
     Connection::putMessage(data->socket, messageout);
     delete messageout;
@@ -252,12 +252,12 @@ void ClientFSM::chat(MessageIn& message){
 
 void ClientFSM::move(MessageIn& message){
 
-    Uint32 len, x, y ,z;
+    Uint16 len, x, y ,z;
     len = message.read2();
-    if (len == 12){
-        x = message.read4();
-        y = message.read4();
-        z = message.read4();
+    if (len == 6){
+        x = message.read2();
+        y = message.read2();
+        z = message.read2();
         #ifdef TESTPHASE
         std::ostringstream tmp;
         tmp << "Received a Move message from account with id:"<< myClient->getAccount()->getId() <<", requested coord are x:" << x << " y:" << y;

@@ -32,6 +32,7 @@ MapManager::MapManager()
 MapManager::~MapManager()
 {
     //dtor
+	delete myTMap;
 }
 
 bool MapManager::loadXMLMap(const std::string& filename){
@@ -46,24 +47,27 @@ bool MapManager::loadXMLMap(const std::string& filename){
 bool MapManager::loadBinTMap(const std::string& filename){
 	 
 	try{
+		std::cout << "Loading terrain map " << filename << " ...";
 		std::ifstream fin;
 		fin.open ( filename.c_str(), std::ios::binary);
 		Uint16 xx, yy;
 		fin.read((char *) (&xx), sizeof(xx));
 		fin.read((char *) (&yy), sizeof(yy));
 	
-	
-		std::cout << "x: "<< xx << std::endl << "y: "<< yy<<std::endl;
+		myTMap = new MapData(xx, yy, &fin);
 	
 		fin.close();
+		std::cout << "DONE" << std::endl;
+		return true;
 	}
 	catch(std::ifstream::failure e){
-		std::cout << "Exception opening/reading file"<<std::endl;
+		std::cout << "FAILED! (Exception opening/reading file)"<<std::endl;
+		return false;
 	}
 }
 
 bool MapManager::validateMove(Location& orig,Location& dest){
-	Uint32 ox,oy,oz,dx,dy,dz;
+	Uint16 ox,oy,oz,dx,dy,dz;
 	Uint32 deltax, deltay, deltaz;
 
 	orig.getXYZ(ox, oy, oz);
@@ -86,6 +90,10 @@ if (deltaz <= sqrt(2)) //This could be arcoded for performance improvement < 1.5
 		return true;
 	else
 		return false;
+}
+
+coord MapManager::getInfo(const Uint16& x, const Uint16& y){
+	return myTMap->myData[(x-1)+((myTMap->getMaxX())*(y-1))];
 }
 
 

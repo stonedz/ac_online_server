@@ -96,6 +96,16 @@ public:
 	 * @todo Find a better algorithm to evaluate valid movement.
 	 */
 	bool validateMove(Location& orig, Location& dest);
+	
+	/**
+	 * Returns a coord struct for the given coordinates
+	 * 
+	 * @author stonedz
+	 * @param x
+	 * @param y
+	 * @since pre-alpha
+	 */
+	coord getInfo(const Uint16& x, const Uint16& y);
 
 private:
 	MapData* myTMap;

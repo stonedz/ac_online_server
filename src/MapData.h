@@ -1,11 +1,14 @@
 #ifndef MAPDATA_H
 #define MAPDATA_H
 
+#include <fstream>
+#include <iostream>
+
 #include "SDL.h"
 
 struct coord{
-	Sint8 z;
-	Uint16 t_type;	
+	Uint8 z;
+	Uint8 t_type;	
 };
 
 /**
@@ -13,11 +16,19 @@ struct coord{
  */
 class MapData{
 public:
-    MapData();
+    MapData(const Uint16& x, const Uint16& y,  std::ifstream* pFin);
 
     ~MapData();
+	
+	coord* myData;	/**< Map data */
+	
+	Uint16 getMaxX(){return myX;};
+	
 private :
-	coord** Data;
+	
+	Uint16 myX;		/**< X width. */
+	Uint16 myY;		/**< Y height */
+	
 
 };
 
