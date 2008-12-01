@@ -94,6 +94,7 @@ public:
 	 * @since pre-alpha
 	 * @return True if the move is valid, false elsewhere.
 	 * @todo Find a better algorithm to evaluate valid movement.
+	 * @todo Check Z boundaries
 	 */
 	bool validateMove(Location& orig, Location& dest);
 	

@@ -22,7 +22,25 @@ public:
 	
 	coord* myData;	/**< Map data */
 	
-	Uint16 getMaxX(){return myX;};
+	/**
+	 * Returns max X valid value.
+	 */
+	Uint16 getMaxX(){return myX-1;};
+	
+	/**
+	 * Returns max Y valid value.
+	 */
+	Uint16 getMaxY(){return myY-1;};
+	
+	/**
+	 * Returns map width.
+	 */
+	Uint16 getMaxRealX(){return myX;};
+	
+	/**
+	 * Returns map height.
+	 */
+	Uint16 getMaxRealY(){return myY;};
 	
 private :
 	
