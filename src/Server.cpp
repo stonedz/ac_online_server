@@ -13,7 +13,7 @@ Server::Server(int port)
 	exit_request(false),
 	chat_mode(false),
 	mxGoSerial(SDL_CreateMutex()),
-	gameObjectSerial(1),
+	myIdServer(new IDServer(this)),
 	initialized(false),
 	myGamefsm(this),
 	myConsole(this)
@@ -56,6 +56,7 @@ Server::Server(int port)
 Server::~Server(){
 	SDL_DestroyMutex(mxClients);
 	SDL_DestroyMutex(mxGoSerial);
+	delete myIdServer;
 }
 
 void Server::startListen(ConnectionData * data){
@@ -93,9 +94,8 @@ void Server::startListen(ConnectionData * data){
 		tmp << "Failed to load Map -> " << MAP_T;
 		myConsole.printMsg(tmp, CONSOLE_ERROR);
 		return;
-	}
+	}	
 	
-		
 	myGamefsm.Start(); // Starts the game state machine.
 
 	while(!initialized){ // Wait for the server to be initialized
@@ -195,9 +195,24 @@ void Server::generalChatMsg(Uint32 sender, std::string msg){
 
 void Server::getNextGoSerial(Uint32& validSerial){
     SDL_LockMutex(this->mxGoSerial);
-    validSerial = gameObjectSerial++;
+    //validSerial = gameObjectSerial++;
     SDL_UnlockMutex(this->mxGoSerial);
     return;
+}
+
+void Server::getNewID(Uint64& id, const Uint8& type){
+	SDL_LockMutex(this->mxGoSerial);
+	id = myIdServer->getNewId(type);
+	SDL_UnlockMutex(this->mxGoSerial);
+	return;
+}
+
+Uint32 Server::updateIDServer(){
+	Uint32 newTimeSlice;
+   	SDL_LockMutex(this->mxGoSerial);
+	newTimeSlice = myIdServer->updateTime();
+	SDL_UnlockMutex(this->mxGoSerial);
+	return newTimeSlice;
 }
 
 void Server::setInit(bool value){

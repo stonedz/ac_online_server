@@ -168,8 +168,13 @@ void Gamefsm::Update(){
                     std::cout << ax << "," << ay << std::endl;
                 }
             }
+			
             // END movement
         } // END second update.
+		
+		if ((loopCounter % GAME_UPDATES_2MIN) == 0){
+			std::cout << "new time slice gid :" << myServer->updateIDServer() << std::endl;
+		}
     }
     updateTime = SDL_GetTicks() - beginUpdate;
 }

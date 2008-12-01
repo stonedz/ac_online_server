@@ -22,6 +22,8 @@ void Cmd_test::execute(void){   // Actual implemetation of the command.
         test_move();
     else if (param1 == "location")
         test_location();
+	else if (param1 == "id")
+		test_id();
     else
         std::cout << "You passed this string as parameter(s): " << getParam(1,true);
 }
@@ -59,5 +61,10 @@ Location c;
 b = a;
 c = b;
 
+}
+
+void Cmd_test::test_id(){
+	Uint64 tmp = 0;
+	myServer->getNewID(tmp,1);
 }
 

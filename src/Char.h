@@ -25,7 +25,7 @@ public:
      * @param dbId Database id of the character.
      * @param client Reference to the Client which owns this Char
      */
-    Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client);
+    Char(Uint64 serial, Uint16 type, Uint32 dbId, Client& client);
 
     /**
      * Virtual destructor.

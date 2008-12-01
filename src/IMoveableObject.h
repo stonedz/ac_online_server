@@ -13,7 +13,7 @@ public:
     /**
      * Cosntructor
      */
-    IMoveableObject(Uint32 serial, Uint16 type);
+    IMoveableObject(Uint64 serial, Uint16 type);
 
     /**
      * Virtual destructor.

@@ -35,6 +35,8 @@ private:
     void test_move();
 
     void test_location();
+	
+	void test_id();
 
 };
 

@@ -9,11 +9,13 @@
 #include "MapManager.h"
 #include "Gamefsm.h"
 #include "Console.h"
+#include "IDServer.h"
 
 class Message;	// Forward declarations.
 class MessageIn;
 class MessageOut;
 class Client;
+class IDServer;
 
 /**
  * Represents a server.
@@ -116,8 +118,29 @@ public:
      * @since pre-alpha
      * @param validSerial Reference to an integer value to store the serial in. \
      * @see IGameObject
+	 * @deprecated getNewID
      */
     void getNextGoSerial(Uint32& validSerial);
+	
+	/**
+	 * Return a NEW game object serial.
+	 * 
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @param id The var where the new ID will be stored.
+	 * @param type the Game Object type, see defines in defs.h files.
+	 * @see defs.h
+	 */
+	void getNewID(Uint64& id, const Uint8& type);
+	
+	/**
+	 * Updates the Server ID
+	 * 
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @see IDServer
+	 */
+	Uint32 updateIDServer();
 
     /**
      * Sets the initialized var. It is used by Gamefsm.
@@ -182,7 +205,7 @@ private:
 	bool exit_request;          /**< Proper exit request has benn submitted.*/
 	bool chat_mode;             /**< This server's console will act like chat client, mainly for testing MSG_CHAT implementation. */
 	SDL_mutex* mxGoSerial;      /**< Mutex for gameObjectSerial. */
-	Uint32 gameObjectSerial;    /**< The current Serial counter for game Objects (IGameObjects derived). */
+	IDServer* myIdServer;    /**< The current Serial counter for game Objects (IGameObjects derived). */
 	bool initialized;           /**< If true the server has been initialized, and may accept incoming connections. */
 	Gamefsm myGamefsm;          /**< The Gamefsm that is running inside the Server. */
 	Console myConsole;          /**< A console to control the server. */

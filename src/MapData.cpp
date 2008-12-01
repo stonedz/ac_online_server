@@ -11,9 +11,9 @@ MapData::MapData(const Uint16& x, const Uint16& y, std::ifstream* pFin)
 	for(;counter < tot;counter++){
 		pFin->read((char *) (&(myData[counter].z)),sizeof(uint8_t));
 		pFin->read((char *) (&(myData[counter].t_type)),sizeof(myData[counter].t_type));
-		std::cout<< "counter : "<< counter << std::endl;
-		std::cout<< "z: " << (int)(myData[counter].z)<< std::endl;
-		std::cout<< "type: " << myData[counter].t_type << std::endl;
+// 		std::cout<< "counter : "<< counter << std::endl;
+// 		std::cout<< "z: " << (int)(myData[counter].z)<< std::endl;
+// 		std::cout<< "type: " << myData[counter].t_type << std::endl;
 	}
 	
 }

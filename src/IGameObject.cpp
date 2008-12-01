@@ -3,7 +3,7 @@
 #include "Location.h"
 #include "SDL.h"
 
-IGameObject::IGameObject(Uint32 serial, Uint16 type)
+IGameObject::IGameObject(Uint64 serial, Uint16 type)
     :mSerial(serial),
     mType(type),
     mOwner(0),

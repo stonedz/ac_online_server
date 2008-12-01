@@ -176,6 +176,9 @@ if debug:
 else:
 	rls.Program('lod', files, CPPPATH = cpppath)
 
+""" copy server save database tu build directory """
+Command( "../build/server.db", "../data/server.db", Copy("$TARGET", "$SOURCE"))
+
 """ Copy a dummy map into build dir in order to test MapManager """
 Command( "../build/Map.xml", "../data/dummyMap.xml", Copy("$TARGET", "$SOURCE"))
 Command( "../build/t_map.dat", "../data/t_map.dat", Copy("$TARGET", "$SOURCE"))

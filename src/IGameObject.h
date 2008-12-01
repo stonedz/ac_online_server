@@ -19,7 +19,7 @@ public:
     /**
      * Creates a new objects given its serial number (unique) and its type.
      */
-    IGameObject(Uint32 serial, Uint16 type);
+    IGameObject(Uint64 serial, Uint16 type);
 
     /**
      * Virtual destructor.
@@ -138,9 +138,9 @@ public:
 
 protected:
 
-    Uint32 mSerial;     /**< Unique object's serial. */
+    Uint64 mSerial;     /**< Unique object's serial. */
     Uint16 mType;       /**< Object type. */
-    Uint32 mOwner;      /**< If != 0 is the owner's serial. */
+    Uint64 mOwner;      /**< If != 0 is the owner's serial. */
     std::string mName;  /**< Standard object's name. */
     Location mPos;      /**< Object's location (position). */
     SDL_mutex* mxPos;   /**< Mutex for thread safetyness when setting the Position. */

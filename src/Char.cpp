@@ -5,32 +5,39 @@
 #include "Server.h"
 #include <boost/lexical_cast.hpp>
 
-Char::Char(Uint32 serial, Uint16 type, Uint32 dbId, Client& client)
+Char::Char(Uint64 serial, Uint16 type, Uint32 dbId, Client& client)
     :IMoveableObject(serial, type),
     myId(dbId),
     myClient(client)
 {
 	if (dbId != 0) {// The account has a valid character attached.
-		CppSQLite3DB accDb;
-		accDb.open("accounts.db");
+		
+		try{
+			CppSQLite3DB accDb;
+			accDb.open(DB_ACCOUNTS);
 
-		std::ostringstream oss;
-		oss << myId;
-		std::string query = "SELECT * FROM characters WHERE id = \""+oss.str()+"\";";
-		CppSQLite3Query q = accDb.execQuery(query.c_str());
+			std::string query = "SELECT * FROM characters WHERE id = \""+boost::lexical_cast< std::string >(myId)+"\";";
+			CppSQLite3Query q = accDb.execQuery(query.c_str());
 
-		if (!q.eof()){
-			setName(q.fieldValue(2));
-			setPosition(Location(q.getIntField(3),q.getIntField(4),q.getIntField(5)));
-			mDestPos = mPos; // We set our destination to our actual location.
-			// Since everything went fine we add the client to the list of active clients.
-			(client.getServer()).addClient(&client); 
-		}
-		else{
-			Logger::getInstance()->log("Error creating Character with ID "+oss.str(), LOGMODE_DB);
-		}
+			if (!q.eof()){
+				setName(q.fieldValue(2));
+				setPosition(Location(q.getIntField(3),q.getIntField(4),q.getIntField(5)));
+				mDestPos = mPos; // We set our destination to our actual location.
+				// Since everything went fine we add the client to the list of active clients.
+				(client.getServer()).addClient(&client); 
+			}
+			else{
+				Logger::getInstance()->log("Error creating Character with ID "+boost::lexical_cast< std::string >(myId) +" no such character in DB!", LOGMODE_DB);
+			}
 
     		accDb.close();
+		}
+		catch(CppSQLite3Exception e){
+			std::string error = "Error creating Character with ID "+boost::lexical_cast< std::string >(myId)+
+					", SQLite says: "+ e.errorMessage();
+			Logger::getInstance()->log(error, LOGMODE_DB);
+			(myClient.getServer()).getConsole().printMsg(error, CONSOLE_ERROR);
+		}
 	}
 	else{ // Create a dummy char
 		setName("Dummy");

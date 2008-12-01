@@ -1,5 +1,5 @@
 #include "Account.h"
-#include  "cppsqlite3.h"
+#include "cppsqlite3.h"
 #include "Server.h"
 #include "Logger.h"
 #include "Char.h"
@@ -27,6 +27,7 @@ Account::Account(Server* server,
 		try{
         		Uint32 tmpSerial;
        			myServer->getNextGoSerial(tmpSerial);
+				std::cout << "serial "<< tmpSerial <<std::endl;
         		myChar = new Char(tmpSerial, GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
     		}
     		catch(CppSQLite3Exception& e){

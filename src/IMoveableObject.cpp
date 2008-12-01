@@ -1,7 +1,7 @@
 #include "IMoveableObject.h"
 
 
-IMoveableObject::IMoveableObject(Uint32 serial, Uint16 type)
+IMoveableObject::IMoveableObject(Uint64 serial, Uint16 type)
     :IGameObject(serial, type),
     mDestPos(Location())
 {
