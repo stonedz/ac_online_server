@@ -5,6 +5,7 @@
 #include "defs.h"
 #include "Logger.h"
 #include "Server.h"
+#include "cppsqlite3.h"
 
 /**
  * Manages the objects' uniques IDs.
@@ -49,6 +50,7 @@ class IDServer{
 		Uint32 myTime;		/**< Current time */
 		Uint32 myObjNum;
 		Server* myServer;	/**< reference to the server I'm running in.*/
+		CppSQLite3DB myServerDb; /**< Conenction to the server.db db. */
 };
 
 
