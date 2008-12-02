@@ -50,6 +50,7 @@ Uint32 IDServer::updateTime(){
 		std::string query = "UPDATE gids SET time_gid =\""+boost::lexical_cast< std::string >(myTime)+"\" ;";
 		myServerDb.execDML(query.data());
 		
+		myObjNum = 0;
 		return myTime;
 		
 	}
