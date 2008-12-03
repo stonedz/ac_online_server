@@ -25,10 +25,9 @@ Account::Account(Server* server,
 {
     // Builds the Character associated with the account.
 		try{
-        		Uint32 tmpSerial;
-       			myServer->getNextGoSerial(tmpSerial);
-				std::cout << "serial "<< tmpSerial <<std::endl;
-        		myChar = new Char(tmpSerial, GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
+				
+			myChar = new Char(loadGid(myCharID), GO_PLAYER, myCharID, *client); // We delegate database queries to the Char ctor.
+				std::cout << "serial "<< myChar->getSerial() <<std::endl;
     		}
     		catch(CppSQLite3Exception& e){
         		std::ostringstream oss;
@@ -59,4 +58,31 @@ void Account::save(){
         myServer->getConsole().printMsg(error, CONSOLE_ERROR);
     }
     myChar->save();
+}
+
+Uint64 Account::loadGid(Uint32 db_id){
+	try{
+		CppSQLite3DB accDb;
+		accDb.open(DB_ACCOUNTS);
+
+		std::string query = "SELECT gid FROM characters WHERE id = \""+boost::lexical_cast< std::string >(db_id)+"\";";
+		CppSQLite3Query q = accDb.execQuery(query.c_str());
+		
+		if (!q.eof()){
+			return q.getIntField(0);
+		}
+		else{
+			Logger::getInstance()->log("Error getting character gid with ID "+boost::lexical_cast< std::string >(db_id) +" no such character in DB!", LOGMODE_DB);
+			return 0;
+		}
+		
+		accDb.close();
+	}
+	catch(CppSQLite3Exception e){
+		std::string error = "Error getting character gid with ID "+boost::lexical_cast< std::string >(db_id)+
+				", SQLite says: "+ e.errorMessage();
+		Logger::getInstance()->log(error, LOGMODE_DB);
+		myServer->getConsole().printMsg(error, CONSOLE_ERROR);
+		return 0;
+	}
 }

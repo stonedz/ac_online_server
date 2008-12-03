@@ -39,8 +39,8 @@ void Cmd_map::create(const std::string& filename){
 	std::cout<<"Creating map, please wait...";
 	ofstream fout;
 	fout.open( filename.c_str(), ios::binary);
-	Uint16 x = 10;
-	Uint16 y = 10;
+	Uint16 x = 4000;
+	Uint16 y = 4000;
 	fout.write((char *) (&x), sizeof(x));
 	fout.write((char *) (&y), sizeof(y));
 	Uint32 tot = x*y;

@@ -17,9 +17,18 @@ class IGameObject
 {
 public:
     /**
-     * Creates a new objects given its serial number (unique) and its type.
+     * Creates an object (existing one), given its serial and type. 
+	 * 
+	 * @todo check for serial != 0. If serial == 0 then destroy all and inform the server 
+	 * (i.e.the client shouldn't be added to client map. ).
      */
     IGameObject(Uint64 serial, Uint16 type);
+	
+	/**
+	 * Creates a new object given its type
+	 * @todo To be implemented
+	 */
+	IGameObject(Uint16 type);
 
     /**
      * Virtual destructor.

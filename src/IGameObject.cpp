@@ -16,6 +16,12 @@ IGameObject::IGameObject(Uint64 serial, Uint16 type)
     //ctor
 }
 
+IGameObject::IGameObject(Uint16 type)
+		
+{
+	//ctor
+}
+
 IGameObject::~IGameObject()
 {
     // Delete mutexes.

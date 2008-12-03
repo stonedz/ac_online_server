@@ -43,7 +43,7 @@ int main(int argc, char **argv){
 	Logger* logger = Logger::getInstance();
 
 	#ifdef TESTPHASE
-	logger->setDebugMode(false);
+	logger->setDebugMode(true);
 	#endif
 
 	logger->log("Initializing SDL subsystems...", LOGMODE_NORMAL);

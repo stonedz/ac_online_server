@@ -1,6 +1,8 @@
 #include "MapManager.h"
 #include "xmlParser.h"
 #include <fstream>
+#include <boost/progress.hpp>
+
 
 MapManager* MapManager::pUniqueInstance = NULL; // Reference to the unique instance.
 SDL_mutex* MapManager::mxInstance = SDL_CreateMutex();	// Reference to instance mutex.
@@ -47,6 +49,7 @@ bool MapManager::loadXMLMap(const std::string& filename){
 bool MapManager::loadBinTMap(const std::string& filename){
 	 
 	try{
+		boost::progress_timer t;
 		std::cout << "Loading terrain map " << filename << " ...";
 		std::ifstream fin;
 		fin.open ( filename.c_str(), std::ios::binary);
@@ -57,7 +60,7 @@ bool MapManager::loadBinTMap(const std::string& filename){
 		myTMap = new MapData(xx, yy, &fin);
 	
 		fin.close();
-		std::cout << "DONE" << std::endl;
+		std::cout << "DONE in:" << std::endl;
 		return true;
 	}
 	catch(std::ifstream::failure e){

@@ -76,6 +76,15 @@ private:
     Uint32 myCharID;        /**< Id of the account's character. */
 
     Char* myChar;           /**< My (active) character. */
+	
+	/**
+	 * Returns character's gid taken from database.
+	 * 
+	 * @author stonedz
+	 * @since pre-alpha
+	 * @return 
+	 */
+	Uint64 loadGid(Uint32 db_id);
 
 
 };
