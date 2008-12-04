@@ -112,8 +112,6 @@ protected:
 	 *
 	 * @author stonedz
 	 * @since pre-alpha
-	 * @todo This method needs a real implementation.
-	 * @todo Add CRC and SHA controls.
 	 */
 	void Login(void);
 

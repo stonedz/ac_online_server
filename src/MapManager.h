@@ -9,9 +9,6 @@
 /**
  * Manages a game map. This is still work in rpogress since we've not decided how to
  * implement it. Implements the Sinlgeton pattern.
- *
- * @todo Design, see #15
- * @todo Should be Thread safe
  */
 class MapManager
 {

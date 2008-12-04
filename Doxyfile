@@ -3,7 +3,7 @@
 #---------------------------------------------------------------------------
 # Project related configuration options
 #---------------------------------------------------------------------------
-PROJECT_NAME           = "Last Online Server"
+PROJECT_NAME           = "Ancient Chronicles Online Server"
 PROJECT_NUMBER         = pre-alpha
 OUTPUT_DIRECTORY       = Doc/
 CREATE_SUBDIRS         = NO
