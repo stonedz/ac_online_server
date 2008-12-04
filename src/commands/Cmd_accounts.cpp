@@ -41,7 +41,7 @@ void Cmd_accounts::execute(){
 
 void Cmd_accounts::showAccounts(Uint32 recordsPerPage){
     try{
-        CppSQLite3Query q = myAccDb.execQuery("select * from registered_users order by id;");
+        CppSQLite3Query q = myAccDb.execQuery("select `id`,`username`, `name`,`surname`, `pc_id`, `email` from registered_users order by id;");
         if(q.eof())
             std::cout << "Accounts database is EMPTY, use < accounts add > to add an entry." << std::endl;
         else{
@@ -55,9 +55,9 @@ void Cmd_accounts::showAccounts(Uint32 recordsPerPage){
             while (!q.eof()){
                 std::cout << std::setw(3) << q.fieldValue(0) << " | ";
                 std::cout << std::setw(15) << q.fieldValue(1) << " | ";
+                std::cout << std::setw(10) << q.fieldValue(2) << " | ";
                 std::cout << std::setw(10) << q.fieldValue(3) << " | ";
-                std::cout << std::setw(10) << q.fieldValue(4) << " | ";
-                std::cout << std::setw(7) << q.fieldValue(6) << " | ";
+                std::cout << std::setw(7) << q.fieldValue(4) << " | ";
                 std::cout << std::setw(20) <<q.fieldValue(5) << " | " << std::endl;
                 q.nextRow();
             }
@@ -156,12 +156,14 @@ void Cmd_accounts::attachChar(){
     std::getline(std::cin, zPos);              //This neither
     std::cout << "Character name :";
     std::getline(std::cin, charname);
-
+	Uint64 serial;
+	myServer->getNewID(serial, GO_PLAYER);
+	
     Sint32 nRows;
     #ifdef TESTPHASE
-    nRows = myAccDb.execDML("CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, account_id INTEGER, name TEXT UNIQUE, x_position INTEGER, y_position INTEGER, z_position INTEGER);");
+    nRows = myAccDb.execDML("CREATE TABLE IF NOT EXISTS characters (id INTEGER PRIMARY KEY AUTOINCREMENT, gid INTEGER, account_id INTEGER, name TEXT UNIQUE, x_position INTEGER, y_position INTEGER, z_position INTEGER);");
     #endif
-    std::string query = "insert into characters(account_id, name, x_position, y_position, z_position) VALUES ( \""+accNumber+"\", \""+charname+"\", \""+xPos+"\", \""+yPos+"\", \""+zPos+"\");";
+	std::string query = "insert into characters(account_id, name, x_position, y_position, z_position, gid) VALUES ( \""+accNumber+"\", \""+charname+"\", \""+xPos+"\", \""+yPos+"\", \""+zPos+"\", \""+boost::lexical_cast< std::string >(serial)+"\");";
     nRows = myAccDb.execDML(query.data());
 
     if (nRows){

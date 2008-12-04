@@ -6,6 +6,7 @@
 #include "../network/crc32.h"
 #include "../network/sha1.h"
 
+
 Cmd_login::~Cmd_login()
 {
     //dtor
