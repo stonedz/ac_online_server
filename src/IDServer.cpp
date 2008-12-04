@@ -41,7 +41,7 @@ Uint64 IDServer::getNewId(const Uint8& type){
 	std::cout << tmp_type << std::endl;
 	std::cout << result << std::endl;
 	std::cout << myTime <<std::endl;
-	return tmp;
+	return result;
 }
 
 Uint32 IDServer::updateTime(){
