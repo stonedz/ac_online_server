@@ -86,15 +86,13 @@ files = Split("""Account.cpp
 			utils/xmlParser.cpp""")
 
 """ General shared libraries used by the debug executable """
-libs_dbg = Split("""SDL
-				SDL_net
+libs_dbg = Split(""" SDL_net
 				m
 				pthread
 				sqlite3""")
 
 """ General shared libraries used by the release executable """
-libs_rls = Split("""SDL
-				SDL_net
+libs_rls = Split(""" SDL_net
 				m
 				pthread 
 				sqlite3""")
