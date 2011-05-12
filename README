@@ -1,5 +1,11 @@
-Please refer to:
+C++ MMORPG server.
 
-	http://pran.homeunix.org/lo_server
+This is an old project of mine, unfinished, untested, undead?
 
-for more informations.
+Dependencies:
+
+    * Boost
+    * SDL_network
+    * Sqlite
+    * Scons
+
