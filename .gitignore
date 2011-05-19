@@ -26,3 +26,5 @@ lo_server.kdevses
 config.log
 #Ignore ctags file
 tags
+#Ignore swap files
+*.swp

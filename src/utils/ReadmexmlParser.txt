@@ -1,45 +1,20 @@
-XMLParser v2.27
+XMLParser v2.43
 ===============
 
 The library is composed by two files: "xmlParser.cpp" and "xmlParser.h".
-These are the only 2 files that you need when using the library inside your own projects.
-All the functions of the library are documented inside the comments of the file "xmlParser.h".
+These are the ONLY 2 files that you need when using the library inside your own projects.
 
-To use the unicode version of the library, you need to define the "_UNICODE" preprocessor
-definition variable (inside your project definition file).
+All the functions of the library are documented inside the comments of the file "xmlParser.h". 
+These comments can be transformed in full-fledged HTML documentation using the DOXYGEN 
+software: simply type: "doxygen doxy.cfg"
 
-Some small test examples are also given: see the files "xmlTest.cpp" and "xmlTestUnicode.cpp".
-The examples are described inside the html file "xmlParser.html".
-
-To build the examples:
-- linux/unix: type "make"
-- solaris: type "make -f makefile.solaris"
-- windows: Visual Studio: double-click on xmlParser.dsw
-  (under Visual Studio .NET, the .dsp and .dsw files will be automatically converted to .vcproj and .sln files)
-
-In order to build the examples you need some project files:
-- linux/unix: makefile
-- solaris: makefile.solaris
-- windows: Visual Studio: *.dsp, xmlParser.dsw
-
-WINDOWS:
-	Inside Visual C++, the "debug versions" of the memory allocation functions are 
-	very slow: Do not forget to compile in "release mode" to get maximum speed. 
-	When I have to debug a software that is using the XMLParser Library, it's usually
-	a nightmare because the library is sooOOOoooo slow in debug mode. To solve this
-	problem, during all the debugging session, I use a very fast DLL version of the 
-	XMLParser Library (the DLL is compiled in release mode). Using the DLL version of 
-	the XMLParser Library allows me to have lightening XML parsing speed even in debug!
-	Other than that, the DLL version is useless: In the release version of my tool,
-	I always use the normal, ".cpp"-based, XMLParser Library.
-LINUX:
-	The speed of the debug version of the XMLParser library is tolerable.
+For more documentation, please refer either to the file "xmlParser.h" or "Doc/html/index.html".
 
 Change Log
 ----------
 
-* V1.00: February 20, 2002: initial version.
-* V1.01: February 13, 2005: first bug-free release.
+* V1.00: February 20, 2002: initial version by Martyn C Brown.
+* V1.01: February 13, 2005: first bug-free "internet" release.
 * V1.02: March 6, 2005: 2 minor changes:
    o "parseString" function declaration changed to allow easy parsing from memory buffer
    o Minor changes to allow easy compilation under old GCC under QNX
@@ -87,7 +62,6 @@ Change Log
    o added the eXMLErrorUnknownEscapeSequence
 * V1.18: June 8, 2006: 1 bug fix, minors changes
    o FIX: the 'eXMLErrorFirstTagNotFound' error was not reported.
-   o changed license to BSD - added some examples of usage.
 * V1.19: July 4, 2006: 3 addition.
    o added automatic convertion from/to UNICODE/ANSI in linux (this was already done in windows)
    o added getChildNodeWithAttribute()
@@ -195,3 +169,59 @@ Change Log
    o renamed "free_XMLDLL" to "freeXMLString" and renamed "toXMLString" to "toXMLStringUnSafe"
    o added some tests to make "add*" and "update*" functions more robust to user errors
    o added the ToXMLStringTool class to allow easy creation of XML files using fprintf function.
+* V2.28: June 27, 2007: 2 additions, 2 minor changes
+   o added native support for Shift-JIS character encoding.
+   o added a primitive heuristic inside the "guessCharEncoding" function to handle the Shift-JIS character encoding. 
+   o modified slightly the "setGlobalOptions" function to handle several character encodings.
+   o moved the function "toXMLUnSafe" inside the "ToXMLStringTool" class.
+* v2.29: July 3,2007: 1 bug fix
+   o FIX: the clear tags are now case-sensitive.
+* v2.30: July 31,2007: 2 bug fixes, 1 addition
+   o FIX: The error when parsing two successives "<!DOCTYPE" clear tags with different closing part is removed.
+   o FIX: The "deleteNodeContent" method is now working properly (and is now always in "force" mode).
+   o added one XMLError code (when no XML tags are found)
+* v2.31: August 29,2007: 1 fix
+   o FIX: when we parse an empty file, we now close properly the FILE* handle.
+* v2.32: October 4,2007: 1 addition
+   o added the example 7 to enumerate the content of a XMLNode.
+* v2.33: October 11, 2007: 1 addition
+   o added the "deepCopy" method
+* v2.34: January 25, 2008: 2 additions
+   o added the function "xmltoi" and "xmltof" that are equivalent to the classical functions "atoi" and "atof" but accept a default values used when the string given as argument is NULL.
+   o improved support for Borland C++ Builder 6.0
+* v2.35: February 2, 2008: 1 minor change
+   o changed the xmlto? functions to make them more cross-plateform.
+* v2.36: March 9, 2008: 2 bug fixes, 2 additions, 4 minor changes
+   o FIX: processing instructions <?anything?> that are not at the root level are now always handled correctly
+   o FIX: the "deleteNodeContent" function was previously generating a memory leak.
+   o added the file "XMLNodeAutoexp.txt" that shows a user-friendly representation of a XMLNode inside the watch window of the Visual Studio .NET Debugger
+   o added a new global option named "removeCommentsInMiddleOfText" to increase standard XML compliance.
+   o improved error reporting: character's code above 255 is forbidden in MultiByte char mode
+   o improved XML string rendering (function createXMLString): the XMLNode that only contains one text are now written on one line of text instead of three.
+   o isolate the functions "xmltoc,xmltoi,xmltol,xmltof,xmltoa" so that they can be easily removed to reduced the number of dependencies of the library.
+   o modified slightly the "ToXMLStringTool" class to make it easier to use
+* v2.37: March 24, 2008: 1 bux fix
+   o FIX: compilation problem under solaris and under Borland 6.0
+* v2.38: June 2, 2008: 3 additions
+   o multibyte to widechar automatic convertion now uses BOM to guess if encoding.is UTF8 or ASCII
+   o added doxygen-style comments for easier documentation and a simple "doxy.cfg" file
+   o improved the "getChildNode(XMLCSTR name, int i)" method.
+* v2.39: August 9, 2008: 4 additions, 2 bug fixes
+   o FIX: on some rare occasions, the createXMLString method returned a string that was not NULL terminated.
+   o FIX: on some rare occasions, if there are two declaration term <?...?> at the start of the XML file, then the parser cannot find the start tag.
+   o added the "getChildNodeByPath" function
+   o added the "xmltob" function and updated the "xmltoc" function
+   o included the documentation in html-DOXYGEN format direclty inside the ZIP file
+   o added support for GB2312 / Big5 / GBK character encodings
+* v2.40: December 19, 2008: 1 minor change
+   o improved support for wide char on exotic platform
+   o changed the copyright notice to the name of my company (Business-Insight)
+* v2.41: June 25, 2009: 1 minor change
+   o modified the functions ToXMLStringTool::toXML() and XMLParserBase64Tool::decode() to accept null string as input
+* v2.42: Januray 4, 2011: 4 minor changes 
+   o modified the function "writeTofile" to handle gracefully the case when it's not possible to write to the file
+   o slight speed improvement in parser (inside the tokenizer)
+   o changed some enumeration name to avoid any "name collision" with user's code 
+   o better handling of the BOM when loading a XML file
+* v2.43: 1 bug fix.
+   o FIX: empty CDATA were not handled properly (thanks to Botond Xantus from iGo for noticing me!)
