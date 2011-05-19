@@ -9,3 +9,6 @@ Dependencies:
     * Sqlite
     * Scons
 
+Thanks to:
+
+    * XMLParser (http://www.applied-mathematics.net/tools/xmlParser.html)
